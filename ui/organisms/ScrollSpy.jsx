@@ -9,7 +9,6 @@ class ScrollSpy extends Component
 {
     componentDidMount()
     {
-        console.log(this.props);
         if (this.props.id) {
             this.id = this.props.id;
         } else {

@@ -5,38 +5,73 @@ import { Container } from 'flux/utils';
 import { scrollStore } from '../../src/index';
 
 import {
-    SemanticUI
+    SemanticUI,
+    assign
 } from 'react-atomic-molecule';
 
 class ScrollReceiver extends Component
 {
-   static getStores()
-   {
-       return [scrollStore];
-   }
+     static defaultProps = {
+         scrollMargin: 'default',
+         target: ''
+     };
 
-   static calculateState(prevState)
-   {
-        const state = scrollStore.getState();
-   }
+     static getStores()
+     {
+         return [scrollStore];
+     }
 
-   render()
-   {
-        const {container, ...props} = this.props; 
-        let el;
-        if (React.isValidElement(container)) {
-          el = React.cloneElement(
+     static calculateState(prevState, props)
+     {
+         const state = scrollStore.getState();
+         let isOnScreen = false;
+         let nodes = state.get('nodes');
+         let target = props.target;
+         if (nodes) {
+             nodes = nodes.toJS();
+             if (nodes && nodes[target]) {
+                isOnScreen = 
+                    nodes[target].
+                    isElementOnScreen;
+             }
+         }
+         let active = 
+            target === 
+            state.get(props.scrollMargin);
+        return {
+            active: active,
+            isOnScreen: isOnScreen
+        };
+     }
+
+     render()
+     {
+         const {
             container,
-            props
-        );
-        } else {
-          el = (
-            <SemanticUI {...props}/>
-          );
-        }
-        return el;
-   }
+            scrollMargin,
+            ...reset
+         } = this.props; 
+         let el;
+         let props = assign({}, reset, {
+            active: this.state.active,
+            isOnScreen: this.state.isOnScreen
+         });
+         if (React.isValidElement(container)) {
+             el = React.cloneElement(
+                 container,
+                 props
+            );
+         } else {
+             el = (
+                     <SemanticUI {...props}/>
+                  );
+         }
+         return el;
+     }
 }
-const ScrollReceiverContainer = Container.create(ScrollReceiver);
+const ScrollReceiverContainer = Container.create(
+    ScrollReceiver,
+    { withProps:true }
+);
 
 export default ScrollReceiverContainer;

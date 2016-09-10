@@ -17458,7 +17458,7 @@ webpackJsonp([0],[
 	        if (scrollTop >= pos.top && scrollTop < pos.bottom) {
 	          actives['default'] = node.id;
 	        }
-	        pos.isElementOnscreen = !(pos.top > scroll.bottom || pos.bottom < scroll.top || pos.right < scroll.left || pos.left > scroll.right);
+	        pos.isElementOnScreen = !(pos.top > scroll.bottom || pos.bottom < scroll.top || pos.right < scroll.left || pos.left > scroll.right);
 	        offsetCache[node.id] = pos;
 	      });
 	      this.margins.toJS().forEach(function (margin) {
@@ -17472,11 +17472,12 @@ webpackJsonp([0],[
 	          return true;
 	        });
 	      });
-	      console.log(actives, offsetCache, scroll);
+	      (0, _dispatcher.dispatch)({
+	        nodes: offsetCache,
+	        actives: actives,
+	        scroll: scroll
+	      });
 	    }
-	  }, {
-	    key: 'update',
-	    value: function update(state, action) {}
 	  }, {
 	    key: 'attach',
 	    value: function attach(node) {
@@ -17500,14 +17501,10 @@ webpackJsonp([0],[
 	  }, {
 	    key: 'reduce',
 	    value: function reduce(state, action) {
-	      switch (action.type) {
-	        case 'update':
-	          return this.update(state, action);
-	        case 'config/set':
-	          return state.merge(action.params);
-	        default:
-	          return state;
-	      }
+	      return state.merge(action.actives, {
+	        nodes: action.nodes,
+	        scroll: action.scroll
+	      });
 	    }
 	  }]);
 
@@ -19658,7 +19655,6 @@ webpackJsonp([0],[
 	    _createClass(ScrollSpy, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            console.log(this.props);
 	            if (this.props.id) {
 	                this.id = this.props.id;
 	            } else {
@@ -19730,17 +19726,17 @@ webpackJsonp([0],[
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
 	var _createClass = function () {
-	  function defineProperties(target, props) {
-	    for (var i = 0; i < props.length; i++) {
-	      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-	    }
-	  }return function (Constructor, protoProps, staticProps) {
-	    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-	  };
+	    function defineProperties(target, props) {
+	        for (var i = 0; i < props.length; i++) {
+	            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+	        }
+	    }return function (Constructor, protoProps, staticProps) {
+	        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+	    };
 	}();
 
 	var _react = __webpack_require__(1);
@@ -19754,74 +19750,98 @@ webpackJsonp([0],[
 	var _reactAtomicMolecule = __webpack_require__(200);
 
 	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { default: obj };
+	    return obj && obj.__esModule ? obj : { default: obj };
 	}
 
 	function _objectWithoutProperties(obj, keys) {
-	  var target = {};for (var i in obj) {
-	    if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
-	  }return target;
+	    var target = {};for (var i in obj) {
+	        if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+	    }return target;
 	}
 
 	function _classCallCheck(instance, Constructor) {
-	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function");
-	  }
+	    if (!(instance instanceof Constructor)) {
+	        throw new TypeError("Cannot call a class as a function");
+	    }
 	}
 
 	function _possibleConstructorReturn(self, call) {
-	  if (!self) {
-	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-	  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	    if (!self) {
+	        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }return call && (typeof call === "object" || typeof call === "function") ? call : self;
 	}
 
 	function _inherits(subClass, superClass) {
-	  if (typeof superClass !== "function" && superClass !== null) {
-	    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-	  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	    if (typeof superClass !== "function" && superClass !== null) {
+	        throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 	}
 
 	var ScrollReceiver = function (_Component) {
-	  _inherits(ScrollReceiver, _Component);
+	    _inherits(ScrollReceiver, _Component);
 
-	  function ScrollReceiver() {
-	    _classCallCheck(this, ScrollReceiver);
+	    function ScrollReceiver() {
+	        _classCallCheck(this, ScrollReceiver);
 
-	    return _possibleConstructorReturn(this, (ScrollReceiver.__proto__ || Object.getPrototypeOf(ScrollReceiver)).apply(this, arguments));
-	  }
-
-	  _createClass(ScrollReceiver, [{
-	    key: 'render',
-	    value: function render() {
-	      var _props = this.props;
-	      var container = _props.container;
-
-	      var props = _objectWithoutProperties(_props, ['container']);
-
-	      var el = void 0;
-	      if (_react2.default.isValidElement(container)) {
-	        el = _react2.default.cloneElement(container, props);
-	      } else {
-	        el = _react2.default.createElement(_reactAtomicMolecule.SemanticUI, props);
-	      }
-	      return el;
+	        return _possibleConstructorReturn(this, (ScrollReceiver.__proto__ || Object.getPrototypeOf(ScrollReceiver)).apply(this, arguments));
 	    }
-	  }], [{
-	    key: 'getStores',
-	    value: function getStores() {
-	      return [_index.scrollStore];
-	    }
-	  }, {
-	    key: 'calculateState',
-	    value: function calculateState(prevState) {
-	      var state = _index.scrollStore.getState();
-	    }
-	  }]);
 
-	  return ScrollReceiver;
+	    _createClass(ScrollReceiver, [{
+	        key: 'render',
+	        value: function render() {
+	            var _props = this.props;
+	            var container = _props.container;
+	            var scrollMargin = _props.scrollMargin;
+
+	            var reset = _objectWithoutProperties(_props, ['container', 'scrollMargin']);
+
+	            var el = void 0;
+	            var props = (0, _reactAtomicMolecule.assign)({}, reset, {
+	                active: this.state.active,
+	                isOnScreen: this.state.isOnScreen
+	            });
+	            if (_react2.default.isValidElement(container)) {
+	                el = _react2.default.cloneElement(container, props);
+	            } else {
+	                el = _react2.default.createElement(_reactAtomicMolecule.SemanticUI, props);
+	            }
+	            return el;
+	        }
+	    }], [{
+	        key: 'getStores',
+	        value: function getStores() {
+	            return [_index.scrollStore];
+	        }
+	    }, {
+	        key: 'calculateState',
+	        value: function calculateState(prevState, props) {
+	            var state = _index.scrollStore.getState();
+	            var isOnScreen = false;
+	            var nodes = state.get('nodes');
+	            var target = props.target;
+	            if (nodes) {
+	                nodes = nodes.toJS();
+	                if (nodes && nodes[target]) {
+	                    isOnScreen = nodes[target].isElementOnScreen;
+	                }
+	            }
+	            var active = target === state.get(props.scrollMargin);
+	            return {
+	                active: active,
+	                isOnScreen: isOnScreen
+	            };
+	        }
+	    }]);
+
+	    return ScrollReceiver;
 	}(_react.Component);
 
-	var ScrollReceiverContainer = _utils.Container.create(ScrollReceiver);
+	ScrollReceiver.defaultProps = {
+	    scrollMargin: 'default',
+	    target: ''
+	};
+
+	var ScrollReceiverContainer = _utils.Container.create(ScrollReceiver, { withProps: true });
 
 	exports.default = ScrollReceiverContainer;
 	module.exports = exports['default'];

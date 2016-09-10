@@ -46,7 +46,7 @@ class ScrollStore extends ReduceStore
         if (scrollTop>=pos.top && scrollTop<pos.bottom) {
             actives['default'] = node.id;
         }
-        pos.isElementOnscreen = !(pos.top > scroll.bottom
+        pos.isElementOnScreen = !(pos.top > scroll.bottom
             || pos.bottom < scroll.top
             || pos.right < scroll.left
             || pos.left > scroll.right);
@@ -64,8 +64,9 @@ class ScrollStore extends ReduceStore
         });
     });
     dispatch({
-       nodes: offsetCache,
-       actives: actives
+       nodes  : offsetCache,
+       actives: actives,
+       scroll : scroll
     });
   }
   
@@ -91,7 +92,13 @@ class ScrollStore extends ReduceStore
 
   reduce (state, action)
   {
-      return state.merge(action.actives, {nodes: action.nodes});
+    return state.merge(
+        action.actives,
+        {
+            nodes : action.nodes,
+            scroll: action.scroll
+        }
+    );
   }
 
 }
