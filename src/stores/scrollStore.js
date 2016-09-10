@@ -2,7 +2,7 @@
 
 import Immutable from 'immutable';
 import {ReduceStore} from 'flux/utils';
-import dispatcher from '../actions/dispatcher';
+import dispatcher, {dispatch} from '../actions/dispatcher';
 import getScrollInfo from 'get-scroll-info';
 
 class ScrollStore extends ReduceStore
@@ -10,7 +10,7 @@ class ScrollStore extends ReduceStore
   getInitialState()
   {
       this.spys = Immutable.Set();
-      this.margins = Immutable.Set(['default']);
+      this.margins = Immutable.Set();
       if (window) {
           if (window.addEventListener) {
             window.addEventListener('scroll', this.scrollMonitor.bind(this));
@@ -36,16 +36,26 @@ class ScrollStore extends ReduceStore
 
   _triggerScroll()
   {
-    let info = getScrollInfo(null, 0);
-    let scrollTop;
+    let scroll = getScrollInfo(null, 0);
     let actives = {};
-    this.margins.toJS().forEach((margin)=>{
-        if ('default' === margin) {
-            margin = this.getState().get('scrollMargin');
+    let offsetCache = {};
+    let margin = this.getState().get('scrollMargin');
+    let scrollTop = scroll.top+ margin;
+    this.spys.toJS().forEach((node)=>{
+        let pos = node.getOffset();
+        if (scrollTop>=pos.top && scrollTop<pos.bottom) {
+            actives['default'] = node.id;
         }
-        scrollTop = info.scrollTop+ margin;
+        pos.isElementOnscreen = !(pos.top > scroll.bottom
+            || pos.bottom < scroll.top
+            || pos.right < scroll.left
+            || pos.left > scroll.right);
+        offsetCache[node.id] = pos;
+    });
+    this.margins.toJS().forEach((margin)=>{
+        scrollTop = scroll.top+ margin;
         this.spys.toJS().every((node)=>{
-            let pos = node.getOffset();
+            let pos = offsetCache[node.id];
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
                 actives[margin] = node.id;
                 return false;
@@ -53,12 +63,10 @@ class ScrollStore extends ReduceStore
             return true;
         });
     });
-    console.log(actives);
-  }
-
-  update(state, action)
-  {
-
+    dispatch({
+       nodes: offsetCache,
+       actives: actives
+    });
   }
   
   attach(node)
@@ -71,22 +79,19 @@ class ScrollStore extends ReduceStore
     this.spys = this.spys.remove(node);
   }
 
-  addMergin()
+  addMargin(num)
   {
+    this.margins.add(num);
+  }
 
+  deleteMargin(num)
+  {
+    this.margins.remove(num);
   }
 
   reduce (state, action)
   {
-        switch (action.type)
-        {
-            case 'update':
-               return this.update(state, action);
-            case 'config/set':
-               return state.merge(action.params);
-            default:
-                return state;
-        }
+      return state.merge(action.actives, {nodes: action.nodes});
   }
 
 }

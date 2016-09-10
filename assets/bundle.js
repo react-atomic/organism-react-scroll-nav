@@ -17420,7 +17420,7 @@ webpackJsonp([0],[
 	    key: 'getInitialState',
 	    value: function getInitialState() {
 	      this.spys = _immutable2.default.Set();
-	      this.margins = _immutable2.default.Set(['default']);
+	      this.margins = _immutable2.default.Set();
 	      if (window) {
 	        if (window.addEventListener) {
 	          window.addEventListener('scroll', this.scrollMonitor.bind(this));
@@ -17448,16 +17448,23 @@ webpackJsonp([0],[
 	    value: function _triggerScroll() {
 	      var _this2 = this;
 
-	      var info = (0, _getScrollInfo2.default)(null, 0);
-	      var scrollTop = void 0;
+	      var scroll = (0, _getScrollInfo2.default)(null, 0);
 	      var actives = {};
-	      this.margins.toJS().forEach(function (margin) {
-	        if ('default' === margin) {
-	          margin = _this2.getState().get('scrollMargin');
+	      var offsetCache = {};
+	      var margin = this.getState().get('scrollMargin');
+	      var scrollTop = scroll.top + margin;
+	      this.spys.toJS().forEach(function (node) {
+	        var pos = node.getOffset();
+	        if (scrollTop >= pos.top && scrollTop < pos.bottom) {
+	          actives['default'] = node.id;
 	        }
-	        scrollTop = info.scrollTop + margin;
+	        pos.isElementOnscreen = !(pos.top > scroll.bottom || pos.bottom < scroll.top || pos.right < scroll.left || pos.left > scroll.right);
+	        offsetCache[node.id] = pos;
+	      });
+	      this.margins.toJS().forEach(function (margin) {
+	        scrollTop = scroll.top + margin;
 	        _this2.spys.toJS().every(function (node) {
-	          var pos = node.getOffset();
+	          var pos = offsetCache[node.id];
 	          if (scrollTop >= pos.top && scrollTop < pos.bottom) {
 	            actives[margin] = node.id;
 	            return false;
@@ -17465,7 +17472,7 @@ webpackJsonp([0],[
 	          return true;
 	        });
 	      });
-	      console.log(actives);
+	      console.log(actives, offsetCache, scroll);
 	    }
 	  }, {
 	    key: 'update',
@@ -17481,8 +17488,15 @@ webpackJsonp([0],[
 	      this.spys = this.spys.remove(node);
 	    }
 	  }, {
-	    key: 'addMergin',
-	    value: function addMergin() {}
+	    key: 'addMargin',
+	    value: function addMargin(num) {
+	      this.margins.add(num);
+	    }
+	  }, {
+	    key: 'deleteMargin',
+	    value: function deleteMargin(num) {
+	      this.margins.remove(num);
+	    }
 	  }, {
 	    key: 'reduce',
 	    value: function reduce(state, action) {
@@ -19548,17 +19562,18 @@ webpackJsonp([0],[
 	        atBottom: scrollBottom > scrollHeight - margin,
 	        atLeft: scrollLeft < margin,
 
-	        isScrollDown: lastScroll && scrollTop > lastScroll.scrollTop,
-	        isScrollLeft: lastScroll && scrollLeft < lastScroll.scrollLeft,
-	        isScrollRight: lastScroll && scrollLeft > lastScroll.scrollLeft,
-	        isScrollUp: lastScroll && scrollTop < lastScroll.scrollTop,
+	        isScrollDown: lastScroll && scrollTop > lastScroll.top,
+	        isScrollLeft: lastScroll && scrollLeft < lastScroll.left,
+	        isScrollRight: lastScroll && scrollLeft > lastScroll.left,
+	        isScrollUp: lastScroll && scrollTop < lastScroll.top,
 
-	        scrollBottom: scrollBottom,
+	        scrollWidth: scrollWidth,
 	        scrollHeight: scrollHeight,
-	        scrollLeft: scrollLeft,
-	        scrollRight: scrollRight,
-	        scrollTop: scrollTop,
-	        scrollWidth: scrollWidth
+
+	        top: scrollTop,
+	        right: scrollRight,
+	        bottom: scrollBottom,
+	        left: scrollLeft
 	    };
 	    lastScroll = info;
 	    return info;
