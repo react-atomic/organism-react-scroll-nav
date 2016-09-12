@@ -13,7 +13,7 @@ class ScrollReceiver extends Component
 {
      static defaultProps = {
          scrollMargin: 'default',
-         target: ''
+         targetElement: ''
      };
 
      static getStores()
@@ -26,7 +26,7 @@ class ScrollReceiver extends Component
          const state = scrollStore.getState();
          let isOnScreen = false;
          let nodes = state.get('nodes');
-         let target = props.target;
+         let target = props.targetElement;
          if (nodes) {
              nodes = nodes.toJS();
              if (nodes && nodes[target]) {

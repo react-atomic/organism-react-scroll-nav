@@ -1,12 +1,18 @@
-import React from 'react'; 
+import React, {Component} from 'react'; 
 import {
     ScrollSpy,
     ScrollReceiver
 } from "../../src/index"
 
-const MenuItem = (props) => (
-   <span {...props} /> 
-);
+
+class MenuItem extends Component
+{
+    render()
+    {
+        const { active, isOnScreen, ...reset } = this.props;
+        return (<span {...reset} />);
+    }
+}
 
 const Index = (props) => (
     <div>

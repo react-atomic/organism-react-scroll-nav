@@ -15,7 +15,8 @@
     "immutable": "^3.8.1",
     "react-atomic-molecule": "*",
     "getoffset": "*",
-    "get-scroll-info": "^0.0.5"
+    "get-scroll-info": "^0.0.5",
+    "smooth-scroll-to": "*"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
