@@ -1,6 +1,7 @@
 import React, {Component} from 'react'; 
 import {
     ScrollSpy,
+    SmoothScrollLink,
     ScrollReceiver
 } from "../../src/index"
 
@@ -14,12 +15,36 @@ class MenuItem extends Component
     }
 }
 
-const Index = (props) => (
+class Index extends Component
+{
+    render()
+    {
+    return (
     <div>
-        <div style={{position:'fixed', background:'#fff'}}>
-            <ScrollReceiver container={<MenuItem />} target="t1">test1</ScrollReceiver>
-            <ScrollReceiver container={<MenuItem />} target="t2">test2</ScrollReceiver>
-            <ScrollReceiver container={<MenuItem />} target="t3">test3</ScrollReceiver>
+        <div id="nav-parent" style={{position:'fixed', background:'#fff'}}>
+            <SmoothScrollLink
+                scrollRefId="nav-parent"
+                container={<MenuItem />}
+                targetId="t1"
+            >
+                test1
+            </SmoothScrollLink>
+            
+            <SmoothScrollLink
+                scrollRefId="nav-parent"
+                container={<MenuItem />}
+                targetId="t2"
+            >
+                test2
+            </SmoothScrollLink>
+            
+            <SmoothScrollLink
+                scrollRefId="nav-parent"
+                container={<MenuItem />}
+                targetId="t3"
+            >
+                test3
+            </SmoothScrollLink>
         </div>
         <div style={{padding:'30px 0 0'}}>
             <ScrollSpy id="t1" style={{height:"500px",width:"2000px"}}>
@@ -33,6 +58,7 @@ const Index = (props) => (
             </ScrollSpy>
         </div>
     </div>
-);
-
+    )
+    }
+}
 export default Index;

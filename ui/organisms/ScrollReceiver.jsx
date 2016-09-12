@@ -13,8 +13,8 @@ class ScrollReceiver extends Component
 {
      static defaultProps = {
          scrollMargin: 'default',
-         targetElement: ''
-     };
+         targetId: ''
+     }
 
      static getStores()
      {
@@ -26,7 +26,7 @@ class ScrollReceiver extends Component
          const state = scrollStore.getState();
          let isOnScreen = false;
          let nodes = state.get('nodes');
-         let target = props.targetElement;
+         let target = props.targetId;
          if (nodes) {
              nodes = nodes.toJS();
              if (nodes && nodes[target]) {
@@ -47,8 +47,10 @@ class ScrollReceiver extends Component
      render()
      {
          const {
+            atom,
             container,
             scrollMargin,
+            targetId,
             ...reset
          } = this.props; 
          let el;
@@ -63,8 +65,8 @@ class ScrollReceiver extends Component
             );
          } else {
              el = (
-                     <SemanticUI {...props}/>
-                  );
+                <SemanticUI {...props} />
+             );
          }
          return el;
      }

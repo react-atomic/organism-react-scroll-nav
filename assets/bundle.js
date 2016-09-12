@@ -17230,7 +17230,7 @@ webpackJsonp([0],[
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -17312,46 +17312,65 @@ webpackJsonp([0],[
 	    }
 
 	    _createClass(MenuItem, [{
-	        key: 'render',
+	        key: "render",
 	        value: function render() {
 	            var _props = this.props;
 	            var active = _props.active;
 	            var isOnScreen = _props.isOnScreen;
 
-	            var reset = _objectWithoutProperties(_props, ['active', 'isOnScreen']);
+	            var reset = _objectWithoutProperties(_props, ["active", "isOnScreen"]);
 
-	            return _react2.default.createElement('span', reset);
+	            return _react2.default.createElement("span", reset);
 	        }
 	    }]);
 
 	    return MenuItem;
 	}(_react.Component);
 
-	var Index = function Index(props) {
-	    return _jsx('div', {}, void 0, _jsx('div', {
-	        style: { position: 'fixed', background: '#fff' }
-	    }, void 0, _jsx(_index.ScrollReceiver, {
-	        container: _jsx(MenuItem, {}),
-	        target: 't1'
-	    }, void 0, 'test1'), _jsx(_index.ScrollReceiver, {
-	        container: _jsx(MenuItem, {}),
-	        target: 't2'
-	    }, void 0, 'test2'), _jsx(_index.ScrollReceiver, {
-	        container: _jsx(MenuItem, {}),
-	        target: 't3'
-	    }, void 0, 'test3')), _jsx('div', {
-	        style: { padding: '30px 0 0' }
-	    }, void 0, _jsx(_index.ScrollSpy, {
-	        id: 't1',
-	        style: { height: "500px", width: "2000px" }
-	    }, void 0, 'test111'), _jsx(_index.ScrollSpy, {
-	        id: 't2',
-	        style: { height: "500px" }
-	    }, void 0, 'test222'), _jsx(_index.ScrollSpy, {
-	        id: 't3',
-	        style: { height: "500px" }
-	    }, void 0, 'test333')));
-	};
+	var Index = function (_Component2) {
+	    _inherits(Index, _Component2);
+
+	    function Index() {
+	        _classCallCheck(this, Index);
+
+	        return _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).apply(this, arguments));
+	    }
+
+	    _createClass(Index, [{
+	        key: "render",
+	        value: function render() {
+	            return _jsx("div", {}, void 0, _jsx("div", {
+	                id: "nav-parent",
+	                style: { position: 'fixed', background: '#fff' }
+	            }, void 0, _jsx(_index.SmoothScrollLink, {
+	                scrollRefId: "nav-parent",
+	                container: _jsx(MenuItem, {}),
+	                targetId: "t1"
+	            }, void 0, "test1"), _jsx(_index.SmoothScrollLink, {
+	                scrollRefId: "nav-parent",
+	                container: _jsx(MenuItem, {}),
+	                targetId: "t2"
+	            }, void 0, "test2"), _jsx(_index.SmoothScrollLink, {
+	                scrollRefId: "nav-parent",
+	                container: _jsx(MenuItem, {}),
+	                targetId: "t3"
+	            }, void 0, "test3")), _jsx("div", {
+	                style: { padding: '30px 0 0' }
+	            }, void 0, _jsx(_index.ScrollSpy, {
+	                id: "t1",
+	                style: { height: "500px", width: "2000px" }
+	            }, void 0, "test111"), _jsx(_index.ScrollSpy, {
+	                id: "t2",
+	                style: { height: "500px" }
+	            }, void 0, "test222"), _jsx(_index.ScrollSpy, {
+	                id: "t3",
+	                style: { height: "500px" }
+	            }, void 0, "test333")));
+	        }
+	    }]);
+
+	    return Index;
+	}(_react.Component);
 
 	exports.default = Index;
 	module.exports = exports['default'];
@@ -17402,6 +17421,15 @@ webpackJsonp([0],[
 	  }
 	});
 
+	var _SmoothScrollLink = __webpack_require__(270);
+
+	Object.defineProperty(exports, 'SmoothScrollLink', {
+	  enumerable: true,
+	  get: function get() {
+	    return _interopRequireDefault(_SmoothScrollLink).default;
+	  }
+	});
+
 	function _interopRequireDefault(obj) {
 	  return obj && obj.__esModule ? obj : { default: obj };
 	}
@@ -17413,17 +17441,17 @@ webpackJsonp([0],[
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-	  value: true
+	    value: true
 	});
 
 	var _createClass = function () {
-	  function defineProperties(target, props) {
-	    for (var i = 0; i < props.length; i++) {
-	      var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-	    }
-	  }return function (Constructor, protoProps, staticProps) {
-	    if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-	  };
+	    function defineProperties(target, props) {
+	        for (var i = 0; i < props.length; i++) {
+	            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+	        }
+	    }return function (Constructor, protoProps, staticProps) {
+	        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+	    };
 	}();
 
 	var _immutable = __webpack_require__(175);
@@ -17441,129 +17469,141 @@ webpackJsonp([0],[
 	var _getScrollInfo2 = _interopRequireDefault(_getScrollInfo);
 
 	function _interopRequireDefault(obj) {
-	  return obj && obj.__esModule ? obj : { default: obj };
+	    return obj && obj.__esModule ? obj : { default: obj };
 	}
 
 	function _classCallCheck(instance, Constructor) {
-	  if (!(instance instanceof Constructor)) {
-	    throw new TypeError("Cannot call a class as a function");
-	  }
+	    if (!(instance instanceof Constructor)) {
+	        throw new TypeError("Cannot call a class as a function");
+	    }
 	}
 
 	function _possibleConstructorReturn(self, call) {
-	  if (!self) {
-	    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-	  }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	    if (!self) {
+	        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }return call && (typeof call === "object" || typeof call === "function") ? call : self;
 	}
 
 	function _inherits(subClass, superClass) {
-	  if (typeof superClass !== "function" && superClass !== null) {
-	    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-	  }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	    if (typeof superClass !== "function" && superClass !== null) {
+	        throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 	}
 
 	var ScrollStore = function (_ReduceStore) {
-	  _inherits(ScrollStore, _ReduceStore);
+	    _inherits(ScrollStore, _ReduceStore);
 
-	  function ScrollStore() {
-	    _classCallCheck(this, ScrollStore);
+	    function ScrollStore() {
+	        _classCallCheck(this, ScrollStore);
 
-	    return _possibleConstructorReturn(this, (ScrollStore.__proto__ || Object.getPrototypeOf(ScrollStore)).apply(this, arguments));
-	  }
+	        return _possibleConstructorReturn(this, (ScrollStore.__proto__ || Object.getPrototypeOf(ScrollStore)).apply(this, arguments));
+	    }
 
-	  _createClass(ScrollStore, [{
-	    key: 'getInitialState',
-	    value: function getInitialState() {
-	      this.spys = _immutable2.default.Set();
-	      this.margins = _immutable2.default.Set();
-	      if (window) {
-	        if (window.addEventListener) {
-	          window.addEventListener('scroll', this.scrollMonitor.bind(this));
-	        } else {
-	          window.attachEvent('onscroll', this.scrollMonitor.bind(this));
+	    _createClass(ScrollStore, [{
+	        key: 'getInitialState',
+	        value: function getInitialState() {
+	            this.spys = _immutable2.default.Set();
+	            this.margins = _immutable2.default.Set();
+	            if (window) {
+	                if (window.addEventListener) {
+	                    window.addEventListener('scroll', this.scrollMonitor.bind(this));
+	                } else {
+	                    window.attachEvent('onscroll', this.scrollMonitor.bind(this));
+	                }
+	            }
+	            return _immutable2.default.Map({
+	                scrollDelay: 50,
+	                scrollMargin: 50
+	            });
 	        }
-	      }
-	      return _immutable2.default.Map({
-	        scrollDelay: 50,
-	        scrollMargin: 50
-	      });
-	    }
-	  }, {
-	    key: 'scrollMonitor',
-	    value: function scrollMonitor(e) {
-	      clearTimeout(this._scrollTimeout);
-	      var self = this;
-	      var delay = self.getState().get('scrollDelay');
-	      self._scrollTimeout = setTimeout(function () {
-	        self._triggerScroll.call(self, e);
-	      }, delay);
-	    }
-	  }, {
-	    key: '_triggerScroll',
-	    value: function _triggerScroll() {
-	      var _this2 = this;
-
-	      var scroll = (0, _getScrollInfo2.default)(null, 0);
-	      var actives = {};
-	      var offsetCache = {};
-	      var margin = this.getState().get('scrollMargin');
-	      var scrollTop = scroll.top + margin;
-	      this.spys.toJS().forEach(function (node) {
-	        var pos = node.getOffset();
-	        if (scrollTop >= pos.top && scrollTop < pos.bottom) {
-	          actives['default'] = node.id;
+	    }, {
+	        key: 'scrollMonitor',
+	        value: function scrollMonitor(e) {
+	            clearTimeout(this._scrollTimeout);
+	            var self = this;
+	            var delay = self.getState().get('scrollDelay');
+	            self._scrollTimeout = setTimeout(function () {
+	                self._triggerScroll.call(self, e);
+	            }, delay);
 	        }
-	        pos.isElementOnScreen = !(pos.top > scroll.bottom || pos.bottom < scroll.top || pos.right < scroll.left || pos.left > scroll.right);
-	        offsetCache[node.id] = pos;
-	      });
-	      this.margins.toJS().forEach(function (margin) {
-	        scrollTop = scroll.top + margin;
-	        _this2.spys.toJS().every(function (node) {
-	          var pos = offsetCache[node.id];
-	          if (scrollTop >= pos.top && scrollTop < pos.bottom) {
-	            actives[margin] = node.id;
-	            return false;
-	          }
-	          return true;
-	        });
-	      });
-	      (0, _dispatcher.dispatch)({
-	        nodes: offsetCache,
-	        actives: actives,
-	        scroll: scroll
-	      });
-	    }
-	  }, {
-	    key: 'attach',
-	    value: function attach(node) {
-	      this.spys = this.spys.add(node);
-	    }
-	  }, {
-	    key: 'detach',
-	    value: function detach(node) {
-	      this.spys = this.spys.remove(node);
-	    }
-	  }, {
-	    key: 'addMargin',
-	    value: function addMargin(num) {
-	      this.margins.add(num);
-	    }
-	  }, {
-	    key: 'deleteMargin',
-	    value: function deleteMargin(num) {
-	      this.margins.remove(num);
-	    }
-	  }, {
-	    key: 'reduce',
-	    value: function reduce(state, action) {
-	      return state.merge(action.actives, {
-	        nodes: action.nodes,
-	        scroll: action.scroll
-	      });
-	    }
-	  }]);
+	    }, {
+	        key: '_triggerScroll',
+	        value: function _triggerScroll() {
+	            var _this2 = this;
 
-	  return ScrollStore;
+	            var scroll = (0, _getScrollInfo2.default)(null, 0);
+	            var actives = {};
+	            var offsetCache = {};
+	            var margin = this.getState().get('scrollMargin');
+	            var scrollTop = scroll.top + margin;
+	            this.spys.toJS().forEach(function (node) {
+	                var pos = node.getOffset();
+	                if (scrollTop >= pos.top && scrollTop < pos.bottom) {
+	                    actives['default'] = node.id;
+	                }
+	                pos.isElementOnScreen = !(pos.top > scroll.bottom || pos.bottom < scroll.top || pos.right < scroll.left || pos.left > scroll.right);
+	                offsetCache[node.id] = pos;
+	            });
+	            this.margins.forEach(function (margin) {
+	                scrollTop = scroll.top + margin;
+	                _this2.spys.every(function (node) {
+	                    var pos = offsetCache[node.id];
+	                    if (scrollTop >= pos.top && scrollTop < pos.bottom) {
+	                        actives[margin] = node.id;
+	                        return false;
+	                    }
+	                    return true;
+	                });
+	            });
+	            (0, _dispatcher.dispatch)({
+	                nodes: offsetCache,
+	                actives: actives,
+	                scroll: scroll
+	            });
+	        }
+	    }, {
+	        key: 'getOffset',
+	        value: function getOffset(id) {
+	            var offset = false;
+	            this.spys.some(function (node) {
+	                if (id === node.id) {
+	                    offset = node.getOffset();
+	                }
+	                return offset;
+	            });
+	            return offset;
+	        }
+	    }, {
+	        key: 'attach',
+	        value: function attach(node) {
+	            this.spys = this.spys.add(node);
+	        }
+	    }, {
+	        key: 'detach',
+	        value: function detach(node) {
+	            this.spys = this.spys.remove(node);
+	        }
+	    }, {
+	        key: 'addMargin',
+	        value: function addMargin(num) {
+	            this.margins.add(num);
+	        }
+	    }, {
+	        key: 'deleteMargin',
+	        value: function deleteMargin(num) {
+	            this.margins.remove(num);
+	        }
+	    }, {
+	        key: 'reduce',
+	        value: function reduce(state, action) {
+	            return state.merge(action.actives, {
+	                nodes: action.nodes,
+	                scroll: action.scroll
+	            });
+	        }
+	    }]);
+
+	    return ScrollStore;
 	}(_utils.ReduceStore);
 
 	// Export a singleton instance of the store, could do this some other way if
@@ -19845,10 +19885,12 @@ webpackJsonp([0],[
 	        key: 'render',
 	        value: function render() {
 	            var _props = this.props;
+	            var atom = _props.atom;
 	            var container = _props.container;
 	            var scrollMargin = _props.scrollMargin;
+	            var targetId = _props.targetId;
 
-	            var reset = _objectWithoutProperties(_props, ['container', 'scrollMargin']);
+	            var reset = _objectWithoutProperties(_props, ['atom', 'container', 'scrollMargin', 'targetId']);
 
 	            var el = void 0;
 	            var props = (0, _reactAtomicMolecule.assign)({}, reset, {
@@ -19873,7 +19915,7 @@ webpackJsonp([0],[
 	            var state = _index.scrollStore.getState();
 	            var isOnScreen = false;
 	            var nodes = state.get('nodes');
-	            var target = props.target;
+	            var target = props.targetId;
 	            if (nodes) {
 	                nodes = nodes.toJS();
 	                if (nodes && nodes[target]) {
@@ -19893,7 +19935,7 @@ webpackJsonp([0],[
 
 	ScrollReceiver.defaultProps = {
 	    scrollMargin: 'default',
-	    target: ''
+	    targetId: ''
 	};
 
 	var ScrollReceiverContainer = _utils.Container.create(ScrollReceiver, { withProps: true });
@@ -25133,6 +25175,255 @@ webpackJsonp([0],[
 	    }
 	};
 	module.exports = exports['default'];
+
+/***/ },
+/* 270 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _extends = Object.assign || function (target) {
+	    for (var i = 1; i < arguments.length; i++) {
+	        var source = arguments[i];for (var key in source) {
+	            if (Object.prototype.hasOwnProperty.call(source, key)) {
+	                target[key] = source[key];
+	            }
+	        }
+	    }return target;
+	};
+
+	var _createClass = function () {
+	    function defineProperties(target, props) {
+	        for (var i = 0; i < props.length; i++) {
+	            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+	        }
+	    }return function (Constructor, protoProps, staticProps) {
+	        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+	    };
+	}();
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _index = __webpack_require__(173);
+
+	var _smoothScrollTo = __webpack_require__(271);
+
+	var _smoothScrollTo2 = _interopRequireDefault(_smoothScrollTo);
+
+	var _getoffset = __webpack_require__(198);
+
+	var _getoffset2 = _interopRequireDefault(_getoffset);
+
+	function _interopRequireDefault(obj) {
+	    return obj && obj.__esModule ? obj : { default: obj };
+	}
+
+	function _objectWithoutProperties(obj, keys) {
+	    var target = {};for (var i in obj) {
+	        if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+	    }return target;
+	}
+
+	function _classCallCheck(instance, Constructor) {
+	    if (!(instance instanceof Constructor)) {
+	        throw new TypeError("Cannot call a class as a function");
+	    }
+	}
+
+	function _possibleConstructorReturn(self, call) {
+	    if (!self) {
+	        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+	    }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+	}
+
+	function _inherits(subClass, superClass) {
+	    if (typeof superClass !== "function" && superClass !== null) {
+	        throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+	    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+	}
+
+	var SmoothScrollLink = function (_Component) {
+	    _inherits(SmoothScrollLink, _Component);
+
+	    function SmoothScrollLink(props) {
+	        _classCallCheck(this, SmoothScrollLink);
+
+	        var _this = _possibleConstructorReturn(this, (SmoothScrollLink.__proto__ || Object.getPrototypeOf(SmoothScrollLink)).call(this, props));
+
+	        _this.state = {
+	            scrollRef: ''
+	        };
+	        return _this;
+	    }
+
+	    _createClass(SmoothScrollLink, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var dom = document.getElementById(this.props.scrollRefId);
+	            if (dom) {
+	                this.setState({
+	                    scrollRef: dom
+	                });
+	            }
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _props = this.props;
+	            var targetId = _props.targetId;
+	            var scrollRefId = _props.scrollRefId;
+	            var scrollRefLoc = _props.scrollRefLoc;
+
+	            var props = _objectWithoutProperties(_props, ['targetId', 'scrollRefId', 'scrollRefLoc']);
+
+	            var margin = 0;
+	            if (this.state.scrollRef) {
+	                var offset = (0, _getoffset2.default)(this.state.scrollRef);
+	                margin = offset[scrollRefLoc];
+	            }
+	            if (!isNaN(props.scrollMargin)) {
+	                margin += props.scrollMargin;
+	            }
+	            return _react2.default.createElement(_index.ScrollReceiver, _extends({
+	                atom: 'a',
+	                targetId: targetId
+	            }, props, {
+	                onClick: function onClick(e) {
+	                    var offset = _index.scrollStore.getOffset(targetId);
+	                    (0, _smoothScrollTo2.default)(offset.top - margin);
+	                    e.preventDefault();
+	                }
+	            }));
+	        }
+	    }]);
+
+	    return SmoothScrollLink;
+	}(_react.Component);
+
+	SmoothScrollLink.defaultProps = {
+	    scrollRefId: '',
+	    scrollRefLoc: 'bottom'
+	};
+	exports.default = SmoothScrollLink;
+	module.exports = exports['default'];
+
+/***/ },
+/* 271 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _getScrollInfo = __webpack_require__(272);
+
+	var easeInOutCubic = function easeInOutCubic(t, b, c, d) {
+	    if ((t /= d / 2) < 1) {
+	        return c / 2 * t * t * t + b;
+	    }
+	    return c / 2 * ((t -= 2) * t * t + 2) + b;
+	};
+
+	var smoothScrollTo = function smoothScrollTo(to, duration, el) {
+	    el = (0, _getScrollInfo.getScrollNode)(el);
+	    if (!duration) {
+	        duration = 900;
+	    }
+	    var from = el.scrollTop;
+	    var go = to - from;
+	    var beginTimeStamp = void 0;
+	    var scrollTo = function scrollTo(timeStamp) {
+	        beginTimeStamp = beginTimeStamp || timeStamp;
+	        var elapsedTime = timeStamp - beginTimeStamp;
+	        var progress = easeInOutCubic(elapsedTime, from, go, duration);
+	        el.scrollTop = progress;
+	        elapsedTime < duration && requestAnimationFrame(scrollTo);
+	    };
+	    requestAnimationFrame(scrollTo);
+	};
+
+	exports.default = smoothScrollTo;
+	module.exports = exports['default'];
+
+/***/ },
+/* 272 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var lastScroll = void 0;
+
+	var isWebkit = 'undefined' !== typeof document.webkitIsFullScreen;
+	var docEl = document.documentElement;
+
+	var getScrollNode = function getScrollNode(el) {
+	    if (!el) {
+	        el = document.body;
+	        if ('undefined' === typeof el.scrollLeft) {
+	            el = docEl;
+	        }
+	    }
+	    return el;
+	};
+
+	var getScrollInfo = function getScrollInfo(el, margin) {
+	    el = getScrollNode(el);
+	    if (!margin) {
+	        margin = 50;
+	    }
+	    var h = void 0;
+	    var w = void 0;
+	    var isBody = el.nodeName && 'body' === el.nodeName.toLowerCase();
+	    if (isWebkit && isBody) {
+	        h = window.innerHeight;
+	        w = window.innerWidth;
+	    } else {
+	        h = el.clientHeight;
+	        w = el.clientWidth;
+	    }
+	    var scrollLeft = el.scrollLeft;
+	    var scrollHeight = el.scrollHeight;
+	    var scrollTop = el.scrollTop;
+	    var scrollWidth = el.scrollWidth;
+	    var scrollBottom = scrollTop + h;
+	    var scrollRight = scrollLeft + w;
+
+	    var info = {
+	        atTop: scrollTop < margin,
+	        atRight: scrollRight > scrollWidth - margin,
+	        atBottom: scrollBottom > scrollHeight - margin,
+	        atLeft: scrollLeft < margin,
+
+	        isScrollDown: lastScroll && scrollTop > lastScroll.top,
+	        isScrollLeft: lastScroll && scrollLeft < lastScroll.left,
+	        isScrollRight: lastScroll && scrollLeft > lastScroll.left,
+	        isScrollUp: lastScroll && scrollTop < lastScroll.top,
+
+	        scrollWidth: scrollWidth,
+	        scrollHeight: scrollHeight,
+
+	        top: scrollTop,
+	        right: scrollRight,
+	        bottom: scrollBottom,
+	        left: scrollLeft
+	    };
+	    lastScroll = info;
+	    return info;
+	};
+
+	exports.default = getScrollInfo;
+	exports.getScrollNode = getScrollNode;
 
 /***/ }
 ]);

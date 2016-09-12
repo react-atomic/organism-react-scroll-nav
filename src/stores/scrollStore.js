@@ -11,7 +11,6 @@ class ScrollStore extends ReduceStore
   {
       this.spys = Immutable.Set();
       this.margins = Immutable.Set();
-      this.offsets = Immutable.Map();
       if (window) {
           if (window.addEventListener) {
             window.addEventListener('scroll', this.scrollMonitor.bind(this));
@@ -53,9 +52,9 @@ class ScrollStore extends ReduceStore
             || pos.left > scroll.right);
         offsetCache[node.id] = pos;
     });
-    this.margins.toJS().forEach((margin)=>{
+    this.margins.forEach((margin)=>{
         scrollTop = scroll.top+ margin;
-        this.spys.toJS().every((node)=>{
+        this.spys.every((node)=>{
             let pos = offsetCache[node.id];
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
                 actives[margin] = node.id;
@@ -70,25 +69,37 @@ class ScrollStore extends ReduceStore
        scroll : scroll
     });
   }
+
+  getOffset(id)
+  {
+      let offset = false;
+      this.spys.some((node)=>{
+          if (id===node.id) {
+             offset = node.getOffset();
+          }
+          return offset;
+      });
+      return offset;
+  }
   
   attach(node)
   {
-    this.spys = this.spys.add(node);
+      this.spys = this.spys.add(node);
   }
 
   detach(node)
   {
-    this.spys = this.spys.remove(node);
+      this.spys = this.spys.remove(node);
   }
 
   addMargin(num)
   {
-    this.margins.add(num);
+      this.margins.add(num);
   }
 
   deleteMargin(num)
   {
-    this.margins.remove(num);
+      this.margins.remove(num);
   }
 
   reduce (state, action)
