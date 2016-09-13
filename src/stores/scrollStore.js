@@ -40,7 +40,7 @@ class ScrollStore extends ReduceStore
     let actives = {};
     let offsetCache = {};
     let margin = this.getState().get('scrollMargin');
-    let scrollTop = scroll.top+ margin;
+    let scrollTop = scroll.top + margin;
     this.spys.toJS().forEach((node)=>{
         let pos = node.getOffset();
         if (scrollTop>=pos.top && scrollTop<pos.bottom) {
@@ -53,16 +53,17 @@ class ScrollStore extends ReduceStore
         offsetCache[node.id] = pos;
     });
     this.margins.forEach((margin)=>{
-        scrollTop = scroll.top+ margin;
+        scrollTop = scroll.top + margin;
         this.spys.every((node)=>{
             let pos = offsetCache[node.id];
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
-                actives[margin] = node.id;
+                actives['m'+margin] = node.id;
                 return false;
             }
             return true;
         });
     });
+    this.margins = this.margins.clear();
     dispatch({
        nodes  : offsetCache,
        actives: actives,
@@ -94,12 +95,12 @@ class ScrollStore extends ReduceStore
 
   addMargin(num)
   {
-      this.margins.add(num);
+      this.margins = this.margins.add(num);
   }
 
   deleteMargin(num)
   {
-      this.margins.remove(num);
+      this.margins = this.margins.remove(num);
   }
 
   reduce (state, action)

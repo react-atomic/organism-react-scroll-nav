@@ -51,6 +51,7 @@ class SmoothScrollLink extends Component
                 atom="a"
                 targetId={targetId}
                 {...props}
+                scrollMargin={margin}
                 onClick={(e)=>{
                     let offset = scrollStore.getOffset(targetId);
                     smoothScrollTo((offset.top - margin));

@@ -17230,7 +17230,7 @@ webpackJsonp([0],[
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -17258,6 +17258,16 @@ webpackJsonp([0],[
 	    };
 	}();
 
+	var _extends = Object.assign || function (target) {
+	    for (var i = 1; i < arguments.length; i++) {
+	        var source = arguments[i];for (var key in source) {
+	            if (Object.prototype.hasOwnProperty.call(source, key)) {
+	                target[key] = source[key];
+	            }
+	        }
+	    }return target;
+	};
+
 	var _createClass = function () {
 	    function defineProperties(target, props) {
 	        for (var i = 0; i < props.length; i++) {
@@ -17273,6 +17283,8 @@ webpackJsonp([0],[
 	var _react2 = _interopRequireDefault(_react);
 
 	var _index = __webpack_require__(173);
+
+	var _reactAtomicMolecule = __webpack_require__(200);
 
 	function _interopRequireDefault(obj) {
 	    return obj && obj.__esModule ? obj : { default: obj };
@@ -17312,15 +17324,20 @@ webpackJsonp([0],[
 	    }
 
 	    _createClass(MenuItem, [{
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
 	            var _props = this.props;
 	            var active = _props.active;
 	            var isOnScreen = _props.isOnScreen;
+	            var style = _props.style;
 
-	            var reset = _objectWithoutProperties(_props, ["active", "isOnScreen"]);
+	            var reset = _objectWithoutProperties(_props, ['active', 'isOnScreen', 'style']);
 
-	            return _react2.default.createElement("span", reset);
+	            var activeStyle = null;
+	            if (active) {
+	                activeStyle = Styles.active;
+	            }
+	            return _react2.default.createElement('div', _extends({ style: (0, _reactAtomicMolecule.assign)({}, Styles.link, style, activeStyle) }, reset));
 	        }
 	    }]);
 
@@ -17337,35 +17354,38 @@ webpackJsonp([0],[
 	    }
 
 	    _createClass(Index, [{
-	        key: "render",
+	        key: 'render',
 	        value: function render() {
-	            return _jsx("div", {}, void 0, _jsx("div", {
-	                id: "nav-parent",
-	                style: { position: 'fixed', background: '#fff' }
+	            return _jsx(_reactAtomicMolecule.SemanticUI, {}, void 0, _jsx('div', {
+	                id: 'nav-parent',
+	                style: Styles.nav
 	            }, void 0, _jsx(_index.SmoothScrollLink, {
-	                scrollRefId: "nav-parent",
+	                scrollRefId: 'nav-parent',
 	                container: _jsx(MenuItem, {}),
-	                targetId: "t1"
-	            }, void 0, "test1"), _jsx(_index.SmoothScrollLink, {
-	                scrollRefId: "nav-parent",
+	                targetId: 't1',
+	                style: { background: '#3498DB' }
+	            }, void 0, 'test1'), _jsx(_index.SmoothScrollLink, {
+	                scrollRefId: 'nav-parent',
 	                container: _jsx(MenuItem, {}),
-	                targetId: "t2"
-	            }, void 0, "test2"), _jsx(_index.SmoothScrollLink, {
-	                scrollRefId: "nav-parent",
+	                targetId: 't2',
+	                style: { background: '#F1C40F' }
+	            }, void 0, 'test2'), _jsx(_index.SmoothScrollLink, {
+	                scrollRefId: 'nav-parent',
 	                container: _jsx(MenuItem, {}),
-	                targetId: "t3"
-	            }, void 0, "test3")), _jsx("div", {
+	                targetId: 't3',
+	                style: { background: '#2ECC71' }
+	            }, void 0, 'test3')), _jsx('div', {
 	                style: { padding: '30px 0 0' }
 	            }, void 0, _jsx(_index.ScrollSpy, {
-	                id: "t1",
-	                style: { height: "500px", width: "2000px" }
-	            }, void 0, "test111"), _jsx(_index.ScrollSpy, {
-	                id: "t2",
-	                style: { height: "500px" }
-	            }, void 0, "test222"), _jsx(_index.ScrollSpy, {
-	                id: "t3",
-	                style: { height: "500px" }
-	            }, void 0, "test333")));
+	                id: 't1',
+	                style: (0, _reactAtomicMolecule.assign)({}, Styles.content, { background: "#3498DB" })
+	            }, void 0, 'test111'), _jsx(_index.ScrollSpy, {
+	                id: 't2',
+	                style: (0, _reactAtomicMolecule.assign)({}, Styles.content, { background: "#F1C40F" })
+	            }, void 0, 'test222'), _jsx(_index.ScrollSpy, {
+	                id: 't3',
+	                style: (0, _reactAtomicMolecule.assign)({}, Styles.content, { background: "#2ECC71" })
+	            }, void 0, 'test333')));
 	        }
 	    }]);
 
@@ -17373,6 +17393,37 @@ webpackJsonp([0],[
 	}(_react.Component);
 
 	exports.default = Index;
+
+	var Styles = {
+	    content: {
+	        height: "500px",
+	        textAlign: "center",
+	        paddingTop: "10%",
+	        fontSize: "4rem",
+	        color: "#fff"
+	    },
+	    link: {
+	        display: "inline-block",
+	        padding: "0.3rem 0.5rem",
+	        fontSize: "2rem",
+	        color: "#fff",
+	        marginRight: "10px",
+	        opacity: "0.5"
+	    },
+	    active: {
+	        opacity: 1
+	    },
+	    body: (0, _reactAtomicMolecule.reactStyle)({
+	        margin: 0
+	    }, 'body'),
+	    nav: {
+	        position: 'fixed',
+	        background: '#fff',
+	        textAlign: 'center',
+	        width: "100%",
+	        padding: "10px 0"
+	    }
+	};
 	module.exports = exports['default'];
 
 /***/ },
@@ -17549,12 +17600,13 @@ webpackJsonp([0],[
 	                _this2.spys.every(function (node) {
 	                    var pos = offsetCache[node.id];
 	                    if (scrollTop >= pos.top && scrollTop < pos.bottom) {
-	                        actives[margin] = node.id;
+	                        actives['m' + margin] = node.id;
 	                        return false;
 	                    }
 	                    return true;
 	                });
 	            });
+	            this.margins = this.margins.clear();
 	            (0, _dispatcher.dispatch)({
 	                nodes: offsetCache,
 	                actives: actives,
@@ -17586,12 +17638,12 @@ webpackJsonp([0],[
 	    }, {
 	        key: 'addMargin',
 	        value: function addMargin(num) {
-	            this.margins.add(num);
+	            this.margins = this.margins.add(num);
 	        }
 	    }, {
 	        key: 'deleteMargin',
 	        value: function deleteMargin(num) {
-	            this.margins.remove(num);
+	            this.margins = this.margins.remove(num);
 	        }
 	    }, {
 	        key: 'reduce',
@@ -19922,7 +19974,10 @@ webpackJsonp([0],[
 	                    isOnScreen = nodes[target].isElementOnScreen;
 	                }
 	            }
-	            var active = target === state.get(props.scrollMargin);
+	            var active = target === state.get('m' + props.scrollMargin);
+	            if (!isNaN(props.scrollMargin)) {
+	                _index.scrollStore.addMargin(props.scrollMargin);
+	            }
 	            return {
 	                active: active,
 	                isOnScreen: isOnScreen
@@ -25294,6 +25349,7 @@ webpackJsonp([0],[
 	                atom: 'a',
 	                targetId: targetId
 	            }, props, {
+	                scrollMargin: margin,
 	                onClick: function onClick(e) {
 	                    var offset = _index.scrollStore.getOffset(targetId);
 	                    (0, _smoothScrollTo2.default)(offset.top - margin);

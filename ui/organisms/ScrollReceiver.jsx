@@ -37,7 +37,10 @@ class ScrollReceiver extends Component
          }
          let active = 
             target === 
-            state.get(props.scrollMargin);
+            state.get('m'+props.scrollMargin);
+        if (!isNaN(props.scrollMargin)) {
+            scrollStore.addMargin(props.scrollMargin);
+        }
         return {
             active: active,
             isOnScreen: isOnScreen
@@ -71,6 +74,7 @@ class ScrollReceiver extends Component
          return el;
      }
 }
+
 const ScrollReceiverContainer = Container.create(
     ScrollReceiver,
     { withProps:true }
