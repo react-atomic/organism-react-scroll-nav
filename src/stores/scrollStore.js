@@ -17,6 +17,10 @@ class ScrollStore extends ReduceStore
           } else {
             window.attachEvent('onscroll', this.scrollMonitor.bind(this));
           }
+          const self = this;
+          setTimeout(()=>{
+                self._triggerScroll.call(self);
+          },100);
       }
       return Immutable.Map({
         scrollDelay: 50,

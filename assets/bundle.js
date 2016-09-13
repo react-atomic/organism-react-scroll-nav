@@ -17408,7 +17408,8 @@ webpackJsonp([0],[
 	        fontSize: "2rem",
 	        color: "#fff",
 	        marginRight: "10px",
-	        opacity: "0.5"
+	        opacity: "0.5",
+	        cursor: "pointer"
 	    },
 	    active: {
 	        opacity: 1
@@ -17553,14 +17554,22 @@ webpackJsonp([0],[
 	    _createClass(ScrollStore, [{
 	        key: 'getInitialState',
 	        value: function getInitialState() {
+	            var _this2 = this;
+
 	            this.spys = _immutable2.default.Set();
 	            this.margins = _immutable2.default.Set();
 	            if (window) {
-	                if (window.addEventListener) {
-	                    window.addEventListener('scroll', this.scrollMonitor.bind(this));
-	                } else {
-	                    window.attachEvent('onscroll', this.scrollMonitor.bind(this));
-	                }
+	                (function () {
+	                    if (window.addEventListener) {
+	                        window.addEventListener('scroll', _this2.scrollMonitor.bind(_this2));
+	                    } else {
+	                        window.attachEvent('onscroll', _this2.scrollMonitor.bind(_this2));
+	                    }
+	                    var self = _this2;
+	                    setTimeout(function () {
+	                        self._triggerScroll.call(self);
+	                    }, 100);
+	                })();
 	            }
 	            return _immutable2.default.Map({
 	                scrollDelay: 50,
@@ -17580,7 +17589,7 @@ webpackJsonp([0],[
 	    }, {
 	        key: '_triggerScroll',
 	        value: function _triggerScroll() {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            var scroll = (0, _getScrollInfo2.default)(null, 0);
 	            var actives = {};
@@ -17597,7 +17606,7 @@ webpackJsonp([0],[
 	            });
 	            this.margins.forEach(function (margin) {
 	                scrollTop = scroll.top + margin;
-	                _this2.spys.every(function (node) {
+	                _this3.spys.every(function (node) {
 	                    var pos = offsetCache[node.id];
 	                    if (scrollTop >= pos.top && scrollTop < pos.bottom) {
 	                        actives['m' + margin] = node.id;

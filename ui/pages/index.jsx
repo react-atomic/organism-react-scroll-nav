@@ -92,6 +92,7 @@ const Styles = {
         color: "#fff",
         marginRight: "10px",
         opacity: "0.5",
+        cursor: "pointer",
     },
     active: {
         opacity: 1
