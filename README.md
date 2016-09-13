@@ -3,11 +3,11 @@ React Scroll Spy Library (organism-react-scroll-nav)
    * GIT
       * https://github.com/react-atomic/organism-react-scroll-nav
    * NPM
-      * https://www.npmjs.com/package/organism-react-scroll-nav
+      * https://npm.im/organism-react-scroll-nav
 
 ## Example Usage
-Demo Url:
-https://react-atomic.github.io/organism-react-scroll-nav
+* Demo Url: https://react-atomic.github.io/organism-react-scroll-nav
+* Code: https://github.com/react-atomic/organism-react-scroll-nav/blob/master/ui/pages/index.jsx
 
 ## Concept
 * https://github.com/fisshy/react-scroll

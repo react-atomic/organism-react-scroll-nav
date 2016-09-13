@@ -1,29 +1,11 @@
 import React, {Component} from 'react'; 
 import {
     ScrollSpy,
-    SmoothScrollLink,
-    ScrollReceiver
+    SmoothScrollLink
 } from "../../src/index"
 
 import {assign, reactStyle, SemanticUI} from 'react-atomic-molecule';
 
-class MenuItem extends Component
-{
-    render()
-    {
-        const { active, isOnScreen, style, ...reset } = this.props;
-        let activeStyle = null;
-        if (active) {
-            activeStyle = Styles.active;
-        }
-        return (<div style={assign(
-            {},
-            Styles.link,
-            style,
-            activeStyle
-        )} {...reset}  />);
-    }
-}
 
 class Index extends Component
 {
@@ -76,6 +58,24 @@ class Index extends Component
 }
 
 export default Index;
+
+class MenuItem extends Component
+{
+    render()
+    {
+        const { active, isOnScreen, style, ...reset } = this.props;
+        let activeStyle = null;
+        if (active) {
+            activeStyle = Styles.active;
+        }
+        return (<div style={assign(
+            {},
+            Styles.link,
+            style,
+            activeStyle
+        )} {...reset}  />);
+    }
+}
 
 const Styles = {
     content: {
