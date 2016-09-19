@@ -1,8 +1,14 @@
 import React, {Component} from 'react'; 
 import {
     ScrollSpy,
-    SmoothScrollLink
+    ScrollReceiver,
+    SmoothScrollLink,
+    scrollDispatch
 } from "../../src/index"
+
+scrollDispatch({
+    scrollMargin: 67
+});
 
 import {assign, reactStyle, SemanticUI} from 'react-atomic-molecule';
 
@@ -46,7 +52,14 @@ class Index extends Component
                test111
             </ScrollSpy>
             <ScrollSpy id="t2" style={assign({}, Styles.content, {background:"#F1C40F"})}>
-               test222
+               <ScrollReceiver
+                    targetId="t4"
+                    testScrollTo={false}
+                    style={{border:"1px solid #fff"}}
+                    container={<ScrollSpy id="t4" />}
+                >
+                    test222
+                </ScrollReceiver>
             </ScrollSpy>
             <ScrollSpy id="t3" style={assign({}, Styles.content, {background:"#2ECC71"})}>
                test333

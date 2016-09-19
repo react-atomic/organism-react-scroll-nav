@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-
 import { scrollStore } from '../../src/index';
 import getOffset from 'getoffset';
 
@@ -7,6 +6,11 @@ let incNum = 0;
 
 class ScrollSpy extends Component
 {
+
+    static defaultProps = {
+        testScrollTo: true
+    }
+
     componentDidMount()
     {
         if (this.props.id) {
@@ -15,6 +19,7 @@ class ScrollSpy extends Component
             this.id = 'spy-'+incNum;
             incNum++;
         }
+        this.testScrollTo = this.props.testScrollTo;
         scrollStore.attach(this);
     }
 
@@ -30,8 +35,9 @@ class ScrollSpy extends Component
 
     render()
     {
+        const {active, isOnScreen, testScrollTo, ...others} = this.props;
         return (
-            <div ref={dom=>this.el=dom} {...this.props} />
+            <div ref={dom=>this.el=dom} {...others} />
         );
     }
 }

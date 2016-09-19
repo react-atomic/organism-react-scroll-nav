@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import {ReduceStore} from 'flux/utils';
 import dispatcher, {dispatch} from '../actions/dispatcher';
 import getScrollInfo from 'get-scroll-info';
+import { assign } from 'react-atomic-molecule';
 
 class ScrollStore extends ReduceStore
 {
@@ -45,20 +46,26 @@ class ScrollStore extends ReduceStore
     let offsetCache = {};
     let margin = this.getState().get('scrollMargin');
     let scrollTop = scroll.top + margin;
-    this.spys.toJS().forEach((node)=>{
+    let arrTestScrollTo = [];
+    this.spys.forEach((node)=>{
         let pos = node.getOffset();
-        if (scrollTop>=pos.top && scrollTop<pos.bottom) {
-            actives['default'] = node.id;
+        if (node.testScrollTo) {
+            if (scrollTop>=pos.top && scrollTop<pos.bottom) {
+                actives['default'] = node.id;
+            }
+            arrTestScrollTo.push(node);    
         }
-        pos.isElementOnScreen = !(pos.top > scroll.bottom
-            || pos.bottom < scroll.top
-            || pos.right < scroll.left
-            || pos.left > scroll.right);
+        pos.isElementOnScreen = !(
+            pos.top > scroll.bottom - margin
+            || pos.bottom < scroll.top + margin
+            || pos.right < scroll.left + margin
+            || pos.left > scroll.right - margin
+        );
         offsetCache[node.id] = pos;
     });
     this.margins.forEach((margin)=>{
         scrollTop = scroll.top + margin;
-        this.spys.every((node)=>{
+        arrTestScrollTo.every((node)=>{
             let pos = offsetCache[node.id];
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
                 actives['m'+margin] = node.id;
@@ -68,11 +75,13 @@ class ScrollStore extends ReduceStore
         });
     });
     this.margins = this.margins.clear();
-    dispatch({
-       nodes  : offsetCache,
-       actives: actives,
-       scroll : scroll
-    });
+    dispatch(assign(
+        actives,
+        {
+           nodes  : offsetCache,
+           scroll : scroll
+        }
+    ));
   }
 
   getOffset(id)
@@ -109,13 +118,7 @@ class ScrollStore extends ReduceStore
 
   reduce (state, action)
   {
-    return state.merge(
-        action.actives,
-        {
-            nodes : action.nodes,
-            scroll: action.scroll
-        }
-    );
+    return state.merge( action );
   }
 
 }
