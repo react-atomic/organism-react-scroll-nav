@@ -17314,6 +17314,11 @@ webpackJsonp([0],[
 	    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 	}
 
+	/**
+	 * Production please use
+	 * import {xxx} from 'organism-react-scroll-nav'
+	 */
+
 	(0, _index.scrollDispatch)({
 	    scrollMargin: 67
 	});
@@ -17358,10 +17363,10 @@ webpackJsonp([0],[
 	                style: (0, _reactAtomicMolecule.assign)({}, Styles.content, { background: "#F1C40F" })
 	            }, void 0, _jsx(_index.ScrollReceiver, {
 	                targetId: 't4',
-	                testScrollTo: false,
 	                style: { border: "1px solid #fff" },
 	                container: _jsx(_index.ScrollSpy, {
-	                    id: 't4'
+	                    id: 't4',
+	                    testScrollTo: false
 	                })
 	            }, void 0, 'test222')), _jsx(_index.ScrollSpy, {
 	                id: 't3',

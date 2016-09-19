@@ -1,4 +1,9 @@
 import React, {Component} from 'react'; 
+
+/**
+ * Production please use
+ * import {xxx} from 'organism-react-scroll-nav';
+ */
 import {
     ScrollSpy,
     ScrollReceiver,
@@ -54,9 +59,9 @@ class Index extends Component
             <ScrollSpy id="t2" style={assign({}, Styles.content, {background:"#F1C40F"})}>
                <ScrollReceiver
                     targetId="t4"
-                    testScrollTo={false}
                     style={{border:"1px solid #fff"}}
-                    container={<ScrollSpy id="t4" />}
+                    /*An example for detect in screen only*/
+                    container={<ScrollSpy id="t4" testScrollTo={false} />}
                 >
                     test222
                 </ScrollReceiver>
