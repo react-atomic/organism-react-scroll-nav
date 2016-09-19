@@ -17316,7 +17316,7 @@ webpackJsonp([0],[
 
 	/**
 	 * Production please use
-	 * import {xxx} from 'organism-react-scroll-nav'
+	 * import {xxx} from 'organism-react-scroll-nav';
 	 */
 
 	(0, _index.scrollDispatch)({
@@ -17361,14 +17361,11 @@ webpackJsonp([0],[
 	            }, void 0, 'test111'), _jsx(_index.ScrollSpy, {
 	                id: 't2',
 	                style: (0, _reactAtomicMolecule.assign)({}, Styles.content, { background: "#F1C40F" })
+	            }, void 0, _jsx(_index.ScrollSpy, {
+	                testScrollTo: false
 	            }, void 0, _jsx(_index.ScrollReceiver, {
-	                targetId: 't4',
-	                style: { border: "1px solid #fff" },
-	                container: _jsx(_index.ScrollSpy, {
-	                    id: 't4',
-	                    testScrollTo: false
-	                })
-	            }, void 0, 'test222')), _jsx(_index.ScrollSpy, {
+	                style: { border: "1px solid #fff" }
+	            }, void 0, 'test222'))), _jsx(_index.ScrollSpy, {
 	                id: 't3',
 	                style: (0, _reactAtomicMolecule.assign)({}, Styles.content, { background: "#2ECC71" })
 	            }, void 0, 'test333')));
@@ -25210,6 +25207,8 @@ webpackJsonp([0],[
 
 	var _getoffset2 = _interopRequireDefault(_getoffset);
 
+	var _reactAtomicMolecule = __webpack_require__(197);
+
 	function _interopRequireDefault(obj) {
 	    return obj && obj.__esModule ? obj : { default: obj };
 	}
@@ -25252,12 +25251,6 @@ webpackJsonp([0],[
 	    _createClass(ScrollSpy, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            if (this.props.id) {
-	                this.id = this.props.id;
-	            } else {
-	                this.id = 'spy-' + incNum;
-	                incNum++;
-	            }
 	            this.testScrollTo = this.props.testScrollTo;
 	            _index.scrollStore.attach(this);
 	        }
@@ -25277,15 +25270,27 @@ webpackJsonp([0],[
 	            var _this2 = this;
 
 	            var _props = this.props;
-	            var active = _props.active;
-	            var isOnScreen = _props.isOnScreen;
 	            var testScrollTo = _props.testScrollTo;
+	            var children = _props.children;
 
-	            var others = _objectWithoutProperties(_props, ['active', 'isOnScreen', 'testScrollTo']);
+	            var others = _objectWithoutProperties(_props, ['testScrollTo', 'children']);
 
+	            if (this.props.id) {
+	                this.id = this.props.id;
+	            } else {
+	                this.id = 'spy-' + incNum;
+	                incNum++;
+	            }
+	            var cookChildren = children;
+	            if (_react2.default.isValidElement(children)) {
+	                var type = children.type;
+	                if (type.displayName && -1 !== type.displayName.indexOf('ScrollReceiver')) {
+	                    cookChildren = _react2.default.cloneElement(children, (0, _reactAtomicMolecule.assign)({ targetId: this.id }, children.props));
+	                }
+	            }
 	            return _react2.default.createElement('div', _extends({ ref: function ref(dom) {
 	                    return _this2.el = dom;
-	                } }, others));
+	                } }, others), cookChildren);
 	        }
 	    }]);
 
@@ -25413,7 +25418,7 @@ webpackJsonp([0],[
 	            if (_react2.default.isValidElement(container)) {
 	                el = _react2.default.cloneElement(container, props);
 	            } else {
-	                el = _react2.default.createElement(_reactAtomicMolecule.SemanticUI, props);
+	                el = _react2.default.createElement(_reactAtomicMolecule.SemanticUI, reset);
 	            }
 	            return el;
 	        }
@@ -25450,8 +25455,7 @@ webpackJsonp([0],[
 	}(_react.Component);
 
 	ScrollReceiver.defaultProps = {
-	    scrollMargin: 'default',
-	    targetId: ''
+	    scrollMargin: 'default'
 	};
 
 	var ScrollReceiverContainer = _utils.Container.create(ScrollReceiver, { withProps: true });

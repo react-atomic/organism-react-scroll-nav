@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { scrollStore } from '../../src/index';
 import getOffset from 'getoffset';
-
+import { assign } from 'react-atomic-molecule';
 let incNum = 0;
 
 class ScrollSpy extends Component
@@ -13,12 +13,6 @@ class ScrollSpy extends Component
 
     componentDidMount()
     {
-        if (this.props.id) {
-            this.id = this.props.id;
-        } else {
-            this.id = 'spy-'+incNum;
-            incNum++;
-        }
         this.testScrollTo = this.props.testScrollTo;
         scrollStore.attach(this);
     }
@@ -35,9 +29,32 @@ class ScrollSpy extends Component
 
     render()
     {
-        const {active, isOnScreen, testScrollTo, ...others} = this.props;
+        const {testScrollTo, children, ...others} = this.props;
+        if (this.props.id) {
+            this.id = this.props.id;
+        } else {
+            this.id = 'spy-'+incNum;
+            incNum++;
+        }
+        let cookChildren = children;
+        if (React.isValidElement(children)) {
+            let type = children.type;
+            if (type.displayName
+             && -1 !== type.displayName.indexOf('ScrollReceiver')
+            ) {
+                 cookChildren = React.cloneElement(
+                     children,
+                     assign(
+                        {targetId: this.id},
+                        children.props
+                     )
+                 );
+            }
+        } 
         return (
-            <div ref={dom=>this.el=dom} {...others} />
+            <div ref={dom=>this.el=dom} {...others}>
+                {cookChildren}
+            </div>
         );
     }
 }

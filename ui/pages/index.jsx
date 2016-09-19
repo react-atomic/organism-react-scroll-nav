@@ -57,14 +57,12 @@ class Index extends Component
                test111
             </ScrollSpy>
             <ScrollSpy id="t2" style={assign({}, Styles.content, {background:"#F1C40F"})}>
-               <ScrollReceiver
-                    targetId="t4"
-                    style={{border:"1px solid #fff"}}
-                    /*An example for detect in screen only*/
-                    container={<ScrollSpy id="t4" testScrollTo={false} />}
-                >
-                    test222
-                </ScrollReceiver>
+               {/*An example for detect in screen only*/}
+               <ScrollSpy testScrollTo={false}>
+                   <ScrollReceiver style={{border:"1px solid #fff"}}>
+                        test222
+                   </ScrollReceiver>
+                </ScrollSpy>
             </ScrollSpy>
             <ScrollSpy id="t3" style={assign({}, Styles.content, {background:"#2ECC71"})}>
                test333

@@ -12,8 +12,7 @@ import {
 class ScrollReceiver extends Component
 {
      static defaultProps = {
-         scrollMargin: 'default',
-         targetId: ''
+         scrollMargin: 'default'
      }
 
      static getStores()
@@ -68,7 +67,7 @@ class ScrollReceiver extends Component
             );
          } else {
              el = (
-                <SemanticUI {...props} />
+                <SemanticUI {...reset} />
              );
          }
          return el;
