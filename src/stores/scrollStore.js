@@ -22,11 +22,11 @@ class ScrollStore extends ReduceStore
           const self = this;
           setTimeout(()=>{
                 self._triggerScroll.call(self);
-          },100);
+          });
       }
       return Immutable.Map({
         scrollDelay: 50,
-        scrollMargin: 50
+        scrollMargin: 0
       });
   }
 

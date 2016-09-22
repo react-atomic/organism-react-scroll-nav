@@ -1,12 +1,14 @@
 {
   "name": "organism-react-scroll-nav",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A React scroll spy library with flux",
   "repository": "react-atomic/organism-react-scroll-nav",
   "main": "./build/src/index.js",
   "keywords": [
     "react",
-    "react-component"
+    "react-component",
+    "organism",
+    "atomic-ui"
   ],
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",

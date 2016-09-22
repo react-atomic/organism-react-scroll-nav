@@ -17584,12 +17584,12 @@ webpackJsonp([0],[
 	                    var self = _this2;
 	                    setTimeout(function () {
 	                        self._triggerScroll.call(self);
-	                    }, 100);
+	                    });
 	                })();
 	            }
 	            return _immutable2.default.Map({
 	                scrollDelay: 50,
-	                scrollMargin: 50
+	                scrollMargin: 0
 	            });
 	        }
 	    }, {
