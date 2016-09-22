@@ -17614,7 +17614,7 @@ webpackJsonp([0],[
 	            var arrTestScrollTo = [];
 	            this.spys.forEach(function (node) {
 	                var pos = node.getOffset();
-	                if (node.testScrollTo) {
+	                if (node.props.testScrollTo) {
 	                    if (scrollTop >= pos.top && scrollTop < pos.bottom) {
 	                        actives['default'] = node.id;
 	                    }
@@ -17664,6 +17664,7 @@ webpackJsonp([0],[
 	                }
 	            }
 	            this.spys = this.spys.add(node);
+	            return node.id;
 	        }
 	    }, {
 	        key: 'detach',
@@ -25250,17 +25251,24 @@ webpackJsonp([0],[
 	var ScrollSpy = function (_Component) {
 	    _inherits(ScrollSpy, _Component);
 
-	    function ScrollSpy() {
+	    function ScrollSpy(props) {
 	        _classCallCheck(this, ScrollSpy);
 
-	        return _possibleConstructorReturn(this, (ScrollSpy.__proto__ || Object.getPrototypeOf(ScrollSpy)).apply(this, arguments));
+	        var _this = _possibleConstructorReturn(this, (ScrollSpy.__proto__ || Object.getPrototypeOf(ScrollSpy)).call(this, props));
+
+	        _this.state = {
+	            id: _this.props.id
+	        };
+	        return _this;
 	    }
 
 	    _createClass(ScrollSpy, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            this.testScrollTo = this.props.testScrollTo;
-	            _index.scrollStore.attach(this);
+	            var id = _index.scrollStore.attach(this);
+	            this.setState({
+	                id: id
+	            });
 	        }
 	    }, {
 	        key: 'componentWillUnmount',
@@ -25273,6 +25281,17 @@ webpackJsonp([0],[
 	            return (0, _getoffset2.default)(this.el);
 	        }
 	    }, {
+	        key: 'isScrollReceiver',
+	        value: function isScrollReceiver(el) {
+	            if (_react2.default.isValidElement(el)) {
+	                var type = el.type;
+	                if (type.displayName && -1 !== type.displayName.indexOf('ScrollReceiver')) {
+	                    return true;
+	                }
+	            }
+	            return false;
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var _this2 = this;
@@ -25283,12 +25302,12 @@ webpackJsonp([0],[
 
 	            var others = _objectWithoutProperties(_props, ['testScrollTo', 'children']);
 
-	            var cookChildren = children;
-	            if (_react2.default.isValidElement(children)) {
-	                var type = children.type;
-	                if (type.displayName && -1 !== type.displayName.indexOf('ScrollReceiver')) {
-	                    cookChildren = _react2.default.cloneElement(children, (0, _reactAtomicMolecule.assign)({ targetId: this.id }, children.props));
-	                }
+	            var isScrollReceiver = this.isScrollReceiver(children);
+	            var cookChildren = void 0;
+	            if (isScrollReceiver) {
+	                cookChildren = _react2.default.cloneElement(children, (0, _reactAtomicMolecule.assign)({ targetId: this.state.id }, children.props));
+	            } else {
+	                cookChildren = children;
 	            }
 	            return _react2.default.createElement('div', _extends({ ref: function ref(dom) {
 	                    return _this2.el = dom;
@@ -25300,7 +25319,8 @@ webpackJsonp([0],[
 	}(_react.Component);
 
 	ScrollSpy.defaultProps = {
-	    testScrollTo: true
+	    testScrollTo: true,
+	    id: ''
 	};
 	exports.default = ScrollSpy;
 	module.exports = exports['default'];

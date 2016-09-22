@@ -7,13 +7,24 @@ class ScrollSpy extends Component
 {
 
     static defaultProps = {
-        testScrollTo: true
+        testScrollTo: true,
+        id: ''
+    }
+
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            id: this.props.id
+        };
     }
 
     componentDidMount()
     {
-        this.testScrollTo = this.props.testScrollTo;
-        scrollStore.attach(this);
+        let id = scrollStore.attach(this);
+        this.setState({
+            id: id
+        });
     }
 
     componentWillUnmount()
@@ -26,24 +37,35 @@ class ScrollSpy extends Component
         return getOffset(this.el);
     }
 
+    isScrollReceiver(el)
+    {
+        if (React.isValidElement(el)){
+            let type = el.type;
+            if (type.displayName
+                && -1 !== type.displayName.indexOf('ScrollReceiver')
+            ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     render()
     {
         const {testScrollTo, children, ...others} = this.props;
-        let cookChildren = children;
-        if (React.isValidElement(children)) {
-            let type = children.type;
-            if (type.displayName
-             && -1 !== type.displayName.indexOf('ScrollReceiver')
-            ) {
-                 cookChildren = React.cloneElement(
-                     children,
-                     assign(
-                        {targetId: this.id},
-                        children.props
-                     )
-                 );
-            }
-        } 
+        const isScrollReceiver = this.isScrollReceiver(children);
+        let cookChildren;
+        if (isScrollReceiver) {
+             cookChildren = React.cloneElement(
+                 children,
+                 assign(
+                    {targetId: this.state.id},
+                    children.props
+                 )
+             );
+        } else {
+            cookChildren = children;
+        }
         return (
             <div ref={dom=>this.el=dom} {...others}>
                 {cookChildren}

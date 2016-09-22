@@ -50,7 +50,7 @@ class ScrollStore extends ReduceStore
     let arrTestScrollTo = [];
     this.spys.forEach((node)=>{
         let pos = node.getOffset();
-        if (node.testScrollTo) {
+        if (node.props.testScrollTo) {
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
                 actives['default'] = node.id;
             }
@@ -108,6 +108,7 @@ class ScrollStore extends ReduceStore
           }
       }
       this.spys = this.spys.add(node);
+      return node.id;
   }
 
   detach(node)
