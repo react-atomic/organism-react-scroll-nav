@@ -17557,6 +17557,8 @@ webpackJsonp([0],[
 	    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 	}
 
+	var incNum = 0;
+
 	var ScrollStore = function (_ReduceStore) {
 	    _inherits(ScrollStore, _ReduceStore);
 
@@ -17653,6 +17655,14 @@ webpackJsonp([0],[
 	    }, {
 	        key: 'attach',
 	        value: function attach(node) {
+	            if (!node.id) {
+	                if (node.props.id) {
+	                    node.id = node.props.id;
+	                } else {
+	                    node.id = 'spy-' + incNum;
+	                    incNum++;
+	                }
+	            }
 	            this.spys = this.spys.add(node);
 	        }
 	    }, {
@@ -25237,8 +25247,6 @@ webpackJsonp([0],[
 	    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 	}
 
-	var incNum = 0;
-
 	var ScrollSpy = function (_Component) {
 	    _inherits(ScrollSpy, _Component);
 
@@ -25275,12 +25283,6 @@ webpackJsonp([0],[
 
 	            var others = _objectWithoutProperties(_props, ['testScrollTo', 'children']);
 
-	            if (this.props.id) {
-	                this.id = this.props.id;
-	            } else {
-	                this.id = 'spy-' + incNum;
-	                incNum++;
-	            }
 	            var cookChildren = children;
 	            if (_react2.default.isValidElement(children)) {
 	                var type = children.type;

@@ -5,6 +5,7 @@ import {ReduceStore} from 'flux/utils';
 import dispatcher, {dispatch} from '../actions/dispatcher';
 import getScrollInfo from 'get-scroll-info';
 import { assign } from 'react-atomic-molecule';
+let incNum = 0;
 
 class ScrollStore extends ReduceStore
 {
@@ -98,6 +99,14 @@ class ScrollStore extends ReduceStore
   
   attach(node)
   {
+      if (!node.id) {
+          if (node.props.id) {
+              node.id = node.props.id;
+          } else {
+              node.id = 'spy-'+incNum;
+              incNum++;
+          }
+      }
       this.spys = this.spys.add(node);
   }
 

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { scrollStore } from '../../src/index';
 import getOffset from 'getoffset';
 import { assign } from 'react-atomic-molecule';
-let incNum = 0;
 
 class ScrollSpy extends Component
 {
@@ -30,12 +29,6 @@ class ScrollSpy extends Component
     render()
     {
         const {testScrollTo, children, ...others} = this.props;
-        if (this.props.id) {
-            this.id = this.props.id;
-        } else {
-            this.id = 'spy-'+incNum;
-            incNum++;
-        }
         let cookChildren = children;
         if (React.isValidElement(children)) {
             let type = children.type;
