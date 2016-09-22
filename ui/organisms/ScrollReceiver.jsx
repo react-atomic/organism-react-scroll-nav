@@ -55,23 +55,23 @@ class ScrollReceiver extends Component
             targetId,
             ...reset
          } = this.props; 
-         let el;
-         let props = assign({}, reset, {
+         if (!React.isValidElement(container)) {
+            return <SemanticUI {...reset} />;   
+         }
+         if (this.state.isOnScreen) {
+            this.isShown = true;
+         }
+         const scrollInfo = {
             active: this.state.active,
             isOnScreen: this.state.isOnScreen,
-            targetId: targetId
-         });
-         if (React.isValidElement(container)) {
-             el = React.cloneElement(
-                 container,
-                 props
-            );
-         } else {
-             el = (
-                <SemanticUI {...reset} />
-             );
+            targetId: targetId,
+            isShown: this.isShown
          }
-         return el;
+         let props = assign({}, reset, {scrollInfo:scrollInfo});
+         return React.cloneElement(
+             container,
+             props
+        );
      }
 }
 

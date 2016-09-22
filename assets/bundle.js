@@ -17390,15 +17390,13 @@ webpackJsonp([0],[
 	        key: 'render',
 	        value: function render() {
 	            var _props = this.props;
-	            var active = _props.active;
-	            var isOnScreen = _props.isOnScreen;
-	            var targetId = _props.targetId;
+	            var scrollInfo = _props.scrollInfo;
 	            var style = _props.style;
 
-	            var reset = _objectWithoutProperties(_props, ['active', 'isOnScreen', 'targetId', 'style']);
+	            var reset = _objectWithoutProperties(_props, ['scrollInfo', 'style']);
 
 	            var activeStyle = null;
-	            if (active) {
+	            if (scrollInfo.active) {
 	                activeStyle = Styles.active;
 	            }
 	            return _react2.default.createElement('div', _extends({ style: (0, _reactAtomicMolecule.assign)({}, Styles.link, style, activeStyle) }, reset));
@@ -25451,18 +25449,20 @@ webpackJsonp([0],[
 
 	            var reset = _objectWithoutProperties(_props, ['atom', 'container', 'scrollMargin', 'targetId']);
 
-	            var el = void 0;
-	            var props = (0, _reactAtomicMolecule.assign)({}, reset, {
+	            if (!_react2.default.isValidElement(container)) {
+	                return _react2.default.createElement(_reactAtomicMolecule.SemanticUI, reset);
+	            }
+	            if (this.state.isOnScreen) {
+	                this.isShown = true;
+	            }
+	            var scrollInfo = {
 	                active: this.state.active,
 	                isOnScreen: this.state.isOnScreen,
-	                targetId: targetId
-	            });
-	            if (_react2.default.isValidElement(container)) {
-	                el = _react2.default.cloneElement(container, props);
-	            } else {
-	                el = _react2.default.createElement(_reactAtomicMolecule.SemanticUI, reset);
-	            }
-	            return el;
+	                targetId: targetId,
+	                isShown: this.isShown
+	            };
+	            var props = (0, _reactAtomicMolecule.assign)({}, reset, { scrollInfo: scrollInfo });
+	            return _react2.default.cloneElement(container, props);
 	        }
 	    }], [{
 	        key: 'getStores',

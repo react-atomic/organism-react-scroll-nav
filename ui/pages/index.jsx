@@ -79,9 +79,9 @@ class MenuItem extends Component
 {
     render()
     {
-        const { active, isOnScreen, targetId, style, ...reset } = this.props;
+        const { scrollInfo, style, ...reset } = this.props;
         let activeStyle = null;
-        if (active) {
+        if (scrollInfo.active) {
             activeStyle = Styles.active;
         }
         return (<div style={assign(
