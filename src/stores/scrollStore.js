@@ -85,16 +85,24 @@ class ScrollStore extends ReduceStore
     ));
   }
 
-  getOffset(id)
+  getNode(id)
   {
-      let offset = false;
+      let item = false;
       this.spys.some((node)=>{
           if (id===node.id) {
-             offset = node.getOffset();
+             item = node;
           }
-          return offset;
+          return item;
       });
-      return offset;
+      return item;
+  }
+
+  getOffset(id)
+  {
+      const node = this.getNode(id);
+      if (node) {
+        return node.getOffset();
+      }
   }
   
   attach(node)

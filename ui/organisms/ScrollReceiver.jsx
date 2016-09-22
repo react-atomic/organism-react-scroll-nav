@@ -58,7 +58,8 @@ class ScrollReceiver extends Component
          let el;
          let props = assign({}, reset, {
             active: this.state.active,
-            isOnScreen: this.state.isOnScreen
+            isOnScreen: this.state.isOnScreen,
+            targetId: targetId
          });
          if (React.isValidElement(container)) {
              el = React.cloneElement(

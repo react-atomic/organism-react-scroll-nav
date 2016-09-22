@@ -21,7 +21,7 @@ class ScrollSpy extends Component
 
     componentDidMount()
     {
-        let id = scrollStore.attach(this);
+        let id = this.attach(this);
         this.setState({
             id: id
         });
@@ -29,12 +29,22 @@ class ScrollSpy extends Component
 
     componentWillUnmount()
     {
-        scrollStore.detach(this);
+        this.detach();
     }
 
     getOffset()
     {
         return getOffset(this.el);
+    }
+
+    attach()
+    {
+        return scrollStore.attach(this);
+    }
+
+    detach()
+    {
+        return scrollStore.detach(this);
     }
 
     isScrollReceiver(el)

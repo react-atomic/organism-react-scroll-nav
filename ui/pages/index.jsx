@@ -79,7 +79,7 @@ class MenuItem extends Component
 {
     render()
     {
-        const { active, isOnScreen, style, ...reset } = this.props;
+        const { active, isOnScreen, targetId, style, ...reset } = this.props;
         let activeStyle = null;
         if (active) {
             activeStyle = Styles.active;

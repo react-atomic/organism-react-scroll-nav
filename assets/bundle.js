@@ -17392,9 +17392,10 @@ webpackJsonp([0],[
 	            var _props = this.props;
 	            var active = _props.active;
 	            var isOnScreen = _props.isOnScreen;
+	            var targetId = _props.targetId;
 	            var style = _props.style;
 
-	            var reset = _objectWithoutProperties(_props, ['active', 'isOnScreen', 'style']);
+	            var reset = _objectWithoutProperties(_props, ['active', 'isOnScreen', 'targetId', 'style']);
 
 	            var activeStyle = null;
 	            if (active) {
@@ -17641,16 +17642,24 @@ webpackJsonp([0],[
 	            }));
 	        }
 	    }, {
-	        key: 'getOffset',
-	        value: function getOffset(id) {
-	            var offset = false;
+	        key: 'getNode',
+	        value: function getNode(id) {
+	            var item = false;
 	            this.spys.some(function (node) {
 	                if (id === node.id) {
-	                    offset = node.getOffset();
+	                    item = node;
 	                }
-	                return offset;
+	                return item;
 	            });
-	            return offset;
+	            return item;
+	        }
+	    }, {
+	        key: 'getOffset',
+	        value: function getOffset(id) {
+	            var node = this.getNode(id);
+	            if (node) {
+	                return node.getOffset();
+	            }
 	        }
 	    }, {
 	        key: 'attach',
@@ -25265,7 +25274,7 @@ webpackJsonp([0],[
 	    _createClass(ScrollSpy, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            var id = _index.scrollStore.attach(this);
+	            var id = this.attach(this);
 	            this.setState({
 	                id: id
 	            });
@@ -25273,12 +25282,22 @@ webpackJsonp([0],[
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
-	            _index.scrollStore.detach(this);
+	            this.detach();
 	        }
 	    }, {
 	        key: 'getOffset',
 	        value: function getOffset() {
 	            return (0, _getoffset2.default)(this.el);
+	        }
+	    }, {
+	        key: 'attach',
+	        value: function attach() {
+	            return _index.scrollStore.attach(this);
+	        }
+	    }, {
+	        key: 'detach',
+	        value: function detach() {
+	            return _index.scrollStore.detach(this);
 	        }
 	    }, {
 	        key: 'isScrollReceiver',
@@ -25435,7 +25454,8 @@ webpackJsonp([0],[
 	            var el = void 0;
 	            var props = (0, _reactAtomicMolecule.assign)({}, reset, {
 	                active: this.state.active,
-	                isOnScreen: this.state.isOnScreen
+	                isOnScreen: this.state.isOnScreen,
+	                targetId: targetId
 	            });
 	            if (_react2.default.isValidElement(container)) {
 	                el = _react2.default.cloneElement(container, props);
