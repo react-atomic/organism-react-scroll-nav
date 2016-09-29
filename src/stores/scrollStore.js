@@ -13,7 +13,7 @@ class ScrollStore extends ReduceStore
   {
       this.spys = Immutable.Set();
       this.margins = Immutable.Set();
-      if (window) {
+      if ('undefined' !== typeof window) {
           if (window.addEventListener) {
             window.addEventListener('scroll', this.scrollMonitor.bind(this));
           } else {
