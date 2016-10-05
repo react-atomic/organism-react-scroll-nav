@@ -8,7 +8,6 @@ class ScrollSpy extends Component
 
     static defaultProps = {
         testScrollTo: true,
-        id: ''
     }
 
     constructor(props)
