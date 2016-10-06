@@ -17574,7 +17574,7 @@ webpackJsonp([0],[
 
 	            this.spys = _immutable2.default.Set();
 	            this.margins = _immutable2.default.Set();
-	            if (window) {
+	            if ('undefined' !== typeof window) {
 	                (function () {
 	                    if (window.addEventListener) {
 	                        window.addEventListener('scroll', _this2.scrollMonitor.bind(_this2));
@@ -17606,7 +17606,7 @@ webpackJsonp([0],[
 	        key: '_triggerScroll',
 	        value: function _triggerScroll() {
 	            var scroll = (0, _getScrollInfo2.default)(null, 0);
-	            var actives = {};
+	            var actives = { mdefault: null };
 	            var offsetCache = {};
 	            var margin = this.getState().get('scrollMargin');
 	            var scrollTop = scroll.top + margin;
@@ -17615,7 +17615,7 @@ webpackJsonp([0],[
 	                var pos = node.getOffset();
 	                if (node.props.testScrollTo) {
 	                    if (scrollTop >= pos.top && scrollTop < pos.bottom) {
-	                        actives['default'] = node.id;
+	                        actives.mdefault = node.id;
 	                    }
 	                    arrTestScrollTo.push(node);
 	                }
@@ -17624,6 +17624,7 @@ webpackJsonp([0],[
 	            });
 	            this.margins.forEach(function (margin) {
 	                scrollTop = scroll.top + margin;
+	                actives['m' + margin] = null;
 	                arrTestScrollTo.every(function (node) {
 	                    var pos = offsetCache[node.id];
 	                    if (scrollTop >= pos.top && scrollTop < pos.bottom) {
@@ -19710,16 +19711,27 @@ webpackJsonp([0],[
 	});
 	var lastScroll = void 0;
 
-	var isWebkit = 'undefined' !== typeof document.webkitIsFullScreen;
+	var isWebkit = void 0;
+	var docEl = void 0;
+	if ('undefined' !== typeof document) {
+	    isWebkit = 'undefined' !== typeof document.webkitIsFullScreen;
+	    docEl = document.documentElement;
+	}
 
-	var getScrollInfo = function getScrollInfo(el, margin) {
-	    var docEl = document.documentElement;
+	var getScrollNode = function getScrollNode(el) {
 	    if (!el) {
-	        el = document.body;
+	        if ('undefined' !== typeof document) {
+	            el = document.body;
+	        }
 	        if ('undefined' === typeof el.scrollLeft) {
 	            el = docEl;
 	        }
 	    }
+	    return el;
+	};
+
+	var getScrollInfo = function getScrollInfo(el, margin) {
+	    el = getScrollNode(el);
 	    if (!margin) {
 	        margin = 50;
 	    }
@@ -19764,7 +19776,7 @@ webpackJsonp([0],[
 	};
 
 	exports.default = getScrollInfo;
-	module.exports = exports['default'];
+	exports.getScrollNode = getScrollNode;
 
 /***/ },
 /* 197 */
@@ -25336,8 +25348,7 @@ webpackJsonp([0],[
 	}(_react.Component);
 
 	ScrollSpy.defaultProps = {
-	    testScrollTo: true,
-	    id: ''
+	    testScrollTo: true
 	};
 	exports.default = ScrollSpy;
 	module.exports = exports['default'];
@@ -25473,16 +25484,16 @@ webpackJsonp([0],[
 	        key: 'calculateState',
 	        value: function calculateState(prevState, props) {
 	            var state = _index.scrollStore.getState();
+	            var target = props.targetId;
 	            var isOnScreen = false;
 	            var nodes = state.get('nodes');
-	            var target = props.targetId;
 	            if (nodes) {
 	                nodes = nodes.toJS();
 	                if (nodes && nodes[target]) {
 	                    isOnScreen = nodes[target].isElementOnScreen;
 	                }
 	            }
-	            var active = target === state.get('m' + props.scrollMargin);
+	            var active = 'undefined' !== typeof target && target === state.get('m' + props.scrollMargin);
 	            if (!isNaN(props.scrollMargin)) {
 	                _index.scrollStore.addMargin(props.scrollMargin);
 	            }
@@ -25653,7 +25664,7 @@ webpackJsonp([0],[
 	    value: true
 	});
 
-	var _getScrollInfo = __webpack_require__(274);
+	var _getScrollInfo = __webpack_require__(196);
 
 	var easeInOutCubic = function easeInOutCubic(t, b, c, d) {
 	    if ((t /= d / 2) < 1) {
@@ -25682,78 +25693,6 @@ webpackJsonp([0],[
 
 	exports.default = smoothScrollTo;
 	module.exports = exports['default'];
-
-/***/ },
-/* 274 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	var lastScroll = void 0;
-
-	var isWebkit = 'undefined' !== typeof document.webkitIsFullScreen;
-	var docEl = document.documentElement;
-
-	var getScrollNode = function getScrollNode(el) {
-	    if (!el) {
-	        el = document.body;
-	        if ('undefined' === typeof el.scrollLeft) {
-	            el = docEl;
-	        }
-	    }
-	    return el;
-	};
-
-	var getScrollInfo = function getScrollInfo(el, margin) {
-	    el = getScrollNode(el);
-	    if (!margin) {
-	        margin = 50;
-	    }
-	    var h = void 0;
-	    var w = void 0;
-	    var isBody = el.nodeName && 'body' === el.nodeName.toLowerCase();
-	    if (isWebkit && isBody) {
-	        h = window.innerHeight;
-	        w = window.innerWidth;
-	    } else {
-	        h = el.clientHeight;
-	        w = el.clientWidth;
-	    }
-	    var scrollLeft = el.scrollLeft;
-	    var scrollHeight = el.scrollHeight;
-	    var scrollTop = el.scrollTop;
-	    var scrollWidth = el.scrollWidth;
-	    var scrollBottom = scrollTop + h;
-	    var scrollRight = scrollLeft + w;
-
-	    var info = {
-	        atTop: scrollTop < margin,
-	        atRight: scrollRight > scrollWidth - margin,
-	        atBottom: scrollBottom > scrollHeight - margin,
-	        atLeft: scrollLeft < margin,
-
-	        isScrollDown: lastScroll && scrollTop > lastScroll.top,
-	        isScrollLeft: lastScroll && scrollLeft < lastScroll.left,
-	        isScrollRight: lastScroll && scrollLeft > lastScroll.left,
-	        isScrollUp: lastScroll && scrollTop < lastScroll.top,
-
-	        scrollWidth: scrollWidth,
-	        scrollHeight: scrollHeight,
-
-	        top: scrollTop,
-	        right: scrollRight,
-	        bottom: scrollBottom,
-	        left: scrollLeft
-	    };
-	    lastScroll = info;
-	    return info;
-	};
-
-	exports.default = getScrollInfo;
-	exports.getScrollNode = getScrollNode;
 
 /***/ }
 ]);

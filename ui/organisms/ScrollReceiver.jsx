@@ -23,9 +23,9 @@ class ScrollReceiver extends Component
      static calculateState(prevState, props)
      {
          const state = scrollStore.getState();
+         const target = props.targetId;
          let isOnScreen = false;
          let nodes = state.get('nodes');
-         let target = props.targetId;
          if (nodes) {
              nodes = nodes.toJS();
              if (nodes && nodes[target]) {
@@ -34,16 +34,15 @@ class ScrollReceiver extends Component
                     isElementOnScreen;
              }
          }
-         let active = 
-            target === 
-            state.get('m'+props.scrollMargin);
-        if (!isNaN(props.scrollMargin)) {
-            scrollStore.addMargin(props.scrollMargin);
-        }
-        return {
-            active: active,
-            isOnScreen: isOnScreen
-        };
+         const active = 'undefined' !== typeof target &&
+             target === state.get('m'+props.scrollMargin);
+         if (!isNaN(props.scrollMargin)) {
+             scrollStore.addMargin(props.scrollMargin);
+         }
+         return {
+             active: active,
+             isOnScreen: isOnScreen
+         };
      }
 
      render()

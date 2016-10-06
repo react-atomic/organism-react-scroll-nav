@@ -43,7 +43,7 @@ class ScrollStore extends ReduceStore
   _triggerScroll()
   {
     let scroll = getScrollInfo(null, 0);
-    let actives = {};
+    let actives = { mdefault: null };
     let offsetCache = {};
     let margin = this.getState().get('scrollMargin');
     let scrollTop = scroll.top + margin;
@@ -52,7 +52,7 @@ class ScrollStore extends ReduceStore
         let pos = node.getOffset();
         if (node.props.testScrollTo) {
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
-                actives['default'] = node.id;
+                actives.mdefault = node.id;
             }
             arrTestScrollTo.push(node);    
         }
@@ -66,6 +66,7 @@ class ScrollStore extends ReduceStore
     });
     this.margins.forEach((margin)=>{
         scrollTop = scroll.top + margin;
+        actives['m'+margin] = null;
         arrTestScrollTo.every((node)=>{
             let pos = offsetCache[node.id];
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
