@@ -17605,12 +17605,13 @@ webpackJsonp([0],[
 	    }, {
 	        key: '_triggerScroll',
 	        value: function _triggerScroll() {
+	            var defaultMargin = this.getState().get('scrollMargin');
 	            var scroll = (0, _getScrollInfo2.default)(null, 0);
 	            var actives = { mdefault: null };
 	            var offsetCache = {};
-	            var margin = this.getState().get('scrollMargin');
-	            var scrollTop = scroll.top + margin;
+	            var scrollTop = scroll.top + defaultMargin;
 	            var arrTestScrollTo = [];
+	            console.log(this.spys);
 	            this.spys.forEach(function (node) {
 	                var pos = node.getOffset();
 	                if (node.props.testScrollTo) {
@@ -17619,6 +17620,8 @@ webpackJsonp([0],[
 	                    }
 	                    arrTestScrollTo.push(node);
 	                }
+	                var margin = node.scrollMargin ? node.scrollMargin : defaultMargin;
+	                console.log(margin, node);
 	                pos.isElementOnScreen = !(pos.top > scroll.bottom - margin || pos.bottom < scroll.top + margin || pos.right < scroll.left + margin || pos.left > scroll.right - margin);
 	                offsetCache[node.id] = pos;
 	            });
@@ -25275,6 +25278,7 @@ webpackJsonp([0],[
 
 	        var _this = _possibleConstructorReturn(this, (ScrollSpy.__proto__ || Object.getPrototypeOf(ScrollSpy)).call(this, props));
 
+	        _this.scrollMargin = props.scrollMargin;
 	        _this.state = {
 	            id: _this.props.id
 	        };

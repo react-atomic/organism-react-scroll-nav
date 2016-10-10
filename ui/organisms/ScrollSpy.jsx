@@ -13,6 +13,7 @@ class ScrollSpy extends Component
     constructor(props)
     {
         super(props);
+        this.scrollMargin = props.scrollMargin;
         this.state = {
             id: this.props.id
         };

@@ -1,6 +1,6 @@
 {
   "name": "organism-react-scroll-nav",
-  "version": "0.0.16",
+  "version": "0.0.18",
   "description": "A React scroll spy library with flux",
   "repository": "react-atomic/organism-react-scroll-nav",
   "main": "./build/src/index.js",
@@ -17,8 +17,8 @@
     "immutable": "^3.8.1",
     "react-atomic-molecule": "*",
     "getoffset": "*",
-    "get-scroll-info": "^0.0.10",
-    "smooth-scroll-to": "^0.0.4"
+    "get-scroll-info": ">=0.0.10",
+    "smooth-scroll-to": ">=0.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",

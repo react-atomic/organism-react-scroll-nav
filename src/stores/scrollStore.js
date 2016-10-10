@@ -42,11 +42,11 @@ class ScrollStore extends ReduceStore
 
   _triggerScroll()
   {
+    const defaultMargin = this.getState().get('scrollMargin');
     let scroll = getScrollInfo(null, 0);
     let actives = { mdefault: null };
     let offsetCache = {};
-    let margin = this.getState().get('scrollMargin');
-    let scrollTop = scroll.top + margin;
+    let scrollTop = scroll.top + defaultMargin;
     let arrTestScrollTo = [];
     this.spys.forEach((node)=>{
         let pos = node.getOffset();
@@ -56,6 +56,7 @@ class ScrollStore extends ReduceStore
             }
             arrTestScrollTo.push(node);    
         }
+        let margin = (node.scrollMargin) ? node.scrollMargin : defaultMargin;
         pos.isElementOnScreen = !(
             pos.top > scroll.bottom - margin
             || pos.bottom < scroll.top + margin
