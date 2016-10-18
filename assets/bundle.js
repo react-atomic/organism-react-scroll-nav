@@ -17611,7 +17611,6 @@ webpackJsonp([0],[
 	            var offsetCache = {};
 	            var scrollTop = scroll.top + defaultMargin;
 	            var arrTestScrollTo = [];
-	            console.log(this.spys);
 	            this.spys.forEach(function (node) {
 	                var pos = node.getOffset();
 	                if (node.props.testScrollTo) {
@@ -17621,7 +17620,6 @@ webpackJsonp([0],[
 	                    arrTestScrollTo.push(node);
 	                }
 	                var margin = node.scrollMargin ? node.scrollMargin : defaultMargin;
-	                console.log(margin, node);
 	                pos.isElementOnScreen = !(pos.top > scroll.bottom - margin || pos.bottom < scroll.top + margin || pos.right < scroll.left + margin || pos.left > scroll.right - margin);
 	                offsetCache[node.id] = pos;
 	            });
@@ -25464,19 +25462,21 @@ webpackJsonp([0],[
 
 	            var reset = _objectWithoutProperties(_props, ['atom', 'container', 'scrollMargin', 'targetId']);
 
+	            var state = this.state;
 	            if (!_react2.default.isValidElement(container)) {
 	                return _react2.default.createElement(_reactAtomicMolecule.SemanticUI, reset);
 	            }
-	            if (this.state.isOnScreen) {
-	                this.isShown = true;
-	            }
-	            var scrollInfo = {
-	                active: this.state.active,
-	                isOnScreen: this.state.isOnScreen,
+	            var targetInfo = {
+	                active: state.active,
+	                isOnScreen: state.isOnScreen,
 	                targetId: targetId,
-	                isShown: this.isShown
+	                isShown: state.isShown,
+	                atTop: state.atTop,
+	                atRight: state.atRight,
+	                atBottom: state.atBottom,
+	                atLeft: state.atLeft
 	            };
-	            var props = (0, _reactAtomicMolecule.assign)({}, reset, { scrollInfo: scrollInfo });
+	            var props = (0, _reactAtomicMolecule.assign)({}, reset, { targetInfo: targetInfo });
 	            return _react2.default.cloneElement(container, props);
 	        }
 	    }], [{
@@ -25488,22 +25488,51 @@ webpackJsonp([0],[
 	        key: 'calculateState',
 	        value: function calculateState(prevState, props) {
 	            var state = _index.scrollStore.getState();
-	            var target = props.targetId;
+	            var targetId = props.targetId;
 	            var isOnScreen = false;
+	            var isShown = prevState && prevState.isShown || false;
+	            var atTop = void 0;
+	            var atRight = void 0;
+	            var atBottom = void 0;
+	            var atLeft = void 0;
 	            var nodes = state.get('nodes');
 	            if (nodes) {
 	                nodes = nodes.toJS();
-	                if (nodes && nodes[target]) {
-	                    isOnScreen = nodes[target].isElementOnScreen;
+	            }
+	            if (nodes && nodes[targetId]) {
+	                isOnScreen = nodes[targetId].isElementOnScreen;
+	            }
+	            if (isOnScreen) {
+	                isShown = true;
+	            } else {
+	                if (isShown && nodes && nodes[targetId]) {
+	                    var scrollbar = state.get('scroll').toJS();
+	                    var _target = nodes[targetId];
+	                    if (scrollbar.top > _target.bottom) {
+	                        atTop = true;
+	                    } else if (scrollbar.bottom < _target.bottom) {
+	                        atBottom = true;
+	                    }
+	                    if (scrollbar.left > _target.right) {
+	                        atLeft = true;
+	                    } else if (scrollbar.right < _target.right) {
+	                        atRight = true;
+	                    }
 	                }
 	            }
-	            var active = 'undefined' !== typeof target && target === state.get('m' + props.scrollMargin);
+
+	            var active = 'undefined' !== typeof targetId && targetId === state.get('m' + props.scrollMargin);
 	            if (!isNaN(props.scrollMargin)) {
 	                _index.scrollStore.addMargin(props.scrollMargin);
 	            }
 	            return {
 	                active: active,
-	                isOnScreen: isOnScreen
+	                isOnScreen: isOnScreen,
+	                isShown: isShown,
+	                atTop: atTop,
+	                atRight: atRight,
+	                atBottom: atBottom,
+	                atLeft: atLeft
 	            };
 	        }
 	    }]);
