@@ -1,13 +1,11 @@
 import React, {Component} from 'react';
-
-import { Container } from 'flux/utils';
-
-import { scrollStore } from '../../src/index';
-
+import { Container } from 'reduce-flux';
 import {
     SemanticUI,
     assign
 } from 'react-atomic-molecule';
+
+import { scrollStore } from '../../src/index';
 
 class ScrollReceiver extends Component
 {

@@ -1,7 +1,7 @@
 'use strict';
 
 import Immutable from 'immutable';
-import {ReduceStore} from 'flux/utils';
+import {ReduceStore} from 'reduce-flux';
 import dispatcher, {dispatch} from '../actions/dispatcher';
 import getScrollInfo from 'get-scroll-info';
 import { assign } from 'react-atomic-molecule';
