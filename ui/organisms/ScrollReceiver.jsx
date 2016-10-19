@@ -40,7 +40,7 @@ class ScrollReceiver extends Component
          if (isOnScreen) {
             isShown = true;
          } else {
-            if (isShown && nodes && nodes[targetId]) {
+            if (nodes && nodes[targetId]) {
                 const scrollbar =
                     state.get('scroll').toJS();
                 const target = nodes[targetId];
