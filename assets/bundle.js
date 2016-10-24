@@ -17623,6 +17623,7 @@ webpackJsonp([0],[
 	            var offsetCache = {};
 	            var scrollTop = scroll.top + defaultMargin;
 	            var arrTestScrollTo = [];
+	            var margin = void 0;
 	            this.spys.forEach(function (node) {
 	                var pos = node.getOffset();
 	                if (node.props.testScrollTo) {
@@ -17631,7 +17632,7 @@ webpackJsonp([0],[
 	                    }
 	                    arrTestScrollTo.push(node);
 	                }
-	                var margin = node.scrollMargin ? node.scrollMargin : defaultMargin;
+	                margin = node.scrollMargin ? node.scrollMargin : defaultMargin;
 	                pos.isElementOnScreen = !(pos.top > scroll.bottom - margin || pos.bottom < scroll.top + margin || pos.right < scroll.left + margin || pos.left > scroll.right - margin);
 	                offsetCache[node.id] = pos;
 	            });

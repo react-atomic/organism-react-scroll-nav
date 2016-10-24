@@ -48,6 +48,7 @@ class ScrollStore extends ReduceStore
     let offsetCache = {};
     let scrollTop = scroll.top + defaultMargin;
     let arrTestScrollTo = [];
+    let margin;
     this.spys.forEach((node)=>{
         let pos = node.getOffset();
         if (node.props.testScrollTo) {
@@ -56,7 +57,7 @@ class ScrollStore extends ReduceStore
             }
             arrTestScrollTo.push(node);    
         }
-        let margin = (node.scrollMargin) ? node.scrollMargin : defaultMargin;
+        margin = (node.scrollMargin) ? node.scrollMargin : defaultMargin;
         pos.isElementOnScreen = !(
             pos.top > scroll.bottom - margin
             || pos.bottom < scroll.top + margin
