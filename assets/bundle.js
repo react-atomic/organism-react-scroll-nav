@@ -17594,7 +17594,7 @@ webpackJsonp([0],[
 	                    }
 	                    var self = _this2;
 	                    setTimeout(function () {
-	                        self._triggerScroll.call(self);
+	                        self.scrollMonitor.call(self);
 	                    });
 	                })();
 	            }
@@ -17605,12 +17605,12 @@ webpackJsonp([0],[
 	        }
 	    }, {
 	        key: 'scrollMonitor',
-	        value: function scrollMonitor(e) {
+	        value: function scrollMonitor() {
 	            clearTimeout(this._scrollTimeout);
 	            var self = this;
 	            var delay = self.getState().get('scrollDelay');
 	            self._scrollTimeout = setTimeout(function () {
-	                self._triggerScroll.call(self, e);
+	                self._triggerScroll.call(self);
 	            }, delay);
 	        }
 	    }, {

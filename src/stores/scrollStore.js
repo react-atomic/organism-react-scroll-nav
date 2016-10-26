@@ -21,7 +21,7 @@ class ScrollStore extends ReduceStore
           }
           const self = this;
           setTimeout(()=>{
-                self._triggerScroll.call(self);
+                self.scrollMonitor.call(self);
           });
       }
       return Immutable.Map({
@@ -30,13 +30,13 @@ class ScrollStore extends ReduceStore
       });
   }
 
-  scrollMonitor(e)
+  scrollMonitor()
   {
     clearTimeout(this._scrollTimeout);
     const self = this;
     const delay = self.getState().get('scrollDelay');
     self._scrollTimeout = setTimeout(()=>{
-        self._triggerScroll.call(self,e);
+        self._triggerScroll.call(self);
     }, delay);
   }
 
