@@ -90,7 +90,7 @@ class SmoothScrollLink extends Component
                                         props,
                                         self.state.scrollRefElement
                                     );
-                                    smoothScrollTo((offset.top - margin));
+                                    smoothScrollTo((offset.top - margin),100);
                                 },500);
                             }
                         );

@@ -23422,7 +23422,7 @@ webpackJsonp([0],[
 	                            setTimeout(function () {
 	                                offset = _index.scrollStore.getOffset(targetId);
 	                                margin = self.getMargin(props, self.state.scrollRefElement);
-	                                (0, _smoothScrollTo2.default)(offset.top - margin);
+	                                (0, _smoothScrollTo2.default)(offset.top - margin, 100);
 	                            }, 500);
 	                        });
 	                        if (preventDefault) {
@@ -23463,6 +23463,8 @@ webpackJsonp([0],[
 
 	var _getScrollInfo = __webpack_require__(190);
 
+	var isRunning = false;
+
 	var easeInOutCubic = function easeInOutCubic(t, b, c, d) {
 	    if ((t /= d / 2) < 1) {
 	        return c / 2 * t * t * t + b;
@@ -23471,6 +23473,11 @@ webpackJsonp([0],[
 	};
 
 	var smoothScrollTo = function smoothScrollTo(to, duration, el, callback) {
+	    if (isRunning) {
+	        return false;
+	    } else {
+	        isRunning = true;
+	    }
 	    el = (0, _getScrollInfo.getScrollNode)(el);
 	    if (!duration) {
 	        duration = 900;
@@ -23483,9 +23490,10 @@ webpackJsonp([0],[
 	        var elapsedTime = timeStamp - beginTimeStamp;
 	        var progress = easeInOutCubic(elapsedTime, from, go, duration);
 	        el.scrollTop = progress;
-	        if (elapsedTime < duration) {
+	        if (elapsedTime < duration && go) {
 	            requestAnimationFrame(scrollTo);
 	        } else {
+	            isRunning = false;
 	            if ('function' === typeof callback) {
 	                callback();
 	            }

@@ -2131,8 +2131,8 @@ slash@^1.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
 smooth-scroll-to@*:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/smooth-scroll-to/-/smooth-scroll-to-0.0.5.tgz#3e740af6faf636aefd74a82e8a6742dcd66d6b09"
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/smooth-scroll-to/-/smooth-scroll-to-0.0.9.tgz#9defb988e137e5301da826ef4075e796637bbf3e"
   dependencies:
     get-scroll-info "*"
 
