@@ -1,22 +1,24 @@
 'use strict';
 
 import React, {Component} from 'react';
-import { ScrollReceiver } from '../../src/index';
 import smoothScrollTo from 'smooth-scroll-to';
-import { scrollStore } from '../../src/index';
 import getOffset from 'getoffset';
+import { assign } from 'react-atomic-molecule';
+import { ScrollReceiver } from '../../src/index';
+import { scrollStore } from '../../src/index';
 
 class SmoothScrollLink extends Component 
 {
     static defaultProps = {
         scrollRefId: '',
-        scrollRefLoc: 'bottom'
+        scrollRefLoc: 'bottom',
+        preventDefault: true
     }
 
     constructor(props) {
         super(props);
         this.state = {
-             scrollRef: ''
+             scrollRefElement: ''
         };
     }
 
@@ -25,37 +27,77 @@ class SmoothScrollLink extends Component
         let dom = document.getElementById(this.props.scrollRefId);
         if (dom) {
             this.setState({
-                scrollRef: dom
+                scrollRefElement: dom
             });
         }
     }
 
-    render()
+    getMargin(props, ref)
     {
         const {
-            targetId,
             scrollRefId,
             scrollRefLoc,
-            ...props
-        } = this.props;
-        let margin = 0;
-        if (this.state.scrollRef) {
-            let offset = getOffset(this.state.scrollRef);
+        } = props;
+        let margin;
+        if (ref) {
+            let offset = getOffset(ref);
             margin = offset[scrollRefLoc];
         }
         if (!isNaN(props.scrollMargin)) {
             margin += props.scrollMargin;
         }
+        return margin;
+    }
+
+    render()
+    {
+        const self = this;
+        const props = self.props;
+        const {
+            targetId,
+            scrollRefId,
+            scrollRefLoc,
+            scrollMargin,
+            preventDefault,
+            ...others
+        } = props;
+        let margin = self.getMargin(
+            props,
+            self.state.scrollRefElement
+        );
         return (
             <ScrollReceiver
                 atom="a"
                 targetId={targetId}
-                {...props}
+                {...others}
                 scrollMargin={margin}
+                style={assign({}, Styles.link, props.style)}
                 onClick={(e)=>{
                     let offset = scrollStore.getOffset(targetId);
-                    smoothScrollTo((offset.top - margin));
-                    e.preventDefault();
+                    if (offset) {
+                        margin = self.getMargin(
+                            props,
+                            self.state.scrollRefElement
+                        );
+                        smoothScrollTo(
+                            (offset.top - margin),
+                            null,
+                            null,
+                            () => {
+                                setTimeout(()=>{
+                                    offset = scrollStore.getOffset(targetId);
+                                    margin = self.getMargin(
+                                        props,
+                                        self.state.scrollRefElement
+                                    );
+                                    smoothScrollTo((offset.top - margin));
+                                },500);
+                            }
+                        );
+                        if (preventDefault) {
+                            e.preventDefault();
+                        }
+                    }
                 }}
             />
         );
@@ -63,3 +105,9 @@ class SmoothScrollLink extends Component
 }
 
 export default SmoothScrollLink;
+
+const Styles = {
+    link: {
+        cursor: 'pointer'
+    }
+};
