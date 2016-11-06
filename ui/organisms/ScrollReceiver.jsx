@@ -44,12 +44,12 @@ class ScrollReceiver extends Component
                 const scrollbar =
                     state.get('scroll').toJS();
                 const target = nodes[targetId];
-                if (scrollbar.top > target.bottom) {
+                if (scrollbar.top >= target.bottom) {
                     atTop = true;
                 } else if (scrollbar.bottom < target.bottom) {
                     atBottom = true;
                 }
-                if (scrollbar.left > target.right) {
+                if (scrollbar.left >= target.right) {
                     atLeft = true;
                 } else if (scrollbar.right < target.right) {
                     atRight = true;

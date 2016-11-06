@@ -11,15 +11,18 @@ class ScrollStore extends ReduceStore
 {
   getInitialState()
   {
-      this.spys = Immutable.Set();
-      this.margins = Immutable.Set();
+      const self = this;
+      self.spys = Immutable.Set();
+      self.margins = Immutable.Set();
       if ('undefined' !== typeof window) {
-          if (window.addEventListener) {
-            window.addEventListener('scroll', this.scrollMonitor.bind(this));
+          const win = window;
+          if (win.addEventListener) {
+            win.addEventListener('scroll', self.scrollMonitor.bind(self));
+            win.addEventListener('resize', self.scrollMonitor.bind(self));
           } else {
-            window.attachEvent('onscroll', this.scrollMonitor.bind(this));
+            win.attachEvent('onscroll', self.scrollMonitor.bind(self));
+            win.attachEvent('resize', self.scrollMonitor.bind(self));
           }
-          const self = this;
           setTimeout(()=>{
                 self.scrollMonitor.call(self);
           });

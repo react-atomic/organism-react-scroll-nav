@@ -17581,22 +17581,21 @@ webpackJsonp([0],[
 	    _createClass(ScrollStore, [{
 	        key: 'getInitialState',
 	        value: function getInitialState() {
-	            var _this2 = this;
-
-	            this.spys = _immutable2.default.Set();
-	            this.margins = _immutable2.default.Set();
+	            var self = this;
+	            self.spys = _immutable2.default.Set();
+	            self.margins = _immutable2.default.Set();
 	            if ('undefined' !== typeof window) {
-	                (function () {
-	                    if (window.addEventListener) {
-	                        window.addEventListener('scroll', _this2.scrollMonitor.bind(_this2));
-	                    } else {
-	                        window.attachEvent('onscroll', _this2.scrollMonitor.bind(_this2));
-	                    }
-	                    var self = _this2;
-	                    setTimeout(function () {
-	                        self.scrollMonitor.call(self);
-	                    });
-	                })();
+	                var win = window;
+	                if (win.addEventListener) {
+	                    win.addEventListener('scroll', self.scrollMonitor.bind(self));
+	                    win.addEventListener('resize', self.scrollMonitor.bind(self));
+	                } else {
+	                    win.attachEvent('onscroll', self.scrollMonitor.bind(self));
+	                    win.attachEvent('resize', self.scrollMonitor.bind(self));
+	                }
+	                setTimeout(function () {
+	                    self.scrollMonitor.call(self);
+	                });
 	            }
 	            return _immutable2.default.Map({
 	                scrollDelay: 50,
@@ -23239,12 +23238,12 @@ webpackJsonp([0],[
 	                if (nodes && nodes[targetId]) {
 	                    var scrollbar = state.get('scroll').toJS();
 	                    var _target = nodes[targetId];
-	                    if (scrollbar.top > _target.bottom) {
+	                    if (scrollbar.top >= _target.bottom) {
 	                        atTop = true;
 	                    } else if (scrollbar.bottom < _target.bottom) {
 	                        atBottom = true;
 	                    }
-	                    if (scrollbar.left > _target.right) {
+	                    if (scrollbar.left >= _target.right) {
 	                        atLeft = true;
 	                    } else if (scrollbar.right < _target.right) {
 	                        atRight = true;
