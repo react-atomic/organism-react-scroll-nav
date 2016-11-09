@@ -22755,6 +22755,9 @@ webpackJsonp([0],[
 	            }
 	            if (nodes && nodes[targetId]) {
 	                pos = nodes[targetId];
+	                if (pos.isOnScreen) {
+	                    isShown = true;
+	                }
 	            }
 	            var active = 'undefined' !== typeof targetId && targetId === state.get('m' + props.scrollMargin);
 	            if (!isNaN(props.scrollMargin)) {

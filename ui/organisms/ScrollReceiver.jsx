@@ -30,6 +30,9 @@ class ScrollReceiver extends Component
          }
          if (nodes && nodes[targetId]) {
             pos = nodes[targetId];
+            if (pos.isOnScreen) {
+                isShown = true;
+            }
          }
          const active =
             'undefined' !== typeof targetId &&
