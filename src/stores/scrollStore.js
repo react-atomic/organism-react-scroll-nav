@@ -61,11 +61,15 @@ class ScrollStore extends ReduceStore
             arrTestScrollTo.push(node);    
         }
         margin = (node.scrollMargin) ? node.scrollMargin : defaultMargin;
-        pos.isElementOnScreen = !(
-            pos.top > scroll.bottom - margin
-            || pos.bottom < scroll.top + margin
-            || pos.right < scroll.left + margin
-            || pos.left > scroll.right - margin
+        pos.atTop = pos.bottom <= scroll.top + margin;
+        pos.atRight = pos.left >= scroll.right - margin;
+        pos.atBottom = pos.top >= scroll.bottom - margin;
+        pos.atLeft = pos.right <= scroll.left + margin;
+        pos.isOnScreen = !(
+            pos.atTop
+            || pos.atRight
+            || pos.atBottom
+            || pos.atLeft
         );
         offsetCache[node.id] = pos;
     });

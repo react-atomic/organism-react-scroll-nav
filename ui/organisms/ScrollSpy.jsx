@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import { scrollStore } from '../../src/index';
 import getOffset from 'getoffset';
-import { assign } from 'react-atomic-molecule';
+import {
+    assign, 
+    SemanticUI
+} from 'react-atomic-molecule';
+import { scrollStore } from '../../src/index';
 
 class ScrollSpy extends Component
 {
@@ -34,7 +37,11 @@ class ScrollSpy extends Component
 
     getOffset()
     {
-        return getOffset(this.el);
+        if (this.el) {
+            return getOffset(this.el);
+        } else {
+            console.warn('Please use SemanticUI. props.container -> import {SemanticUI} from "react-atomic-molecule"');
+        }
     }
 
     attach()
@@ -62,24 +69,37 @@ class ScrollSpy extends Component
 
     render()
     {
-        const {testScrollTo, children, ...others} = this.props;
+        const {testScrollTo, children, container, ...others} = this.props;
         const isScrollReceiver = this.isScrollReceiver(children);
         let cookChildren;
+        let thisContainer;
+        let thisProps;
         if (isScrollReceiver) {
-             cookChildren = React.cloneElement(
-                 children,
-                 assign(
-                    {targetId: this.state.id},
-                    children.props
-                 )
-             );
+            thisContainer = children;
+            thisProps = assign (
+                {
+                    targetId: this.state.id,
+                    container: container
+                },
+                others,
+                children.props
+            );
         } else {
-            cookChildren = children;
+            thisProps = assign({
+                children: children
+            }, others);
+            if (container) {
+                thisContainer = container;
+            } else {
+                thisContainer = <SemanticUI />;
+            }
         }
-        return (
-            <div ref={dom=>this.el=dom} {...others}>
-                {cookChildren}
-            </div>
+        thisProps = assign(thisProps, {
+            refCb: (el)=>this.el=el
+        });
+        return React.cloneElement(
+             thisContainer,
+             thisProps
         );
     }
 }
