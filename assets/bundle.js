@@ -21094,7 +21094,7 @@ webpackJsonp([0],[
 	    var left = props.left,
 	        others = _objectWithoutProperties(props, ['left']);
 
-	    var classes = (0, _index.mixClass)(props.className, 'card', {
+	    var classes = (0, _index.mixClass)(props.className, 'rail', {
 	        left: left
 	    });
 	    return _react2.default.createElement(_index.SemanticUI, _extends({}, others, {
@@ -22883,10 +22883,9 @@ webpackJsonp([0],[
 	    }, {
 	        key: 'getMargin',
 	        value: function getMargin(props, ref) {
-	            var scrollRefId = props.scrollRefId,
-	                scrollRefLoc = props.scrollRefLoc;
+	            var scrollRefLoc = props.scrollRefLoc;
 
-	            var margin = void 0;
+	            var margin = 0;
 	            if (ref) {
 	                var offset = (0, _getoffset2.default)(ref);
 	                margin = offset[scrollRefLoc];
@@ -22903,11 +22902,11 @@ webpackJsonp([0],[
 	            var props = self.props;
 
 	            var targetId = props.targetId,
-	                scrollRefId = props.scrollRefId,
 	                scrollRefLoc = props.scrollRefLoc,
 	                scrollMargin = props.scrollMargin,
+	                scrollRefId = props.scrollRefId,
 	                preventDefault = props.preventDefault,
-	                others = _objectWithoutProperties(props, ['targetId', 'scrollRefId', 'scrollRefLoc', 'scrollMargin', 'preventDefault']);
+	                others = _objectWithoutProperties(props, ['targetId', 'scrollRefLoc', 'scrollMargin', 'scrollRefId', 'preventDefault']);
 
 	            var margin = self.getMargin(props, self.state.scrollRefElement);
 	            return _react2.default.createElement(_index.ScrollReceiver, _extends({

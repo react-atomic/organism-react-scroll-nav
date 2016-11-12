@@ -35,10 +35,9 @@ class SmoothScrollLink extends Component
     getMargin(props, ref)
     {
         const {
-            scrollRefId,
             scrollRefLoc,
         } = props;
-        let margin;
+        let margin = 0;
         if (ref) {
             let offset = getOffset(ref);
             margin = offset[scrollRefLoc];
@@ -55,9 +54,9 @@ class SmoothScrollLink extends Component
         const props = self.props;
         const {
             targetId,
-            scrollRefId,
             scrollRefLoc,
             scrollMargin,
+            scrollRefId,
             preventDefault,
             ...others
         } = props;
