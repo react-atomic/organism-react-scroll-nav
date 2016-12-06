@@ -22716,6 +22716,7 @@ webpackJsonp([0],[
 	                others = _objectWithoutProperties(_props, ['testScrollTo', 'children', 'container']);
 
 	            var isScrollReceiver = this.isScrollReceiver(children);
+	            console.log(isScrollReceiver);
 	            var cookChildren = void 0;
 	            var thisContainer = void 0;
 	            var thisProps = void 0;
