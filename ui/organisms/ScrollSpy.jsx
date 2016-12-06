@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import getOffset from 'getoffset';
+import get from 'get-object-value';
 import {
     assign, 
     SemanticUI
@@ -56,13 +57,8 @@ class ScrollSpy extends Component
 
     isScrollReceiver(el)
     {
-        if (React.isValidElement(el)){
-            let type = el.type;
-            if (type.displayName
-                && -1 !== type.displayName.indexOf('ScrollReceiver')
-            ) {
-                return true;
-            }
+        if (get(el,['props','isScrollReceiver'])) {
+            return true;
         }
         return false;
     }

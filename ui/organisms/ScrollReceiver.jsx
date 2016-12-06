@@ -10,8 +10,9 @@ import { scrollStore } from '../../src/index';
 class ScrollReceiver extends Component
 {
      static defaultProps = {
-         scrollMargin: 'default'
-     }
+            scrollMargin: 'default',
+            isScrollReceiver: true
+     };
 
      static getStores()
      {
@@ -53,6 +54,7 @@ class ScrollReceiver extends Component
             container,
             scrollMargin,
             targetId,
+            isScrollReceiver,
             ...reset
          } = this.props; 
          const state = this.state;
