@@ -26,6 +26,9 @@ class ScrollStore extends ReduceStore
           setTimeout(()=>{
                 self.scrollMonitor.call(self);
           });
+          setTimeout(()=>{
+                self.scrollMonitor.call(self);
+          },777);
       }
       return Immutable.Map({
         scrollDelay: 50,
