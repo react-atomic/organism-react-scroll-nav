@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import { Container } from 'reduce-flux';
 import {
-    SemanticUI,
-    assign
+    SemanticUI
 } from 'react-atomic-molecule';
 
 import { scrollStore } from '../../src/index';
@@ -41,10 +40,11 @@ class ScrollReceiver extends Component
          if (!isNaN(props.scrollMargin)) {
              scrollStore.addMargin(props.scrollMargin);
          }
-         return assign(pos, {
-             active: active,
-             isShown: isShown,
-         });
+         return {
+            ...pos,
+            active: active,
+            isShown: isShown
+         };
      }
 
      render()
@@ -71,10 +71,12 @@ class ScrollReceiver extends Component
             atBottom: state.atBottom,
             atLeft: state.atLeft
          }
-         let props = assign({}, reset, {targetInfo: targetInfo});
          return React.cloneElement(
              container,
-             props
+             {
+                ...reset,
+                targetInfo: targetInfo
+             }
         );
      }
 }

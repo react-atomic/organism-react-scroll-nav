@@ -4,7 +4,6 @@ import Immutable from 'immutable';
 import {ReduceStore} from 'reduce-flux';
 import dispatcher, {dispatch} from '../actions/dispatcher';
 import getScrollInfo from 'get-scroll-info';
-import { assign } from 'react-atomic-molecule';
 let incNum = 0;
 
 class ScrollStore extends ReduceStore
@@ -53,15 +52,15 @@ class ScrollStore extends ReduceStore
     let actives = { mdefault: null };
     let offsetCache = {};
     let scrollTop = scroll.top + defaultMargin;
-    let arrTestScrollTo = [];
+    let arrMonitorScroll = [];
     let margin;
     this.spys.forEach((node)=>{
         let pos = node.getOffset();
-        if (node.props.testScrollTo) {
+        if (node.props.monitorScroll) {
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
                 actives.mdefault = node.id;
             }
-            arrTestScrollTo.push(node);    
+            arrMonitorScroll.push(node);    
         }
         margin = (node.scrollMargin) ? node.scrollMargin : defaultMargin;
         pos.atTop = pos.bottom <= scroll.top + margin;
@@ -79,7 +78,7 @@ class ScrollStore extends ReduceStore
     this.margins.forEach((margin)=>{
         scrollTop = scroll.top + margin;
         actives['m'+margin] = null;
-        arrTestScrollTo.every((node)=>{
+        arrMonitorScroll.every((node)=>{
             let pos = offsetCache[node.id];
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
                 actives['m'+margin] = node.id;
@@ -89,13 +88,11 @@ class ScrollStore extends ReduceStore
         });
     });
     this.margins = this.margins.clear();
-    dispatch(assign(
-        actives,
-        {
-           nodes  : offsetCache,
-           scroll : scroll
-        }
-    ));
+    dispatch({
+       ...actives,
+       nodes  : offsetCache,
+       scroll : scroll
+    });
   }
 
   getNode(id)

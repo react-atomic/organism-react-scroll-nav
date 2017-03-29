@@ -15,7 +15,7 @@ scrollDispatch({
     scrollMargin: 67
 });
 
-import {assign, reactStyle, SemanticUI} from 'react-atomic-molecule';
+import {reactStyle, SemanticUI} from 'react-atomic-molecule';
 
 
 class Index extends Component
@@ -53,18 +53,18 @@ class Index extends Component
             </SmoothScrollLink>
         </div>
         <div style={{padding:'30px 0 0'}}>
-            <ScrollSpy id="t1" style={assign({}, Styles.content, {background:"#3498DB"})}>
+            <ScrollSpy id="t1" style={{...Styles.content, background:"#3498DB"}}>
                test111
             </ScrollSpy>
-            <ScrollSpy id="t2" style={assign({}, Styles.content, {background:"#F1C40F"})}>
+            <ScrollSpy id="t2" style={{...Styles.content, background:"#F1C40F"}}>
                {/*An example for detect in screen only*/}
-               <ScrollSpy testScrollTo={false}>
+               <ScrollSpy monitorScroll={false}>
                    <ScrollReceiver style={{border:"1px solid #fff"}}>
                         test222
                    </ScrollReceiver>
                 </ScrollSpy>
             </ScrollSpy>
-            <ScrollSpy id="t3" style={assign({}, Styles.content, {background:"#2ECC71"})}>
+            <ScrollSpy id="t3" style={{...Styles.content, background:"#2ECC71"}}>
                test333
             </ScrollSpy>
         </div>
@@ -84,12 +84,11 @@ class MenuItem extends Component
         if (targetInfo.active) {
             activeStyle = Styles.active;
         }
-        return (<div style={assign(
-            {},
-            Styles.link,
-            style,
-            activeStyle
-        )} {...reset}  />);
+        return (<div style={{
+           ...Styles.link,
+           ...style,
+           ...activeStyle
+        }} {...reset}  />);
     }
 }
 

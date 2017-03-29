@@ -3,7 +3,6 @@
 import React, {Component} from 'react';
 import smoothScrollTo from 'smooth-scroll-to';
 import getOffset from 'getoffset';
-import { assign } from 'react-atomic-molecule';
 import { ScrollReceiver } from '../../src/index';
 import { scrollStore } from '../../src/index';
 
@@ -70,7 +69,7 @@ class SmoothScrollLink extends Component
                 targetId={targetId}
                 {...others}
                 scrollMargin={margin}
-                style={assign({}, Styles.link, props.style)}
+                style={{...Styles.link, ...props.style}}
                 onClick={(e)=>{
                     let offset = scrollStore.getOffset(targetId);
                     if (offset) {
