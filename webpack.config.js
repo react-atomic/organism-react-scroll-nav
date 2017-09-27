@@ -34,7 +34,7 @@ if (PHPC.webpackVendor) {
 module.exports = {
 //	devtool: 'sourcemap',
 	entry: {
-            main: "./build/src/entry.js",
+            main: "./build/cjs/src/entry.js",
             vendor: vendor
         },
 	output: {

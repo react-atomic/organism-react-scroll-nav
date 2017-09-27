@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Container } from 'reduce-flux';
+import { connect } from 'reshow-flux';
 import {
     SemanticUI
 } from 'react-atomic-molecule';
@@ -81,9 +81,4 @@ class ScrollReceiver extends Component
      }
 }
 
-const ScrollReceiverContainer = Container.create(
-    ScrollReceiver,
-    { withProps:true }
-);
-
-export default ScrollReceiverContainer;
+export default connect(ScrollReceiver, { withProps:true });

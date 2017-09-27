@@ -1,8 +1,8 @@
 'use strict';
 
 import Immutable from 'immutable';
-import {ReduceStore} from 'reduce-flux';
-import dispatcher, {dispatch} from '../actions/dispatcher';
+import {ReduceStore} from 'reshow-flux';
+import dispatcher, {dispatch} from '../dispatcher';
 import getScrollInfo from 'get-scroll-info';
 let incNum = 0;
 
@@ -151,7 +151,4 @@ class ScrollStore extends ReduceStore
 
 }
 
-// Export a singleton instance of the store, could do this some other way if
-// you want to avoid singletons.
-const instance = new ScrollStore(dispatcher);
-export default instance;
+export default new ScrollStore(dispatcher);
