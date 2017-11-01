@@ -17,6 +17,22 @@ scrollDispatch({
 
 import {reactStyle, SemanticUI} from 'react-atomic-molecule';
 
+class MenuItem extends Component
+{
+    render()
+    {
+        const { targetInfo, style, ...reset } = this.props;
+        let activeStyle = null;
+        if (targetInfo.active) {
+            activeStyle = Styles.active;
+        }
+        return (<div style={{
+           ...Styles.link,
+           ...style,
+           ...activeStyle
+        }} {...reset}  />);
+    }
+}
 
 class Index extends Component
 {
@@ -74,23 +90,6 @@ class Index extends Component
 }
 
 export default Index;
-
-class MenuItem extends Component
-{
-    render()
-    {
-        const { targetInfo, style, ...reset } = this.props;
-        let activeStyle = null;
-        if (targetInfo.active) {
-            activeStyle = Styles.active;
-        }
-        return (<div style={{
-           ...Styles.link,
-           ...style,
-           ...activeStyle
-        }} {...reset}  />);
-    }
-}
 
 const Styles = {
     content: {

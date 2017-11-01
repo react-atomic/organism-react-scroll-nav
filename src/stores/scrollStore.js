@@ -2,7 +2,7 @@
 
 import Immutable from 'immutable';
 import {ReduceStore} from 'reshow-flux';
-import dispatcher, {dispatch} from '../dispatcher';
+import dispatcher, {scrollDispatch} from '../scrollDispatcher';
 import getScrollInfo from 'get-scroll-info';
 let incNum = 0;
 
@@ -88,7 +88,7 @@ class ScrollStore extends ReduceStore
         });
     });
     this.margins = this.margins.clear();
-    dispatch({
+    scrollDispatch({
        ...actives,
        nodes  : offsetCache,
        scroll : scroll

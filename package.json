@@ -1,6 +1,6 @@
 {
   "name": "organism-react-scroll-nav",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "A React scroll spy library with flux",
   "repository": "react-atomic/organism-react-scroll-nav",
   "main": "./build/cjs/src/index.js",
@@ -17,25 +17,17 @@
     "get-object-value": "*",
     "get-scroll-info": "*",
     "getoffset": "*",
-    "immutable": "^3.8.0",
+    "immutable": "*",
     "react-atomic-molecule": "*",
     "reshow-flux": "*",
     "smooth-scroll-to": "*"
   },
   "devDependencies": {
-    "babel-cli": "^6.7.5",
-    "babel-core": "^6.7.5",
-    "babel-loader": "^6.2.5",
-    "babel-plugin-add-module-exports": "^0.1.2",
-    "babel-plugin-transform-object-assign": "^6.8.0",
-    "babel-plugin-transform-react-constant-elements": "^6.9.1",
-    "babel-plugin-transform-react-pure-class-to-function": "*",
-    "babel-preset-env": "*",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "react": "^15.0.1",
-    "react-dom": "^15.0.1",
-    "webpack": "^1.13.0"
+    "babel-cli": "*",
+    "babel-plugin-add-module-exports": "*",
+    "react": "^16.x",
+    "react-dom": "^16.x",
+    "reshow-app": "*"
   },
   "scripts": {
     "build:cjs": "BABEL_ENV=build babel src -d build/cjs/src && BABEL_ENV=build babel ui -d build/cjs/ui",
