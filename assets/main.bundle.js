@@ -1893,6 +1893,8 @@ var Styles = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_get_scroll_info___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_get_scroll_info__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_get_window_offset__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_get_window_offset___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_get_window_offset__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_getoffset__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_getoffset___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_getoffset__);
 
 
 var _extends = Object.assign || function (target) {
@@ -1938,6 +1940,7 @@ function _inherits(subClass, superClass) {
 
 
 
+
 var incNum = 0;
 
 var ScrollStore = function (_ReduceStore) {
@@ -1968,6 +1971,7 @@ var ScrollStore = function (_ReduceStore) {
                     self.scrollMonitor.call(self);
                 });
                 setTimeout(function () {
+                    //for lazy content 
                     self.scrollMonitor.call(self);
                 }, 777);
             }
@@ -1990,14 +1994,14 @@ var ScrollStore = function (_ReduceStore) {
         key: '_triggerScroll',
         value: function _triggerScroll() {
             var defaultMargin = this.getState().get('scrollMargin');
-            var scroll = __WEBPACK_IMPORTED_MODULE_3_get_scroll_info___default()(null, 0);
+            var scroll = __WEBPACK_IMPORTED_MODULE_3_get_scroll_info___default()();
             var actives = { mdefault: null };
             var offsetCache = {};
             var scrollTop = scroll.top + defaultMargin;
             var arrMonitorScroll = [];
             var margin = void 0;
             this.spys.forEach(function (node) {
-                var pos = node.getOffset();
+                var pos = __WEBPACK_IMPORTED_MODULE_5_getoffset___default()(node.getOffsetEl());
                 if (node.props.monitorScroll) {
                     if (scrollTop >= pos.top && scrollTop < pos.bottom) {
                         actives.mdefault = node.id;
@@ -2006,6 +2010,7 @@ var ScrollStore = function (_ReduceStore) {
                 }
                 margin = node.scrollMargin ? node.scrollMargin : defaultMargin;
                 pos = Object(__WEBPACK_IMPORTED_MODULE_4_get_window_offset__["isOnScreen"])(pos, scroll, margin);
+                console.log(pos, 'scrollstore');
                 offsetCache[node.id] = pos;
             });
             this.margins.forEach(function (margin) {
@@ -2041,9 +2046,10 @@ var ScrollStore = function (_ReduceStore) {
     }, {
         key: 'getOffset',
         value: function getOffset(id) {
-            var node = this.getNode(id);
-            if (node) {
-                return node.getOffset();
+            var nodes = this.getMap('nodes');
+            if (nodes[id]) {
+                console.log(nodes, 'nodes');
+                return nodes[id];
             }
         }
     }, {
@@ -2787,12 +2793,10 @@ module.exports = exports['default'];
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_getoffset__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_getoffset___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_getoffset__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_get_object_value__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_get_object_value___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_get_object_value__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_atomic_molecule__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_index__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_get_object_value__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_get_object_value___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_get_object_value__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_atomic_molecule__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_index__ = __webpack_require__(6);
 var _extends = Object.assign || function (target) {
     for (var i = 1; i < arguments.length; i++) {
         var source = arguments[i];for (var key in source) {
@@ -2842,8 +2846,7 @@ function _inherits(subClass, superClass) {
 
 
 
-
-var _ref = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3_react_atomic_molecule__["a" /* SemanticUI */], null);
+var _ref = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_atomic_molecule__["a" /* SemanticUI */], null);
 
 var ScrollSpy = function (_Component) {
     _inherits(ScrollSpy, _Component);
@@ -2874,10 +2877,10 @@ var ScrollSpy = function (_Component) {
             this.detach();
         }
     }, {
-        key: 'getOffset',
-        value: function getOffset() {
+        key: 'getOffsetEl',
+        value: function getOffsetEl() {
             if (this.el) {
-                return __WEBPACK_IMPORTED_MODULE_1_getoffset___default()(this.el);
+                return this.el;
             } else {
                 console.warn('Please use SemanticUI. props.container -> import {SemanticUI} from "react-atomic-molecule"');
             }
@@ -2885,17 +2888,17 @@ var ScrollSpy = function (_Component) {
     }, {
         key: 'attach',
         value: function attach() {
-            return __WEBPACK_IMPORTED_MODULE_4__src_index__["e" /* scrollStore */].attach(this);
+            return __WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */].attach(this);
         }
     }, {
         key: 'detach',
         value: function detach() {
-            return __WEBPACK_IMPORTED_MODULE_4__src_index__["e" /* scrollStore */].detach(this);
+            return __WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */].detach(this);
         }
     }, {
         key: 'isScrollReceiver',
         value: function isScrollReceiver(el) {
-            if (__WEBPACK_IMPORTED_MODULE_2_get_object_value___default()(el, ['props', 'isScrollReceiver'])) {
+            if (__WEBPACK_IMPORTED_MODULE_1_get_object_value___default()(el, ['props', 'isScrollReceiver'])) {
                 return true;
             }
             return false;
@@ -4853,6 +4856,7 @@ var ScrollReceiver = function (_Component) {
                 atBottom: state.atBottom,
                 atLeft: state.atLeft
             };
+            console.log(targetInfo, 'render');
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(container, _extends({}, reset, {
                 targetInfo: targetInfo
             }));
@@ -4868,16 +4872,9 @@ var ScrollReceiver = function (_Component) {
             var state = __WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */].getState();
             var targetId = props.targetId;
             var isShown = prevState && prevState.isShown || false;
-            var pos = {};
-            var nodes = state.get('nodes');
-            if (nodes) {
-                nodes = nodes.toJS();
-            }
-            if (nodes && nodes[targetId]) {
-                pos = nodes[targetId];
-                if (pos.isOnScreen) {
-                    isShown = true;
-                }
+            var pos = __WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */].getOffset(targetId) || {};
+            if (pos.isOnScreen) {
+                isShown = true;
             }
             var active = 'undefined' !== typeof targetId && targetId === state.get('m' + props.scrollMargin);
             if (!isNaN(props.scrollMargin)) {

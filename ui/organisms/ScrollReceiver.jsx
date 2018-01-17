@@ -23,16 +23,9 @@ class ScrollReceiver extends Component
          const state = scrollStore.getState();
          const targetId = props.targetId;
          let isShown = prevState && prevState.isShown || false;
-         let pos = {};
-         let nodes = state.get('nodes');
-         if (nodes) {
-             nodes = nodes.toJS();
-         }
-         if (nodes && nodes[targetId]) {
-            pos = nodes[targetId];
-            if (pos.isOnScreen) {
-                isShown = true;
-            }
+         const pos = scrollStore.getOffset(targetId) || {};
+         if (pos.isOnScreen) {
+             isShown = true;
          }
          const active =
             'undefined' !== typeof targetId &&
@@ -42,8 +35,8 @@ class ScrollReceiver extends Component
          }
          return {
             ...pos,
-            active: active,
-            isShown: isShown
+            active,
+            isShown
          };
      }
 
@@ -57,25 +50,33 @@ class ScrollReceiver extends Component
             isScrollReceiver,
             ...reset
          } = this.props; 
-         const state = this.state;
          if (!React.isValidElement(container)) {
             return <SemanticUI {...reset} />;   
          }
+         const {
+            active,
+            isOnScreen,
+            isShown,
+            atTop,
+            atRight,
+            atBottom,
+            atLeft
+         } = this.state;
          const targetInfo = {
-            active: state.active,
-            isOnScreen: state.isOnScreen,
-            targetId: targetId,
-            isShown: state.isShown,
-            atTop: state.atTop,
-            atRight: state.atRight,
-            atBottom: state.atBottom,
-            atLeft: state.atLeft
+            active,
+            isOnScreen,
+            targetId,
+            isShown,
+            atTop,
+            atRight,
+            atBottom,
+            atLeft
          }
          return React.cloneElement(
              container,
              {
                 ...reset,
-                targetInfo: targetInfo
+                targetInfo
              }
         );
      }

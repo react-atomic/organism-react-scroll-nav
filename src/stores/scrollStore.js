@@ -5,6 +5,7 @@ import {ReduceStore} from 'reshow-flux';
 import dispatcher, {scrollDispatch} from '../scrollDispatcher';
 import getScrollInfo from 'get-scroll-info';
 import {isOnScreen} from 'get-window-offset';
+import getOffset from 'getoffset';
 let incNum = 0;
 
 class ScrollStore extends ReduceStore
@@ -27,6 +28,7 @@ class ScrollStore extends ReduceStore
                 self.scrollMonitor.call(self);
           });
           setTimeout(()=>{
+                //for lazy content 
                 self.scrollMonitor.call(self);
           },777);
       }
@@ -49,14 +51,14 @@ class ScrollStore extends ReduceStore
   _triggerScroll()
   {
     const defaultMargin = this.getState().get('scrollMargin');
-    let scroll = getScrollInfo(null, 0);
+    let scroll = getScrollInfo();
     let actives = { mdefault: null };
     let offsetCache = {};
     let scrollTop = scroll.top + defaultMargin;
     let arrMonitorScroll = [];
     let margin;
     this.spys.forEach((node)=>{
-        let pos = node.getOffset();
+        let pos = getOffset(node.getOffsetEl());
         if (node.props.monitorScroll) {
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
                 actives.mdefault = node.id;
@@ -101,9 +103,9 @@ class ScrollStore extends ReduceStore
 
   getOffset(id)
   {
-      const node = this.getNode(id);
-      if (node) {
-        return node.getOffset();
+      const nodes = this.getMap('nodes');
+      if (nodes[id]) {
+        return nodes[id];
       }
   }
   

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import getOffset from 'getoffset';
 import get from 'get-object-value';
 import { SemanticUI } from 'react-atomic-molecule';
 import { scrollStore } from '../../src/index';
@@ -33,10 +32,10 @@ class ScrollSpy extends Component
         this.detach();
     }
 
-    getOffset()
+    getOffsetEl()
     {
         if (this.el) {
-            return getOffset(this.el);
+            return this.el;
         } else {
             console.warn('Please use SemanticUI. props.container -> import {SemanticUI} from "react-atomic-molecule"');
         }
