@@ -9,6 +9,12 @@ React Scroll Spy Library (organism-react-scroll-nav)
 * Demo Url: https://react-atomic.github.io/organism-react-scroll-nav
 * Code: https://github.com/react-atomic/organism-react-scroll-nav/blob/master/ui/pages/index.jsx
 
+## Change global delay
+```
+import { scrollDispatch  } from 'organism-react-scroll-nav';
+scrollDispatch({scrollDelay: 0});
+```
+
 ## Concept
 * https://github.com/fisshy/react-scroll
 * https://github.com/klyngbaek/react-scroll-nav
