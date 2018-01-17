@@ -15,7 +15,7 @@ import { scrollDispatch  } from 'organism-react-scroll-nav';
 scrollDispatch({scrollDelay: 0});
 ```
 
-## Concept
+## Inspire
 * https://github.com/fisshy/react-scroll
 * https://github.com/klyngbaek/react-scroll-nav
 * https://github.com/stutrek/scrollMonitor
