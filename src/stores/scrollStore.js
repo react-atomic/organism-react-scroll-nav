@@ -4,6 +4,7 @@ import Immutable from 'immutable';
 import {ReduceStore} from 'reshow-flux';
 import dispatcher, {scrollDispatch} from '../scrollDispatcher';
 import getScrollInfo from 'get-scroll-info';
+import {isOnScreen} from 'get-window-offset';
 let incNum = 0;
 
 class ScrollStore extends ReduceStore
@@ -63,16 +64,7 @@ class ScrollStore extends ReduceStore
             arrMonitorScroll.push(node);    
         }
         margin = (node.scrollMargin) ? node.scrollMargin : defaultMargin;
-        pos.atTop = pos.bottom <= scroll.top + margin;
-        pos.atRight = pos.left >= scroll.right - margin;
-        pos.atBottom = pos.top >= scroll.bottom - margin;
-        pos.atLeft = pos.right <= scroll.left + margin;
-        pos.isOnScreen = !(
-            pos.atTop
-            || pos.atRight
-            || pos.atBottom
-            || pos.atLeft
-        );
+        pos = isOnScreen(pos, scroll, margin);
         offsetCache[node.id] = pos;
     });
     this.margins.forEach((margin)=>{
