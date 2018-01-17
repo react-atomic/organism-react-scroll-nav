@@ -2010,7 +2010,6 @@ var ScrollStore = function (_ReduceStore) {
                 }
                 margin = node.scrollMargin ? node.scrollMargin : defaultMargin;
                 pos = Object(__WEBPACK_IMPORTED_MODULE_4_get_window_offset__["isOnScreen"])(pos, scroll, margin);
-                console.log(pos, 'scrollstore');
                 offsetCache[node.id] = pos;
             });
             this.margins.forEach(function (margin) {
@@ -2048,7 +2047,6 @@ var ScrollStore = function (_ReduceStore) {
         value: function getOffset(id) {
             var nodes = this.getMap('nodes');
             if (nodes[id]) {
-                console.log(nodes, 'nodes');
                 return nodes[id];
             }
         }
@@ -4773,47 +4771,47 @@ var max = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_atomic_molecule__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_index__ = __webpack_require__(6);
 var _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-        var source = arguments[i];for (var key in source) {
-            if (Object.prototype.hasOwnProperty.call(source, key)) {
-                target[key] = source[key];
-            }
-        }
-    }return target;
+   for (var i = 1; i < arguments.length; i++) {
+      var source = arguments[i];for (var key in source) {
+         if (Object.prototype.hasOwnProperty.call(source, key)) {
+            target[key] = source[key];
+         }
+      }
+   }return target;
 };
 
 var _createClass = function () {
-    function defineProperties(target, props) {
-        for (var i = 0; i < props.length; i++) {
-            var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
-        }
-    }return function (Constructor, protoProps, staticProps) {
-        if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
-    };
+   function defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+         var descriptor = props[i];descriptor.enumerable = descriptor.enumerable || false;descriptor.configurable = true;if ("value" in descriptor) descriptor.writable = true;Object.defineProperty(target, descriptor.key, descriptor);
+      }
+   }return function (Constructor, protoProps, staticProps) {
+      if (protoProps) defineProperties(Constructor.prototype, protoProps);if (staticProps) defineProperties(Constructor, staticProps);return Constructor;
+   };
 }();
 
 function _objectWithoutProperties(obj, keys) {
-    var target = {};for (var i in obj) {
-        if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
-    }return target;
+   var target = {};for (var i in obj) {
+      if (keys.indexOf(i) >= 0) continue;if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;target[i] = obj[i];
+   }return target;
 }
 
 function _classCallCheck(instance, Constructor) {
-    if (!(instance instanceof Constructor)) {
-        throw new TypeError("Cannot call a class as a function");
-    }
+   if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+   }
 }
 
 function _possibleConstructorReturn(self, call) {
-    if (!self) {
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-    }return call && (typeof call === "object" || typeof call === "function") ? call : self;
+   if (!self) {
+      throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+   }return call && (typeof call === "object" || typeof call === "function") ? call : self;
 }
 
 function _inherits(subClass, superClass) {
-    if (typeof superClass !== "function" && superClass !== null) {
-        throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-    }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+   if (typeof superClass !== "function" && superClass !== null) {
+      throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+   }subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } });if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 }
 
 
@@ -4823,76 +4821,83 @@ function _inherits(subClass, superClass) {
 
 
 var ScrollReceiver = function (_Component) {
-    _inherits(ScrollReceiver, _Component);
+   _inherits(ScrollReceiver, _Component);
 
-    function ScrollReceiver() {
-        _classCallCheck(this, ScrollReceiver);
+   function ScrollReceiver() {
+      _classCallCheck(this, ScrollReceiver);
 
-        return _possibleConstructorReturn(this, (ScrollReceiver.__proto__ || Object.getPrototypeOf(ScrollReceiver)).apply(this, arguments));
-    }
+      return _possibleConstructorReturn(this, (ScrollReceiver.__proto__ || Object.getPrototypeOf(ScrollReceiver)).apply(this, arguments));
+   }
 
-    _createClass(ScrollReceiver, [{
-        key: 'render',
-        value: function render() {
-            var _props = this.props,
-                atom = _props.atom,
-                container = _props.container,
-                scrollMargin = _props.scrollMargin,
-                targetId = _props.targetId,
-                isScrollReceiver = _props.isScrollReceiver,
-                reset = _objectWithoutProperties(_props, ['atom', 'container', 'scrollMargin', 'targetId', 'isScrollReceiver']);
+   _createClass(ScrollReceiver, [{
+      key: 'render',
+      value: function render() {
+         var _props = this.props,
+             atom = _props.atom,
+             container = _props.container,
+             scrollMargin = _props.scrollMargin,
+             targetId = _props.targetId,
+             isScrollReceiver = _props.isScrollReceiver,
+             reset = _objectWithoutProperties(_props, ['atom', 'container', 'scrollMargin', 'targetId', 'isScrollReceiver']);
 
-            var state = this.state;
-            if (!__WEBPACK_IMPORTED_MODULE_0_react___default.a.isValidElement(container)) {
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_atomic_molecule__["a" /* SemanticUI */], reset);
-            }
-            var targetInfo = {
-                active: state.active,
-                isOnScreen: state.isOnScreen,
-                targetId: targetId,
-                isShown: state.isShown,
-                atTop: state.atTop,
-                atRight: state.atRight,
-                atBottom: state.atBottom,
-                atLeft: state.atLeft
-            };
-            console.log(targetInfo, 'render');
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(container, _extends({}, reset, {
-                targetInfo: targetInfo
-            }));
-        }
-    }], [{
-        key: 'getStores',
-        value: function getStores() {
-            return [__WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */]];
-        }
-    }, {
-        key: 'calculateState',
-        value: function calculateState(prevState, props) {
-            var state = __WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */].getState();
-            var targetId = props.targetId;
-            var isShown = prevState && prevState.isShown || false;
-            var pos = __WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */].getOffset(targetId) || {};
-            if (pos.isOnScreen) {
-                isShown = true;
-            }
-            var active = 'undefined' !== typeof targetId && targetId === state.get('m' + props.scrollMargin);
-            if (!isNaN(props.scrollMargin)) {
-                __WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */].addMargin(props.scrollMargin);
-            }
-            return _extends({}, pos, {
-                active: active,
-                isShown: isShown
-            });
-        }
-    }]);
+         if (!__WEBPACK_IMPORTED_MODULE_0_react___default.a.isValidElement(container)) {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_atomic_molecule__["a" /* SemanticUI */], reset);
+         }
+         var _state = this.state,
+             active = _state.active,
+             isOnScreen = _state.isOnScreen,
+             isShown = _state.isShown,
+             atTop = _state.atTop,
+             atRight = _state.atRight,
+             atBottom = _state.atBottom,
+             atLeft = _state.atLeft;
 
-    return ScrollReceiver;
+         var targetInfo = {
+            active: active,
+            isOnScreen: isOnScreen,
+            targetId: targetId,
+            isShown: isShown,
+            atTop: atTop,
+            atRight: atRight,
+            atBottom: atBottom,
+            atLeft: atLeft
+         };
+         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(container, _extends({}, reset, {
+            targetInfo: targetInfo
+         }));
+      }
+   }], [{
+      key: 'getStores',
+      value: function getStores() {
+         return [__WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */]];
+      }
+   }, {
+      key: 'calculateState',
+      value: function calculateState(prevState, props) {
+         var state = __WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */].getState();
+         var targetId = props.targetId;
+         var isShown = prevState && prevState.isShown || false;
+         var pos = __WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */].getOffset(targetId) || {};
+         if (pos.isOnScreen) {
+            isShown = true;
+         }
+         var active = 'undefined' !== typeof targetId && targetId === state.get('m' + props.scrollMargin);
+         if (!isNaN(props.scrollMargin)) {
+            __WEBPACK_IMPORTED_MODULE_3__src_index__["e" /* scrollStore */].addMargin(props.scrollMargin);
+         }
+         return _extends({}, pos, {
+            active: active,
+            isShown: isShown
+         });
+      }
+   }]);
+
+   return ScrollReceiver;
 }(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
 
 ScrollReceiver.defaultProps = {
-    scrollMargin: 'default',
-    isScrollReceiver: true
+   scrollMargin: 'default',
+   isScrollReceiver: true
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_1_reshow_flux__["c" /* connect */])(ScrollReceiver, { withProps: true }));
