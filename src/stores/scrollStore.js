@@ -2,10 +2,13 @@
 
 import Immutable from 'immutable';
 import {ReduceStore} from 'reshow-flux';
-import dispatcher, {scrollDispatch} from '../scrollDispatcher';
 import getScrollInfo from 'get-scroll-info';
 import {isOnScreen} from 'get-window-offset';
 import getOffset from 'getoffset';
+
+import dispatcher, {scrollDispatch} from '../scrollDispatcher';
+import testForPassiveScroll from '../testForPassiveScroll';
+
 let incNum = 0;
 
 class ScrollStore extends ReduceStore
@@ -18,7 +21,12 @@ class ScrollStore extends ReduceStore
       if ('undefined' !== typeof window) {
           const win = window;
           if (win.addEventListener) {
-            win.addEventListener('scroll', self.scrollMonitor.bind(self));
+            const supportsPassive = testForPassiveScroll();
+            win.addEventListener(
+                'scroll',
+                self.scrollMonitor.bind(self),
+                supportsPassive ? { passive: true } : false
+            );
             win.addEventListener('resize', self.scrollMonitor.bind(self));
           } else {
             win.attachEvent('onscroll', self.scrollMonitor.bind(self));
