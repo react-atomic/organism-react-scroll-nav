@@ -1,5 +1,6 @@
 // Stores
 export { default as scrollStore } from './stores/scrollStore';
+export { default as fastScrollStore } from './stores/fastScrollStore';
 
 // UI
 export { default as ScrollSpy } from '../ui/organisms/ScrollSpy';

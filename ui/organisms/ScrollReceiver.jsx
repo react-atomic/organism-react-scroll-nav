@@ -4,18 +4,20 @@ import {
     SemanticUI
 } from 'react-atomic-molecule';
 
-import { scrollStore } from '../../src/index';
+import scrollStore from '../../src/stores/scrollStore';
+import fastScrollStore from '../../src/stores/fastScrollStore';
 
 class ScrollReceiver extends Component
 {
      static defaultProps = {
-            scrollMargin: 'default',
-            isScrollReceiver: true
+        scrollMargin: 'default',
+        isScrollReceiver: true,
+        noDelay: false
      };
 
-     static getStores()
+     static getStores(props)
      {
-         return [scrollStore];
+         return (props.noDelay) ? [fastScrollStore] : [scrollStore];
      }
 
      static calculateState(prevState, props)
@@ -48,6 +50,7 @@ class ScrollReceiver extends Component
             scrollMargin,
             targetId,
             isScrollReceiver,
+            noDelay,
             ...reset
          } = this.props; 
          if (!React.isValidElement(container)) {

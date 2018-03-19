@@ -4,14 +4,23 @@ import React, {Component} from 'react';
 import smoothScrollTo from 'smooth-scroll-to';
 import getOffset from 'getoffset';
 import { ScrollReceiver } from '../../src/index';
-import { scrollStore } from '../../src/index';
+
+import scrollStore from '../../src/stores/scrollStore';
+import fastScrollStore from '../../src/stores/fastScrollStore';
 
 class SmoothScrollLink extends Component 
 {
     static defaultProps = {
         scrollRefId: '',
         scrollRefLoc: 'bottom',
-        preventDefault: true
+        preventDefault: true,
+        noDelay: false,
+    }
+
+    useStore()
+    {
+        const {noDelay} = this.props;
+        return (noDelay) ? fastScrollStore : scrollStore;
     }
 
     constructor(props) {
@@ -50,12 +59,14 @@ class SmoothScrollLink extends Component
     render()
     {
         const self = this;
+        const store = this.useStore();
         const props = self.props;
         const {
             targetId,
             scrollRefLoc,
             scrollMargin,
             scrollRefId,
+            style,
             preventDefault,
             ...others
         } = props;
@@ -69,9 +80,9 @@ class SmoothScrollLink extends Component
                 targetId={targetId}
                 {...others}
                 scrollMargin={margin}
-                style={{...Styles.link, ...props.style}}
+                style={{...Styles.link, ...style}}
                 onClick={(e)=>{
-                    let offset = scrollStore.getOffset(targetId);
+                    let offset = store.getOffset(targetId);
                     if (offset) {
                         margin = self.getMargin(
                             props,
@@ -83,7 +94,7 @@ class SmoothScrollLink extends Component
                             null,
                             () => {
                                 setTimeout(()=>{
-                                    offset = scrollStore.getOffset(targetId);
+                                    offset = store.getOffset(targetId);
                                     margin = self.getMargin(
                                         props,
                                         self.state.scrollRefElement

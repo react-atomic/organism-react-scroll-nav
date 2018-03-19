@@ -1,6 +1,6 @@
 'use strict';
 
-import Immutable from 'immutable';
+import {Set, Map} from 'immutable';
 import {ReduceStore} from 'reshow-flux';
 import getScrollInfo from 'get-scroll-info';
 import {isOnScreen} from 'get-window-offset';
@@ -11,13 +11,13 @@ import testForPassiveScroll from '../testForPassiveScroll';
 
 let incNum = 0;
 
-class ScrollStore extends ReduceStore
+class scrollStore extends ReduceStore
 {
   getInitialState()
   {
       const self = this;
-      self.spys = Immutable.Set();
-      self.margins = Immutable.Set();
+      self.spys = Set();
+      self.margins = Set();
       if ('undefined' !== typeof window) {
           const win = window;
           if (win.addEventListener) {
@@ -32,15 +32,12 @@ class ScrollStore extends ReduceStore
             win.attachEvent('onscroll', self.scrollMonitor.bind(self));
             win.attachEvent('resize', self.scrollMonitor.bind(self));
           }
-          setTimeout(()=>{
-                self.scrollMonitor.call(self);
-          });
-          setTimeout(()=>{
-                //for lazy content 
-                self.scrollMonitor.call(self);
-          },777);
+          setTimeout( ()=> self.scrollMonitor.call(self));
+
+          //for lazy content 
+          setTimeout( ()=> self.scrollMonitor.call(self), 777);
       }
-      return Immutable.Map({
+      return Map({
         scrollDelay: 50,
         scrollMargin: 0
       });
@@ -51,12 +48,10 @@ class ScrollStore extends ReduceStore
     clearTimeout(this._scrollTimeout);
     const self = this;
     const delay = self.getState().get('scrollDelay');
-    self._scrollTimeout = setTimeout(()=>{
-        self._triggerScroll.call(self);
-    }, delay);
+    self._scrollTimeout = setTimeout( ()=> self.triggerScroll.call(self), delay);
   }
 
-  _triggerScroll()
+  triggerScroll()
   {
     const defaultMargin = this.getState().get('scrollMargin');
     let scroll = getScrollInfo();
@@ -92,8 +87,8 @@ class ScrollStore extends ReduceStore
     this.margins = this.margins.clear();
     scrollDispatch({
        ...actives,
-       nodes  : offsetCache,
-       scroll : scroll
+       nodes : offsetCache,
+       scroll
     });
   }
 
@@ -153,4 +148,5 @@ class ScrollStore extends ReduceStore
 
 }
 
-export default new ScrollStore(dispatcher);
+export default new scrollStore(dispatcher);
+export {scrollStore};

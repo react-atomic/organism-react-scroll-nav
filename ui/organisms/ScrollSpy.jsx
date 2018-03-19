@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import get from 'get-object-value';
 import { SemanticUI } from 'react-atomic-molecule';
-import { scrollStore } from '../../src/index';
+
+import scrollStore from '../../src/stores/scrollStore';
+import fastScrollStore from '../../src/stores/fastScrollStore';
 
 class ScrollSpy extends Component
 {
 
     static defaultProps = {
         monitorScroll: true,
+        noDelay: false,
     }
 
     constructor(props)
@@ -41,14 +44,20 @@ class ScrollSpy extends Component
         }
     }
 
+    useStore()
+    {
+        const {noDelay} = this.props;
+        return (noDelay) ? fastScrollStore : scrollStore;
+    }
+
     attach()
     {
-        return scrollStore.attach(this);
+        return this.useStore().attach(this);
     }
 
     detach()
     {
-        return scrollStore.detach(this);
+        return this.useStore().detach(this);
     }
 
     isScrollReceiver(el)
@@ -64,7 +73,7 @@ class ScrollSpy extends Component
         /**
          * monitorScroll use in store, in component just for reset props.
          */ 
-        const {monitorScroll, children, container, ...others} = this.props;
+        const {monitorScroll, children, container, noDelay, ...others} = this.props;
         const isScrollReceiver = this.isScrollReceiver(children);
         let cookChildren;
         let thisContainer;
@@ -73,7 +82,8 @@ class ScrollSpy extends Component
             thisContainer = children;
             thisProps = {
                 targetId: this.state.id,
-                container: container,
+                container,
+                noDelay,
                 ...others,
                 ...children.props
             };
