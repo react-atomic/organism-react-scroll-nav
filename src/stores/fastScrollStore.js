@@ -5,6 +5,8 @@ import {scrollStore} from './scrollStore';
 
 class fastScrollStore extends scrollStore
 {
+  storeName = 'fastScroll'
+
   scrollMonitor()
   {
     this.triggerScroll();

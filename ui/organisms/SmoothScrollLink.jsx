@@ -1,6 +1,6 @@
 'use strict';
 
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import smoothScrollTo from 'smooth-scroll-to';
 import getOffset from 'getoffset';
 import { ScrollReceiver } from '../../src/index';
@@ -8,7 +8,7 @@ import { ScrollReceiver } from '../../src/index';
 import scrollStore from '../../src/stores/scrollStore';
 import fastScrollStore from '../../src/stores/fastScrollStore';
 
-class SmoothScrollLink extends Component 
+class SmoothScrollLink extends PureComponent 
 {
     static defaultProps = {
         scrollRefId: '',

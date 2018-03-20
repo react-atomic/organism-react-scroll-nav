@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import get from 'get-object-value';
-import { SemanticUI } from 'react-atomic-molecule';
+import { mixClass, SemanticUI } from 'react-atomic-molecule';
 
 import scrollStore from '../../src/stores/scrollStore';
 import fastScrollStore from '../../src/stores/fastScrollStore';
 
-class ScrollSpy extends Component
+class ScrollSpy extends PureComponent
 {
 
     static defaultProps = {
@@ -73,23 +73,27 @@ class ScrollSpy extends Component
         /**
          * monitorScroll use in store, in component just for reset props.
          */ 
-        const {monitorScroll, children, container, noDelay, ...others} = this.props;
+        const {className, monitorScroll, children, container, noDelay, ...others} = this.props;
         const isScrollReceiver = this.isScrollReceiver(children);
+        const targetId = this.state.id;
+        const classes = mixClass(className, 'spy-tar-'+targetId);
         let cookChildren;
         let thisContainer;
         let thisProps;
         if (isScrollReceiver) {
             thisContainer = children;
             thisProps = {
-                targetId: this.state.id,
+                ...others,
+                ...children.props,
+                className: classes,
+                targetId,
                 container,
                 noDelay,
-                ...others,
-                ...children.props
             };
         } else {
             thisProps = {
-                children: children,
+                children,
+                className: classes,
                 ...others
             };
             if (container) {

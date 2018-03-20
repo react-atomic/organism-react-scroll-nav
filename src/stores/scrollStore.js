@@ -5,6 +5,7 @@ import {ReduceStore} from 'reshow-flux';
 import getScrollInfo from 'get-scroll-info';
 import {isOnScreen} from 'get-window-offset';
 import getOffset from 'getoffset';
+import get from 'get-object-value';
 
 import dispatcher, {scrollDispatch} from '../scrollDispatcher';
 import testForPassiveScroll from '../testForPassiveScroll';
@@ -13,6 +14,8 @@ let incNum = 0;
 
 class scrollStore extends ReduceStore
 {
+  storeName = 'delayScroll'
+
   getInitialState()
   {
       const self = this;
@@ -60,8 +63,9 @@ class scrollStore extends ReduceStore
     let scrollTop = scroll.top + defaultMargin;
     let arrMonitorScroll = [];
     let margin;
-    this.spys.forEach((node)=>{
-        let pos = getOffset(node.getOffsetEl());
+    this.spys.forEach( node => {
+        const nodeEl = node.getOffsetEl();
+        let pos = getOffset(nodeEl);
         if (node.props.monitorScroll) {
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
                 actives.mdefault = node.id;
@@ -88,7 +92,8 @@ class scrollStore extends ReduceStore
     scrollDispatch({
        ...actives,
        nodes : offsetCache,
-       scroll
+       scroll,
+       storeName: this.storeName
     });
   }
 
@@ -104,12 +109,10 @@ class scrollStore extends ReduceStore
       return item;
   }
 
-  getOffset(id)
+  getOffset(id, callName)
   {
       const nodes = this.getMap('nodes');
-      if (nodes[id]) {
-        return nodes[id];
-      }
+      return nodes[id];
   }
   
   attach(node)
@@ -143,7 +146,12 @@ class scrollStore extends ReduceStore
 
   reduce (state, action)
   {
-    return state.merge( action );
+    const storeName = get(action, ['storeName']);
+    if (storeName === this.storeName) {
+        return state.merge( action );
+    } else {
+        return state;
+    }
   }
 
 }

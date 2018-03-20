@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {isValidElement, cloneElement, PureComponent} from 'react';
 import { connect } from 'reshow-flux';
 import {
     SemanticUI
@@ -7,7 +7,7 @@ import {
 import scrollStore from '../../src/stores/scrollStore';
 import fastScrollStore from '../../src/stores/fastScrollStore';
 
-class ScrollReceiver extends Component
+class ScrollReceiver extends PureComponent
 {
      static defaultProps = {
         scrollMargin: 'default',
@@ -22,22 +22,27 @@ class ScrollReceiver extends Component
 
      static calculateState(prevState, props)
      {
-         const state = scrollStore.getState();
-         const targetId = props.targetId;
+         const {noDelay, targetId, scrollMargin} = props;
+         const store = (noDelay) ? fastScrollStore : scrollStore;
+         const state = store.getState();
          let isShown = prevState && prevState.isShown || false;
-         const pos = scrollStore.getOffset(targetId) || {};
+         const pos = store.getOffset(targetId, store.storeName) || {};
+         const scrollInfo = store.getMap('scroll');
+         const scrollTop = scrollInfo.top;
          if (pos.isOnScreen) {
              isShown = true;
          }
          const active =
             'undefined' !== typeof targetId &&
-             targetId === state.get('m'+props.scrollMargin);
-         if (!isNaN(props.scrollMargin)) {
-             scrollStore.addMargin(props.scrollMargin);
+             targetId === state.get('m'+scrollMargin);
+         if (!isNaN(scrollMargin)) {
+             store.addMargin(scrollMargin);
          }
          return {
             ...pos,
             active,
+            scrollTop,
+            scrollInfo,
             isShown
          };
      }
@@ -51,34 +56,19 @@ class ScrollReceiver extends Component
             targetId,
             isScrollReceiver,
             noDelay,
-            ...reset
+            ...resetProps
          } = this.props; 
-         if (!React.isValidElement(container)) {
-            return <SemanticUI {...reset} />;   
+         if (!isValidElement(container)) {
+            return <SemanticUI {...resetProps} />;   
          }
-         const {
-            active,
-            isOnScreen,
-            isShown,
-            atTop,
-            atRight,
-            atBottom,
-            atLeft
-         } = this.state;
          const targetInfo = {
-            active,
-            isOnScreen,
+            ...this.state,
             targetId,
-            isShown,
-            atTop,
-            atRight,
-            atBottom,
-            atLeft
          }
-         return React.cloneElement(
+         return cloneElement(
              container,
              {
-                ...reset,
+                ...resetProps,
                 targetInfo
              }
         );
