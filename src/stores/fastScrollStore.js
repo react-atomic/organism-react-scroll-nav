@@ -7,7 +7,7 @@ class fastScrollStore extends scrollStore
 {
   storeName = 'fastScroll'
 
-  scrollMonitor()
+  _scrollMonitor()
   {
     this.triggerScroll();
   }

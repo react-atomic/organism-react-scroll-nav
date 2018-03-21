@@ -21,6 +21,7 @@ class scrollStore extends ReduceStore
   {
       this.spys = Set();
       this.margins = Set();
+      this.scrollMonitor = this._scrollMonitor.bind(this);
       return Map({
         scrollDelay: 50,
         scrollMargin: 0
@@ -36,18 +37,20 @@ class scrollStore extends ReduceStore
             const supportsPassive = testForPassiveScroll();
             win.addEventListener(
                 'scroll',
-                self.scrollMonitor.bind(self),
+                self.scrollMonitor,
                 supportsPassive ? { passive: true } : false
             );
-            win.addEventListener('resize', self.scrollMonitor.bind(self));
+            win.addEventListener('resize', self.scrollMonitor);
           } else {
-            win.attachEvent('onscroll', self.scrollMonitor.bind(self));
-            win.attachEvent('resize', self.scrollMonitor.bind(self));
+            win.attachEvent('onscroll', self.scrollMonitor);
+            win.attachEvent('resize', self.scrollMonitor);
           }
-          setTimeout( ()=> self.scrollMonitor.call(self));
+          setTimeout( () => {
+              self.scrollMonitor();
+              //for lazy content 
+              setTimeout( ()=> self.scrollMonitor(), 777);
+          });
 
-          //for lazy content 
-          setTimeout( ()=> self.scrollMonitor.call(self), 777);
           self.isInitEvent = true;
       }
   }
@@ -55,15 +58,16 @@ class scrollStore extends ReduceStore
   removeEvent()
   {
         const self = this;
+        const win = window;
         win.removeEventListener(
             'scroll',
-            self.scrollMonitor.bind(self)
+            self.scrollMonitor
         );
-        win.removeEventListener('resize', self.scrollMonitor.bind(self));
+        win.removeEventListener('resize', self.scrollMonitor);
         self.isInitEvent = false;
   }
 
-  scrollMonitor()
+  _scrollMonitor()
   {
     clearTimeout(this._scrollTimeout);
     const self = this;
