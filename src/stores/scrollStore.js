@@ -14,14 +14,23 @@ let incNum = 0;
 
 class scrollStore extends ReduceStore
 {
-  storeName = 'delayScroll'
+  storeName = 'delayScroll';
+  isInitEvent = false;
 
   getInitialState()
   {
-      const self = this;
-      self.spys = Set();
-      self.margins = Set();
+      this.spys = Set();
+      this.margins = Set();
+      return Map({
+        scrollDelay: 50,
+        scrollMargin: 0
+      });
+  }
+
+  initEvent()
+  {
       if ('undefined' !== typeof window) {
+          const self = this;
           const win = window;
           if (win.addEventListener) {
             const supportsPassive = testForPassiveScroll();
@@ -39,11 +48,19 @@ class scrollStore extends ReduceStore
 
           //for lazy content 
           setTimeout( ()=> self.scrollMonitor.call(self), 777);
+          self.isInitEvent = true;
       }
-      return Map({
-        scrollDelay: 50,
-        scrollMargin: 0
-      });
+  }
+
+  removeEvent()
+  {
+        const self = this;
+        win.removeEventListener(
+            'scroll',
+            self.scrollMonitor.bind(self)
+        );
+        win.removeEventListener('resize', self.scrollMonitor.bind(self));
+        self.isInitEvent = false;
   }
 
   scrollMonitor()
@@ -126,12 +143,18 @@ class scrollStore extends ReduceStore
           }
       }
       this.spys = this.spys.add(node);
+      if (!this.isInitEvent) {
+        this.initEvent();
+      }
       return node.id;
   }
 
   detach(node)
   {
       this.spys = this.spys.remove(node);
+      if (!this.spys.size) {
+        this.removeEvent();
+      }
   }
 
   addMargin(num)
