@@ -21,7 +21,7 @@ class scrollStore extends ReduceStore
   {
       this.spys = Set();
       this.margins = Set();
-      this.scrollMonitor = this._scrollMonitor.bind(this);
+      this.scrollMonitor = this.runScrollMonitor.bind(this);
       return Map({
         scrollDelay: 50,
         scrollMargin: 0
@@ -67,7 +67,7 @@ class scrollStore extends ReduceStore
         self.isInitEvent = false;
   }
 
-  _scrollMonitor()
+  runScrollMonitor()
   {
     clearTimeout(this._scrollTimeout);
     const self = this;
