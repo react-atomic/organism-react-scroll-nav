@@ -135,6 +135,11 @@ class scrollStore extends ReduceStore
       const nodes = this.getMap('nodes');
       return nodes[id];
   }
+
+  hasAttach(node)
+  {
+    return this.spys.has(node) 
+  }
   
   attach(node)
   {
