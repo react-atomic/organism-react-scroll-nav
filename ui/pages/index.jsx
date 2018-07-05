@@ -119,7 +119,8 @@ const Styles = {
         background:'#fff',
         textAlign:'center',
         width:"100%",
-        padding: "10px 0"
+        padding: "10px 0",
+        top: 0
     }
 };
 
