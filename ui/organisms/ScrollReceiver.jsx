@@ -56,6 +56,7 @@ class ScrollReceiver extends PureComponent
             targetId,
             isScrollReceiver,
             noDelay,
+            children,
             ...resetProps
          } = this.props; 
          if (!isValidElement(container)) {
@@ -65,12 +66,17 @@ class ScrollReceiver extends PureComponent
             ...this.state,
             targetId,
          }
+         let thisChildren = children
+         if (!thisChildren) {
+            thisChildren = container.props.children
+         }
          return cloneElement(
              container,
              {
                 ...resetProps,
                 targetInfo
-             }
+             },
+             thisChildren
         );
      }
 }

@@ -7,8 +7,6 @@ import fastScrollStore from '../../src/stores/fastScrollStore';
 
 class ScrollSpy extends PureComponent
 {
-    container = null
-
     state = {}
 
     static defaultProps = {
@@ -33,9 +31,6 @@ class ScrollSpy extends PureComponent
 
     attach()
     {
-        if (!this.container) {
-            return false
-        }
         if (this.useStore().hasAttach(this)) {
             return this.state.id
         }
@@ -62,11 +57,6 @@ class ScrollSpy extends PureComponent
         this.attach()
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot)
-    {
-        this.attach()
-    }
-
     componentWillUnmount()
     {
         this.detach();
@@ -85,7 +75,7 @@ class ScrollSpy extends PureComponent
         let thisContainer;
         let thisProps;
         if (isScrollReceiver) {
-            thisContainer = children;
+            thisContainer = children
             thisProps = {
                 ...others,
                 ...children.props,
@@ -110,7 +100,6 @@ class ScrollSpy extends PureComponent
             ...thisProps,
             refCb: (el)=>this.el=el
         };
-        this.container = thisContainer
         return React.cloneElement(
              thisContainer,
              thisProps
