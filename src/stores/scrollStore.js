@@ -86,14 +86,15 @@ class scrollStore extends ReduceStore
     let margin;
     this.spys.forEach( node => {
         const nodeEl = node.getOffsetEl();
+        const {monitorScroll, scrollMargin} = get(node, ['props'], {})
         let pos = getOffset(nodeEl);
-        if (node.props.monitorScroll) {
+        if (monitorScroll) {
             if (scrollTop>=pos.top && scrollTop<pos.bottom) {
                 actives.mdefault = node.id;
             }
             arrMonitorScroll.push(node);    
         }
-        margin = (node.scrollMargin) ? node.scrollMargin : defaultMargin;
+        margin = (scrollMargin) ? scrollMargin : defaultMargin;
         pos = isOnScreen(pos, scroll, margin);
         offsetCache[node.id] = pos;
     });
