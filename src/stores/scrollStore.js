@@ -77,13 +77,13 @@ class scrollStore extends ReduceStore
 
   triggerScroll()
   {
-    const defaultMargin = this.getState().get('scrollMargin');
-    let scroll = getScrollInfo();
-    let actives = { mdefault: null };
-    let offsetCache = {};
-    let scrollTop = scroll.top + defaultMargin;
-    let arrMonitorScroll = [];
-    let margin;
+    const defaultMargin = this.getState().get('scrollMargin')
+    const actives = { mdefault: null }
+    const offsetCache = {}
+    const arrMonitorScroll = []
+    let scroll = getScrollInfo()
+    let scrollTop = scroll.top + defaultMargin
+    let margin
     this.spys.forEach( node => {
         const nodeEl = node.getOffsetEl();
         const {monitorScroll, scrollMargin} = get(node, ['props'], {})

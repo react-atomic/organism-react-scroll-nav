@@ -1,6 +1,6 @@
 {
   "name": "organism-react-scroll-nav",
-  "version": "0.4.11",
+  "version": "0.4.12",
   "description": "A React scroll spy library with flux",
   "repository": "react-atomic/organism-react-scroll-nav",
   "main": "./build/cjs/src/index.js",

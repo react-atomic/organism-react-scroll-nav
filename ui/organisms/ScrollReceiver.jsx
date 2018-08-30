@@ -60,7 +60,11 @@ class ScrollReceiver extends PureComponent
             ...resetProps
          } = this.props; 
          if (!isValidElement(container)) {
-            return <SemanticUI {...resetProps} />;   
+            return (
+                <SemanticUI {...resetProps}>
+                {children}
+                </SemanticUI>
+            )
          }
          const targetInfo = {
             ...this.state,
