@@ -8,6 +8,15 @@ import { ScrollReceiver } from '../../src/index';
 import scrollStore from '../../src/stores/scrollStore';
 import fastScrollStore from '../../src/stores/fastScrollStore';
 
+let scollTimer = null
+const resetTimer = () =>
+{
+    if (scollTimer) {
+        clearTimeout(scollTimer)
+        scollTimer = false
+    }
+}
+
 class SmoothScrollLink extends PureComponent 
 {
     static defaultProps = {
@@ -17,27 +26,14 @@ class SmoothScrollLink extends PureComponent
         noDelay: false,
     }
 
+    state = {
+        scrollRefElement: null 
+    }
+
     useStore()
     {
         const {noDelay} = this.props;
         return (noDelay) ? fastScrollStore : scrollStore;
-    }
-
-    constructor(props) {
-        super(props);
-        this.state = {
-             scrollRefElement: ''
-        };
-    }
-
-    componentDidMount()
-    {
-        let dom = document.getElementById(this.props.scrollRefId);
-        if (dom) {
-            this.setState({
-                scrollRefElement: dom
-            });
-        }
     }
 
     getMargin(props, ref)
@@ -56,11 +52,26 @@ class SmoothScrollLink extends PureComponent
         return margin;
     }
 
+
+    componentDidMount()
+    {
+        let dom = document.getElementById(this.props.scrollRefId);
+        if (dom) {
+            this.setState({
+                scrollRefElement: dom
+            });
+        }
+    }
+
+    componentWillUnmount()
+    {
+       resetTimer()
+    }
+
     render()
     {
-        const self = this;
         const store = this.useStore();
-        const props = self.props;
+        const props = this.props;
         const {
             targetId,
             scrollRefLoc,
@@ -69,10 +80,11 @@ class SmoothScrollLink extends PureComponent
             style,
             preventDefault,
             ...others
-        } = props;
-        let margin = self.getMargin(
+        } = props
+        const {scrollRefElement} = this.state
+        let margin = this.getMargin(
             props,
-            self.state.scrollRefElement
+            scrollRefElement
         );
         return (
             <ScrollReceiver
@@ -82,22 +94,27 @@ class SmoothScrollLink extends PureComponent
                 scrollMargin={margin}
                 style={{...Styles.link, ...style}}
                 onClick={(e)=>{
+                    resetTimer()
                     let offset = store.getOffset(targetId);
                     if (offset) {
-                        margin = self.getMargin(
+                        margin = this.getMargin(
                             props,
-                            self.state.scrollRefElement
+                            scrollRefElement
                         );
+                        scollTimer = true
                         smoothScrollTo(
                             (offset.top - margin),
                             null,
                             null,
                             () => {
-                                setTimeout(()=>{
+                                if (true !== scollTimer) {
+                                    return
+                                }
+                                scollTimer = setTimeout(()=>{
                                     offset = store.getOffset(targetId);
-                                    margin = self.getMargin(
+                                    margin = this.getMargin(
                                         props,
-                                        self.state.scrollRefElement
+                                        scrollRefElement
                                     );
                                     smoothScrollTo((offset.top - margin),100);
                                 },500);

@@ -3664,8 +3664,8 @@ slash@^1.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-1.0.0.tgz#c41f2f6c39fc16d1cd17ad4b5d896114ae470d55"
 
 smooth-scroll-to@*:
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/smooth-scroll-to/-/smooth-scroll-to-0.0.14.tgz#8d2678b8b62bcbe7c3d434e13bc16e206b927b17"
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/smooth-scroll-to/-/smooth-scroll-to-0.1.0.tgz#40e8d30fb73fbf4b3ffc6cce31ef1cce72b19974"
   dependencies:
     easing-lib "*"
     get-scroll-info "*"
