@@ -3,72 +3,89 @@ import {ReduceStore} from 'reshow-flux';
 import getScrollInfo from 'get-scroll-info';
 import {isOnScreen} from 'get-window-offset';
 import getOffset from 'getoffset';
-import get from 'get-object-value';
+import get, {toJS} from 'get-object-value';
 
 import dispatcher, {scrollDispatch} from '../scrollDispatcher';
 import testForPassiveScroll from '../testForPassiveScroll';
 
 let incNum = 0;
+const DEFAULT_SCROLL_ID = -1;
+const keys = Object.keys;
 
 class scrollStore extends ReduceStore {
   storeName = 'delayScroll';
-  isInitEvent = false;
+  isInitEvent = {};
+  isInitResizeEvent = false;
+  spys = {};
 
   getInitialState() {
-    this.spys = Set();
+    this.arrNode = Map();
     this.margins = Set();
     this.scrollMonitor = this.runScrollMonitor.bind(this);
+    this.bindHandleResize = this.handleResize.bind(this);
     return Map({
       scrollDelay: 50,
       scrollMargin: 0,
     });
   }
 
-  initEvent() {
+  initResizeEvent() {
     if ('undefined' !== typeof window) {
-      const self = this;
+      this.isInitResizeEvent = true;
       const win = window;
       if (win.addEventListener) {
+        win.addEventListener('resize', this.bindHandleResize);
+      } else {
+        win.attachEvent('onresize', this.bindHandleResize);
+      }
+    }
+  }
+
+  initEvent(el) {
+    if ('undefined' !== typeof el) {
+      const self = this;
+      if (el.addEventListener) {
         const supportsPassive = testForPassiveScroll();
-        win.addEventListener(
+        el.addEventListener(
           'scroll',
           self.scrollMonitor,
           supportsPassive ? {passive: true} : false,
         );
-        win.addEventListener('resize', self.scrollMonitor);
       } else {
-        win.attachEvent('onscroll', self.scrollMonitor);
-        win.attachEvent('resize', self.scrollMonitor);
+        el.attachEvent('onscroll', self.scrollMonitor);
       }
       setTimeout(() => {
-        self.scrollMonitor();
+        const fakeEvent = {target: el};
+        self.scrollMonitor(fakeEvent);
         //for lazy content
-        setTimeout(() => self.scrollMonitor(), 777);
+        setTimeout(() => self.scrollMonitor(fakeEvent), 777);
       });
-
-      self.isInitEvent = true;
+      if (!self.isInitResizeEvent) {
+        self.initResizeEvent();
+      }
     }
   }
 
-  removeEvent() {
-    const self = this;
-    const win = window;
-    win.removeEventListener('scroll', self.scrollMonitor);
-    win.removeEventListener('resize', self.scrollMonitor);
-    self.isInitEvent = false;
+  removeEvent(el) {
+    el.removeEventListener('scroll', this.scrollMonitor);
   }
 
-  runScrollMonitor() {
+  handleResize() {
+    keys(this.spys).forEach(scrollId => this.runScrollMonitor({target: {id: scrollId}}));
+  }
+
+  runScrollMonitor(e) {
     clearTimeout(this._scrollTimeout);
     const self = this;
     const delay = self.getState().get('scrollDelay');
+    const scrollId = get(e, ['target', 'id'], DEFAULT_SCROLL_ID);
     self._scrollTimeout = setTimeout(
-      () => self.triggerScroll.call(self),
+      () => self.triggerScroll.call(self, scrollId),
       delay,
     );
   }
 
-  triggerScroll() {
+  triggerScroll(scrollId) {
     const defaultMargin = this.getState().get('scrollMargin');
     const actives = {mdefault: null};
     const offsetCache = {};
@@ -76,7 +93,7 @@ class scrollStore extends ReduceStore {
     let scroll = getScrollInfo();
     let scrollTop = scroll.top + defaultMargin;
     let margin;
-    this.spys.forEach(node => {
+    this.spys[scrollId].forEach(node => {
       const nodeEl = node.getOffsetEl();
       const {monitorScroll, scrollMargin} = get(node, ['props'], {});
       let pos = getOffset(nodeEl);
@@ -112,14 +129,7 @@ class scrollStore extends ReduceStore {
   }
 
   getNode(id) {
-    let item = false;
-    this.spys.some(node => {
-      if (id === node.id) {
-        item = node;
-      }
-      return item;
-    });
-    return item;
+    return toJS(this.arrMap.get(id));
   }
 
   getOffset(id, callName) {
@@ -128,29 +138,67 @@ class scrollStore extends ReduceStore {
   }
 
   hasAttach(node) {
-    return this.spys.has(node);
+    const attachToId = this.getAttachToId(node);
+    if (this.spys[attachToId] && this.spys[attachToId].has(node)) {
+      return attachToId;
+    } else {
+      return false;
+    }
   }
 
-  attach(node) {
+  getNodeId(node) {
     if (!node.id) {
-      if (node.props.id) {
+      if (node.props && node.props.id) {
         node.id = node.props.id;
       } else {
         node.id = 'spy-' + incNum;
         incNum++;
       }
     }
-    this.spys = this.spys.add(node);
-    if (!this.isInitEvent) {
-      this.initEvent();
-    }
     return node.id;
   }
 
+  getAttachToId(node) {
+    const attachTo = get(node, ['props', 'attachTo']);
+    let attachToId;
+    if (attachTo) {
+      node.attachTo = attachTo;
+      attachToId = this.getNodeId(attachTo);
+    } else {
+      if ('undefined' !== typeof window) {
+        node.attachTo = window;
+      }
+      attachToId = DEFAULT_SCROLL_ID;
+    }
+    return attachToId;
+  }
+
+  attach(node) {
+    const nodeId = this.getNodeId(node);
+    const attachToId = this.getAttachToId(node);
+    if (!this.spys[attachToId]) {
+      this.spys[attachToId] = Set().add(node);
+    } else {
+      this.spys[attachToId] = this.spys[attachToId].add(node);
+    }
+    this.arrNode = this.arrNode.set(nodeId, node);
+    if (!this.isInitEvent[attachToId]) {
+      this.isInitEvent[attachToId] = true;
+      this.initEvent(node.attachTo);
+    }
+    return nodeId;
+  }
+
   detach(node) {
-    this.spys = this.spys.remove(node);
-    if (!this.spys.size) {
-      this.removeEvent();
+    const attachToId = this.hasAttach(node);
+    if (attachToId) {
+      this.spys[attachToId] = this.spys[attachToId].remove(node);
+      this.arrNode = this.arrNode.delete(node.id);
+      if (!this.spys[attachToId].size) {
+        this.removeEvent(node.attachTo);
+        delete this.spys[attachToId];
+        this.isInitEvent[attachToId] = false;
+      }
     }
   }
 
@@ -173,4 +221,4 @@ class scrollStore extends ReduceStore {
 }
 
 export default new scrollStore(dispatcher);
-export {scrollStore};
+export {scrollStore, DEFAULT_SCROLL_ID};

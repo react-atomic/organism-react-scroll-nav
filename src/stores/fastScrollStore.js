@@ -1,15 +1,13 @@
-'use strict';
-
 import dispatcher from '../scrollDispatcher';
-import {scrollStore} from './scrollStore';
+import {scrollStore, DEFAULT_SCROLL_ID} from './scrollStore';
+import get from 'get-object-value';
 
-class fastScrollStore extends scrollStore
-{
-  storeName = 'fastScroll'
+class fastScrollStore extends scrollStore {
+  storeName = 'fastScroll';
 
-  runScrollMonitor()
-  {
-    this.triggerScroll();
+  runScrollMonitor(e) {
+    const scrollId = get(e, ['target', 'id'], DEFAULT_SCROLL_ID);
+    this.triggerScroll(scrollId);
   }
 }
 
