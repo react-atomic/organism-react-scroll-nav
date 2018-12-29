@@ -18,14 +18,11 @@
     "get-scroll-info": "*",
     "get-window-offset": "*",
     "getoffset": "*",
-    "immutable": "*",
     "react-atomic-molecule": "*",
     "reshow-flux": "*",
     "smooth-scroll-to": "*"
   },
   "devDependencies": {
-    "babel-cli": "*",
-    "babel-plugin-add-module-exports": "*",
     "react": "^16.x",
     "react-dom": "^16.x",
     "reshow-app": "*"

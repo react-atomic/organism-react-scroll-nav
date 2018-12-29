@@ -6,14 +6,25 @@ React Scroll Spy Library (organism-react-scroll-nav)
       * https://www.npmjs.com/package/organism-react-scroll-nav
 
 ## Example Usage
-* Demo Url: https://react-atomic.github.io/organism-react-scroll-nav
 * Code: https://github.com/react-atomic/organism-react-scroll-nav/blob/master/ui/pages/index.jsx
+
+### Live Demo Url
+* https://react-atomic.github.io/organism-react-scroll-nav
+
+### Test in local
+```
+./compile.sh s
+```
+
+Go to http://localhost:3000
 
 ## Change global delay
 ```
 import { scrollDispatch  } from 'organism-react-scroll-nav';
 scrollDispatch({scrollDelay: 0});
 ```
+
+
 
 ## Inspire
 * https://github.com/fisshy/react-scroll
