@@ -11,11 +11,12 @@ import {
     scrollDispatch
 } from "../../src/index"
 
+/*Test only*/
 scrollDispatch({
-    scrollMargin: 67
+    scrollMargin: 100 
 });
 
-import {reactStyle, SemanticUI} from 'react-atomic-molecule';
+import {reactStyle, injectStyle} from 'react-atomic-molecule';
 
 class MenuItem extends Component
 {
@@ -39,7 +40,7 @@ class Index extends Component
     render()
     {
     return (
-    <SemanticUI>
+    <div>
         <div id="nav-parent" style={Styles.nav}>
             <SmoothScrollLink
                 scrollRefId="nav-parent"
@@ -68,7 +69,7 @@ class Index extends Component
                 test3
             </SmoothScrollLink>
         </div>
-        <div style={{padding:'30px 0 0'}}>
+        <div style={{paddingTop:66}}>
             <ScrollSpy id="t1" style={{...Styles.content, background:"#3498DB"}}>
                test111
             </ScrollSpy>
@@ -84,7 +85,7 @@ class Index extends Component
                test333
             </ScrollSpy>
         </div>
-    </SemanticUI>
+    </div>
     )
     }
 }
@@ -112,7 +113,8 @@ const Styles = {
         opacity: 1
     },
     body: reactStyle({
-        margin: 0
+        margin: 0,
+        padding: 0
     }, 'body'),
     nav: {
         position:'fixed',
@@ -123,4 +125,4 @@ const Styles = {
         top: 0
     }
 };
-
+injectStyle();

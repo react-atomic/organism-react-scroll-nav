@@ -2821,9 +2821,9 @@ get-window-offset@*:
     getoffset "*"
 
 getoffset@*:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/getoffset/-/getoffset-0.1.4.tgz#5d5de2e4b4950cb57e24a280f1386b374fb37690"
-  integrity sha512-1UxkNrkLrD3/QtNQIgh22kUdPp9dLYU1K7AbvCXM4MpAU56Oh8Qif/lR7mrGxgk2FMkjLP/xFfbVrXKjtXcN9Q==
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/getoffset/-/getoffset-0.1.5.tgz#1b04356346eb7b02148837df46bc04e6f1875e03"
+  integrity sha512-lMYQCP8mundey5h2ft4qtEjReLRns7JrO2aUNghwCesc5i6VCsrRbQXq52JqcfLkoTrJNJPTxofjfQ2734Ck4g==
   dependencies:
     get-object-value "*"
     get-scroll-info "*"
@@ -5669,9 +5669,9 @@ slash@^2.0.0:
   integrity sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==
 
 smooth-scroll-to@*:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/smooth-scroll-to/-/smooth-scroll-to-0.1.0.tgz#40e8d30fb73fbf4b3ffc6cce31ef1cce72b19974"
-  integrity sha512-J2v6u/9MnBnvCEuBsEEu5wQOm1WJvfL/REsbEzzZXpJWoVujm5kPZzmKXO/Em6qXeLyYxxanFLUVAAPEbEtQTQ==
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/smooth-scroll-to/-/smooth-scroll-to-0.2.0.tgz#3f73dca0f81c56c20a5ac1edb4c6ee64f525ab17"
+  integrity sha512-fOOFhTzKL7iyteCsMq7q+96nmesUcuZxpmFzOujJi8LKcW8NilYPs4mEdQYb1uUnco/PodIOx4HBjyrhwgzu0w==
   dependencies:
     easing-lib "*"
     get-scroll-info "*"

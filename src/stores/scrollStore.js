@@ -19,6 +19,7 @@ class scrollStore extends ReduceStore {
   spys = {};
 
   getInitialState() {
+    this.trigger = this.triggerScroll.bind(this);
     this.arrNode = Map();
     this.margins = Set();
     this.scrollMonitor = this.runScrollMonitor.bind(this);
@@ -71,21 +72,20 @@ class scrollStore extends ReduceStore {
   }
 
   handleResize() {
-    keys(this.spys).forEach(scrollId => this.runScrollMonitor({target: {id: scrollId}}));
+    keys(this.spys).forEach(scrollId =>
+      this.runScrollMonitor({target: {id: scrollId}}),
+    );
   }
 
   runScrollMonitor(e) {
     clearTimeout(this._scrollTimeout);
     const self = this;
     const delay = self.getState().get('scrollDelay');
-    const scrollId = get(e, ['target', 'id'], DEFAULT_SCROLL_ID);
-    self._scrollTimeout = setTimeout(
-      () => self.triggerScroll.call(self, scrollId),
-      delay,
-    );
+    self._scrollTimeout = setTimeout(() => this.trigger(e.target), delay);
   }
 
-  triggerScroll(scrollId) {
+  triggerScroll(scrollNode) {
+    const scrollId = get(scrollNode, ['id']) || DEFAULT_SCROLL_ID;
     const defaultMargin = this.getState().get('scrollMargin');
     const actives = {mdefault: null};
     const offsetCache = {};
@@ -112,7 +112,7 @@ class scrollStore extends ReduceStore {
       actives['m' + margin] = null;
       arrMonitorScroll.every(node => {
         let pos = offsetCache[node.id];
-        if (scrollTop >= pos.top && scrollTop < pos.bottom) {
+        if (scrollTop >= pos.top && scrollTop < pos.bottom-1) {
           actives['m' + margin] = node.id;
           return false;
         }
@@ -211,7 +211,7 @@ class scrollStore extends ReduceStore {
   }
 
   reduce(state, action) {
-    const storeName = get(action, ['storeName']);
+    const storeName = get(action, ['storeName'], 'delayScroll');
     if (storeName === this.storeName) {
       return state.merge(action);
     } else {
@@ -221,4 +221,4 @@ class scrollStore extends ReduceStore {
 }
 
 export default new scrollStore(dispatcher);
-export {scrollStore, DEFAULT_SCROLL_ID};
+export {scrollStore};

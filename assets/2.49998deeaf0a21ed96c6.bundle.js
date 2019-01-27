@@ -1,11 +1,11 @@
-webpackJsonp([1],{
+webpackJsonp([2],{
 
-/***/ 180:
+/***/ 181:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_reshow_runtime_es_helpers_typeof__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_reshow_runtime_es_helpers_typeof__ = __webpack_require__(62);
 
 
 // dlog 0.1.1
@@ -125,24 +125,7 @@ dlog.prototype.error = function () {
 
 /* harmony default export */ __webpack_exports__["default"] = (dlog);
 
-/***/ }),
-
-/***/ 182:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__getTypeOf__ = __webpack_require__(61);
-
-
-var _typeof = typeof Symbol === 'function' && Object(__WEBPACK_IMPORTED_MODULE_0__getTypeOf__["a" /* default */])(Symbol.iterator) === 'symbol' ? function (obj) {
-  return 'symbol' === Object(__WEBPACK_IMPORTED_MODULE_0__getTypeOf__["a" /* default */])(obj) ? 'symbol' : Object(__WEBPACK_IMPORTED_MODULE_0__getTypeOf__["a" /* default */])(obj, 'object');
-} : function (obj) {
-  return obj && typeof Symbol === 'function' && obj.constructor === Symbol && obj !== Symbol.prototype ? 'symbol' : Object(__WEBPACK_IMPORTED_MODULE_0__getTypeOf__["a" /* default */])(obj, 'object');
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (_typeof);
-
 /***/ })
 
 });
-//# sourceMappingURL=1.5c7df8dc7539ec9e1a24.bundle.js.map
+//# sourceMappingURL=2.49998deeaf0a21ed96c6.bundle.js.map
