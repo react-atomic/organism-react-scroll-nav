@@ -45,6 +45,28 @@ class SmoothScrollLink extends PureComponent {
     return margin;
   }
 
+  handleClick = e => {
+    if (preventDefault) {
+      e.preventDefault();
+    }
+    resetTimer();
+    let offset = store.getOffset(targetId);
+    if (offset) {
+      margin = this.getMargin(props, scrollRefElement);
+      scollTimer = true;
+      smoothScrollTo(offset.top - margin, null, null, () => {
+        if (true !== scollTimer) {
+          return;
+        }
+        scollTimer = setTimeout(() => {
+          offset = store.getOffset(targetId);
+          margin = this.getMargin(props, scrollRefElement);
+          smoothScrollTo(offset.top - margin, 100);
+        }, 500);
+      });
+    }
+  };
+
   componentDidMount() {
     let dom = document.getElementById(this.props.scrollRefId);
     if (dom) {
@@ -79,27 +101,7 @@ class SmoothScrollLink extends PureComponent {
         {...others}
         scrollMargin={margin}
         style={{...Styles.link, ...style}}
-        onClick={e => {
-          if (preventDefault) {
-            e.preventDefault();
-          }
-          resetTimer();
-          let offset = store.getOffset(targetId);
-          if (offset) {
-            margin = this.getMargin(props, scrollRefElement);
-            scollTimer = true;
-            smoothScrollTo(offset.top - margin, null, null, () => {
-              if (true !== scollTimer) {
-                return;
-              }
-              scollTimer = setTimeout(() => {
-                offset = store.getOffset(targetId);
-                margin = this.getMargin(props, scrollRefElement);
-                smoothScrollTo(offset.top - margin, 100);
-              }, 500);
-            });
-          }
-        }}
+        onClick={this.handleClick}
       />
     );
   }
