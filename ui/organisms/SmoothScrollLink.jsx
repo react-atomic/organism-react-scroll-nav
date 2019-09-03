@@ -32,35 +32,46 @@ class SmoothScrollLink extends PureComponent {
   }
 
   getMargin(props, ref) {
-    const {scrollRefLoc} = props;
+    const {scrollRefLoc, scrollMargin} = props;
     let margin = 0;
     if (ref) {
-      let offset = getOffset(ref, false);
-      margin = offset[scrollRefLoc];
+      const refOffset = getOffset(ref, false);
+      switch (scrollRefLoc) {
+        case 'bottom':
+          margin += refOffset.bottom - refOffset.top;
+          break;
+        default:
+        case 'top':
+          break;
+      }
     }
-    if (!isNaN(props.scrollMargin)) {
-      margin += props.scrollMargin;
+    if (!isNaN(scrollMargin)) {
+      margin += scrollMargin;
     }
     margin--;
     return margin;
   }
 
   handleClick = e => {
+    const props = this.props;
+    const store = this.useStore();
+    const {preventDefault, targetId} = props;
+    const {scrollRefElement} = this.state;
     if (preventDefault) {
       e.preventDefault();
     }
     resetTimer();
     let offset = store.getOffset(targetId);
     if (offset) {
-      margin = this.getMargin(props, scrollRefElement);
+      let margin = this.getMargin(props, scrollRefElement);
       scollTimer = true;
       smoothScrollTo(offset.top - margin, null, null, () => {
         if (true !== scollTimer) {
           return;
         }
         scollTimer = setTimeout(() => {
-          offset = store.getOffset(targetId);
           margin = this.getMargin(props, scrollRefElement);
+          offset = store.getOffset(targetId);
           smoothScrollTo(offset.top - margin, 100);
         }, 500);
       });
@@ -68,7 +79,7 @@ class SmoothScrollLink extends PureComponent {
   };
 
   componentDidMount() {
-    let dom = document.getElementById(this.props.scrollRefId);
+    const dom = document.getElementById(this.props.scrollRefId);
     if (dom) {
       this.setState({
         scrollRefElement: dom,
@@ -81,7 +92,6 @@ class SmoothScrollLink extends PureComponent {
   }
 
   render() {
-    const store = this.useStore();
     const props = this.props;
     const {
       targetId,
@@ -93,12 +103,12 @@ class SmoothScrollLink extends PureComponent {
       ...others
     } = props;
     const {scrollRefElement} = this.state;
-    let margin = this.getMargin(props, scrollRefElement);
+    const margin = this.getMargin(props, scrollRefElement);
     return (
       <ScrollReceiver
         atom="a"
-        targetId={targetId}
         {...others}
+        targetId={targetId}
         scrollMargin={margin}
         style={{...Styles.link, ...style}}
         onClick={this.handleClick}

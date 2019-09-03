@@ -2086,15 +2086,15 @@ var scrollDispatch = instance.dispatch.bind(instance);
 /* unused harmony reexport Unsafe */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_class_lib__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27_class_lib___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_27_class_lib__);
-/* harmony reexport (binding) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_27_class_lib__, "mixClass")) __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_27_class_lib__["mixClass"]; });
+/* harmony reexport (binding) */ if(__webpack_require__.o(__WEBPACK_IMPORTED_MODULE_27_class_lib__, "mixClass")) __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_27_class_lib__["mixClass"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__build__ = __webpack_require__(185);
-/* unused harmony reexport build */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_28__build__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__lib_styles_injectStyle__ = __webpack_require__(38);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_29__lib_styles_injectStyle__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_29__lib_styles_injectStyle__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__lib_styles_lazyInject__ = __webpack_require__(186);
 /* unused harmony reexport lazyInject */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__lib_styles_index__ = __webpack_require__(41);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return __WEBPACK_IMPORTED_MODULE_31__lib_styles_index__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_31__lib_styles_index__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__lib_styles_mergeStyleConfig__ = __webpack_require__(187);
 /* unused harmony reexport mergeStyleConfig */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__needCss__ = __webpack_require__(188);
@@ -3450,7 +3450,7 @@ function (_PureComponent) {
 
       var isScrollReceiver = this.isScrollReceiver(children);
       var targetId = this.state.id;
-      var classes = Object(__WEBPACK_IMPORTED_MODULE_10_react_atomic_molecule__["c" /* mixClass */])(className, 'spy-tar-' + targetId);
+      var classes = Object(__WEBPACK_IMPORTED_MODULE_10_react_atomic_molecule__["d" /* mixClass */])(className, 'spy-tar-' + targetId);
       var cookChildren;
       var thisContainer;
       var thisProps;
@@ -3823,8 +3823,8 @@ function _objectSpread(target) {
 
 var ScrollReceiver =
 /*#__PURE__*/
-function (_PureComponent) {
-  Object(__WEBPACK_IMPORTED_MODULE_5_reshow_runtime_es_helpers_inherits__["a" /* default */])(ScrollReceiver, _PureComponent);
+function (_Component) {
+  Object(__WEBPACK_IMPORTED_MODULE_5_reshow_runtime_es_helpers_inherits__["a" /* default */])(ScrollReceiver, _Component);
 
   function ScrollReceiver() {
     Object(__WEBPACK_IMPORTED_MODULE_1_reshow_runtime_es_helpers_classCallCheck__["a" /* default */])(this, ScrollReceiver);
@@ -3845,7 +3845,7 @@ function (_PureComponent) {
           children = _this$props.children,
           resetProps = Object(__WEBPACK_IMPORTED_MODULE_0_reshow_runtime_es_helpers_objectWithoutProperties__["a" /* default */])(_this$props, ["atom", "container", "scrollMargin", "targetId", "isScrollReceiver", "noDelay", "children"]);
 
-      if (!Object(__WEBPACK_IMPORTED_MODULE_7_react__["isValidElement"])(container)) {
+      if (!container) {
         return __WEBPACK_IMPORTED_MODULE_7_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_9_react_atomic_molecule__["a" /* SemanticUI */], resetProps, children);
       }
 
@@ -3855,11 +3855,11 @@ function (_PureComponent) {
 
       var thisChildren = children;
 
-      if (!thisChildren) {
+      if (!thisChildren && Object(__WEBPACK_IMPORTED_MODULE_7_react__["isValidElement"])(container)) {
         thisChildren = container.props.children;
       }
 
-      return Object(__WEBPACK_IMPORTED_MODULE_7_react__["cloneElement"])(container, _objectSpread({}, resetProps, {
+      return Object(__WEBPACK_IMPORTED_MODULE_9_react_atomic_molecule__["b" /* build */])(container)(_objectSpread({}, resetProps, {
         targetInfo: targetInfo
       }), thisChildren);
     }
@@ -3901,7 +3901,7 @@ function (_PureComponent) {
   }]);
 
   return ScrollReceiver;
-}(__WEBPACK_IMPORTED_MODULE_7_react__["PureComponent"]);
+}(__WEBPACK_IMPORTED_MODULE_7_react__["Component"]);
 
 Object(__WEBPACK_IMPORTED_MODULE_6_reshow_runtime_es_helpers_defineProperty__["a" /* default */])(ScrollReceiver, "defaultProps", {
   scrollMargin: 'default',
@@ -6589,7 +6589,7 @@ var Styles = {
   active: {
     opacity: 1
   },
-  body: Object(__WEBPACK_IMPORTED_MODULE_10_react_atomic_molecule__["d" /* reactStyle */])({
+  body: Object(__WEBPACK_IMPORTED_MODULE_10_react_atomic_molecule__["e" /* reactStyle */])({
     margin: 0,
     padding: 0
   }, 'body'),
@@ -6602,7 +6602,7 @@ var Styles = {
     top: 0
   }
 };
-Object(__WEBPACK_IMPORTED_MODULE_10_react_atomic_molecule__["b" /* injectStyle */])();
+Object(__WEBPACK_IMPORTED_MODULE_10_react_atomic_molecule__["c" /* injectStyle */])();
 
 /***/ }),
 /* 102 */
@@ -8923,7 +8923,7 @@ var build = function build(component) {
   };
 };
 
-/* unused harmony default export */ var _unused_webpack_default_export = (build);
+/* harmony default export */ __webpack_exports__["a"] = (build);
 
 /***/ }),
 /* 186 */
@@ -9147,6 +9147,40 @@ function (_PureComponent) {
       scrollRefElement: null
     });
 
+    Object(__WEBPACK_IMPORTED_MODULE_8_reshow_runtime_es_helpers_defineProperty__["a" /* default */])(Object(__WEBPACK_IMPORTED_MODULE_6_reshow_runtime_es_helpers_assertThisInitialized__["a" /* default */])(_this), "handleClick", function (e) {
+      var props = _this.props;
+
+      var store = _this.useStore();
+
+      var preventDefault = props.preventDefault,
+          targetId = props.targetId;
+      var scrollRefElement = _this.state.scrollRefElement;
+
+      if (preventDefault) {
+        e.preventDefault();
+      }
+
+      resetTimer();
+      var offset = store.getOffset(targetId);
+
+      if (offset) {
+        var margin = _this.getMargin(props, scrollRefElement);
+
+        scollTimer = true;
+        Object(__WEBPACK_IMPORTED_MODULE_10_smooth_scroll_to__["a" /* default */])(offset.top - margin, null, null, function () {
+          if (true !== scollTimer) {
+            return;
+          }
+
+          scollTimer = setTimeout(function () {
+            margin = _this.getMargin(props, scrollRefElement);
+            offset = store.getOffset(targetId);
+            Object(__WEBPACK_IMPORTED_MODULE_10_smooth_scroll_to__["a" /* default */])(offset.top - margin, 100);
+          }, 500);
+        });
+      }
+    });
+
     return _this;
   }
 
@@ -9159,16 +9193,26 @@ function (_PureComponent) {
   }, {
     key: "getMargin",
     value: function getMargin(props, ref) {
-      var scrollRefLoc = props.scrollRefLoc;
+      var scrollRefLoc = props.scrollRefLoc,
+          scrollMargin = props.scrollMargin;
       var margin = 0;
 
       if (ref) {
-        var offset = Object(__WEBPACK_IMPORTED_MODULE_11_getoffset__["a" /* default */])(ref, false);
-        margin = offset[scrollRefLoc];
+        var refOffset = Object(__WEBPACK_IMPORTED_MODULE_11_getoffset__["a" /* default */])(ref, false);
+
+        switch (scrollRefLoc) {
+          case 'bottom':
+            margin += refOffset.bottom - refOffset.top;
+            break;
+
+          default:
+          case 'top':
+            break;
+        }
       }
 
-      if (!isNaN(props.scrollMargin)) {
-        margin += props.scrollMargin;
+      if (!isNaN(scrollMargin)) {
+        margin += scrollMargin;
       }
 
       margin--;
@@ -9193,9 +9237,6 @@ function (_PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
-
-      var store = this.useStore();
       var props = this.props;
 
       var targetId = props.targetId,
@@ -9209,35 +9250,12 @@ function (_PureComponent) {
       var scrollRefElement = this.state.scrollRefElement;
       var margin = this.getMargin(props, scrollRefElement);
       return __WEBPACK_IMPORTED_MODULE_9_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_12__src_index__["a" /* ScrollReceiver */], Object(__WEBPACK_IMPORTED_MODULE_0_reshow_runtime_es_helpers_extends__["a" /* default */])({
-        atom: "a",
-        targetId: targetId
+        atom: "a"
       }, others, {
+        targetId: targetId,
         scrollMargin: margin,
         style: _objectSpread({}, Styles.link, {}, style),
-        onClick: function onClick(e) {
-          if (preventDefault) {
-            e.preventDefault();
-          }
-
-          resetTimer();
-          var offset = store.getOffset(targetId);
-
-          if (offset) {
-            margin = _this2.getMargin(props, scrollRefElement);
-            scollTimer = true;
-            Object(__WEBPACK_IMPORTED_MODULE_10_smooth_scroll_to__["a" /* default */])(offset.top - margin, null, null, function () {
-              if (true !== scollTimer) {
-                return;
-              }
-
-              scollTimer = setTimeout(function () {
-                offset = store.getOffset(targetId);
-                margin = _this2.getMargin(props, scrollRefElement);
-                Object(__WEBPACK_IMPORTED_MODULE_10_smooth_scroll_to__["a" /* default */])(offset.top - margin, 100);
-              }, 500);
-            });
-          }
-        }
+        onClick: this.handleClick
       }));
     }
   }]);
