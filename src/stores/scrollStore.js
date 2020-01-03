@@ -81,7 +81,7 @@ class scrollStore extends ReduceStore {
     clearTimeout(this._scrollTimeout);
     const self = this;
     const delay = self.getState().get('scrollDelay');
-    self._scrollTimeout = setTimeout(() => this.trigger(e.target), delay);
+    self._scrollTimeout = setTimeout(() => this.trigger(e && e.target), delay);
   }
 
   triggerScroll(scrollNode) {
@@ -93,7 +93,7 @@ class scrollStore extends ReduceStore {
     let scroll = getScrollInfo();
     let scrollTop = scroll.top + defaultMargin;
     let margin;
-    this.spys[scrollId].forEach(node => {
+    (this.spys[scrollId] || []).forEach(node => {
       const nodeEl = node.getOffsetEl();
       const {monitorScroll, scrollMargin} = get(node, ['props'], {});
       let pos = getOffset(nodeEl);
@@ -129,7 +129,9 @@ class scrollStore extends ReduceStore {
   }
 
   getNode(id) {
-    return toJS(this.arrMap.get(id));
+    if (this.arrMap && this.arrMap.get) {
+      return toJS(this.arrMap.get(id));
+    }
   }
 
   getOffset(id, callName) {
