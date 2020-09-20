@@ -94,7 +94,7 @@ export default Index;
 
 const Styles = {
     content: {
-        height:"500px",
+        height:"110vh",
         textAlign:"center",
         paddingTop: "10%",
         fontSize: "4rem",

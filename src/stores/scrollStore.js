@@ -56,10 +56,9 @@ class scrollStore extends ReduceStore {
         el.attachEvent('onscroll', self.scrollMonitor);
       }
       setTimeout(() => {
-        const fakeEvent = {target: el};
-        self.scrollMonitor(fakeEvent);
+        this.trigger(el);
         //for lazy content
-        setTimeout(() => self.scrollMonitor(fakeEvent), 777);
+        setTimeout(() => this.trigger(el), 777);
       });
       if (!self.isInitResizeEvent) {
         self.initResizeEvent();
