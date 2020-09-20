@@ -45260,6 +45260,10 @@ var Dispatcher = function Dispatcher() {
   var register = function register(cb) {
     return cbs.push(cb);
   };
+  /**
+   * Set asyncCallback to false for dispatch run as sync
+   */
+
 
   var dispatch = function dispatch(payload, params, asyncCallback) {
     payload = payload || {};
@@ -45311,6 +45315,7 @@ var Dispatcher = function Dispatcher() {
     }
   };
 
+  dispatch.debug = true;
   return {
     register: register,
     dispatch: dispatch
@@ -45577,8 +45582,8 @@ var ReduceStore = /*#__PURE__*/function (_Store) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var reshow_runtime_es_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/classCallCheck */ "./node_modules/reshow-runtime/es/helpers/classCallCheck.js");
-/* harmony import */ var reshow_runtime_es_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/createClass */ "./node_modules/reshow-runtime/es/helpers/createClass.js");
-/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ "./node_modules/reshow-runtime/es/helpers/assertThisInitialized.js");
+/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ "./node_modules/reshow-runtime/es/helpers/assertThisInitialized.js");
+/* harmony import */ var reshow_runtime_es_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/createClass */ "./node_modules/reshow-runtime/es/helpers/createClass.js");
 /* harmony import */ var reshow_runtime_es_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/inherits */ "./node_modules/reshow-runtime/es/helpers/inherits.js");
 /* harmony import */ var reshow_runtime_es_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reshow-runtime/es/helpers/possibleConstructorReturn */ "./node_modules/reshow-runtime/es/helpers/possibleConstructorReturn.js");
 /* harmony import */ var reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-runtime/es/helpers/get */ "./node_modules/reshow-runtime/es/helpers/get.js");
@@ -45629,6 +45634,25 @@ var connect = function connect(Base, options) {
 
     var _super = _createSuper(ConnectedClass);
 
+    Object(reshow_runtime_es_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(ConnectedClass, null, [{
+      key: "getDerivedStateFromProps",
+      value: function getDerivedStateFromProps(nextProps, prevState) {
+        var thisStates = null;
+
+        if (Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])(Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass), "getDerivedStateFromProps", this)) {
+          thisStates = Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])(Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass), "getDerivedStateFromProps", this).call(this, nextProps, prevState);
+        }
+
+        if (thisOptions.withProps) {
+          // when connect withProps optins, it possible call calculateState severaltimes
+          var calState = getState(ConnectedClass, Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_8__["default"])({}, prevState), thisStates), nextProps, thisOptions);
+          thisStates = Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_8__["default"])({}, thisStates), calState);
+        }
+
+        return thisStates;
+      }
+    }]);
+
     function ConnectedClass(props) {
       var _thisSuper, _thisSuper2, _this;
 
@@ -45636,9 +45660,9 @@ var connect = function connect(Base, options) {
 
       _this = _super.call(this, props);
 
-      Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "__stores", []);
+      Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__["default"])(_this), "__stores", []);
 
-      Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "__handleChange", function () {
+      Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__["default"])(_this), "__handleChange", function () {
         if (!_this.__stores) {
           // avoid race condition
           return;
@@ -45651,7 +45675,7 @@ var connect = function connect(Base, options) {
         });
       });
 
-      Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "__setStores", function (stores) {
+      Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__["default"])(_this), "__setStores", function (stores) {
         if (_this.__stores) {
           _this.__resetStores();
         }
@@ -45663,7 +45687,7 @@ var connect = function connect(Base, options) {
         _this.__stores = stores;
       });
 
-      Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), "__resetStores", function () {
+      Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_7__["default"])(Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__["default"])(_this), "__resetStores", function () {
         if (!_this.__stores) {
           return;
         }
@@ -45678,11 +45702,11 @@ var connect = function connect(Base, options) {
       var _con = _this.constructor;
 
       if (!_con.calculateState) {
-        _con.calculateState = Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])((_thisSuper = Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass.prototype)), "calculateState", _thisSuper);
+        _con.calculateState = Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])((_thisSuper = Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__["default"])(_this), Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass.prototype)), "calculateState", _thisSuper);
       }
 
       if (!_con.getStores) {
-        _con.getStores = Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])((_thisSuper2 = Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__["default"])(_this), Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass.prototype)), "getStores", _thisSuper2);
+        _con.getStores = Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])((_thisSuper2 = Object(reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__["default"])(_this), Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass.prototype)), "getStores", _thisSuper2);
       }
 
       _con.calculateState.bind(_con);
@@ -45710,7 +45734,7 @@ var connect = function connect(Base, options) {
       return _this;
     }
 
-    Object(reshow_runtime_es_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__["default"])(ConnectedClass, [{
+    Object(reshow_runtime_es_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__["default"])(ConnectedClass, [{
       key: "componentDidMount",
       value: function componentDidMount() {
         if (Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])(Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass.prototype), "componentDidMount", this)) {
@@ -45724,12 +45748,17 @@ var connect = function connect(Base, options) {
     }, {
       key: "componentDidUpdate",
       value: function componentDidUpdate(prevProps, prevState) {
+        var _this2 = this;
+
         if (Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])(Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass.prototype), "componentDidUpdate", this)) {
           Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])(Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass.prototype), "componentDidUpdate", this).call(this, prevProps, prevState);
         }
 
         if (thisOptions.withProps) {
-          this.__setStores(getStores(this.constructor, this.props, thisOptions));
+          // avoid effect async dispatch
+          setTimeout(function () {
+            return _this2.__setStores(getStores(_this2.constructor, _this2.props, thisOptions));
+          }, 100);
         }
       }
     }, {
@@ -45741,31 +45770,13 @@ var connect = function connect(Base, options) {
 
         this.__resetStores();
       }
-    }], [{
-      key: "getDerivedStateFromProps",
-      value: function getDerivedStateFromProps(nextProps, prevState) {
-        var thisStates = null;
-
-        if (Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])(Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass), "getDerivedStateFromProps", this)) {
-          thisStates = Object(reshow_runtime_es_helpers_get__WEBPACK_IMPORTED_MODULE_5__["default"])(Object(reshow_runtime_es_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_6__["default"])(ConnectedClass), "getDerivedStateFromProps", this).call(this, nextProps, prevState);
-        }
-
-        if (thisOptions.withProps && prevState.prevProps !== nextProps) {
-          var calState = getState(ConnectedClass, Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_8__["default"])({}, prevState), thisStates), nextProps, thisOptions);
-          thisStates = Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_8__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_8__["default"])({}, thisStates), calState), {}, {
-            prevProps: nextProps
-          });
-        }
-
-        return thisStates;
-      }
     }]);
 
     return ConnectedClass;
   }(Base);
 
   var componentName = Base.displayName || Base.name;
-  ConnectedClass.displayName = 'FluxConnected(' + componentName + ')';
+  ConnectedClass.displayName = "FluxConnected(" + componentName + ")";
   return ConnectedClass;
 };
 

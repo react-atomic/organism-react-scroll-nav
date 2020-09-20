@@ -7520,18 +7520,18 @@ reshow-constant@*:
   integrity sha512-PRwvxfln60W897Z8puaZhWhY4wrP6Mb+c8Wu+9n1yBgn+//6GP8AhW/xMdsy+MyM2HcTJ8d1iTmvr/G4Pm2NyA==
 
 reshow-flux-base@*:
-  version "0.3.5"
-  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.3.5.tgz#c2c1b64965062af60daf1b56a5badfce74e0af00"
-  integrity sha512-YI6IjuRv4uaIqiUm8UadxMwD+QvE9E1PYY4NR/RhqcGL4ze2ZYAGbM5ac1SbEXrSL0jYVXfn3gRR1OEjee775Q==
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/reshow-flux-base/-/reshow-flux-base-0.3.6.tgz#fcba66e094194f39e751abd4880a4748d35f3737"
+  integrity sha512-JlSPonyIOn/j1aCN6AXwv6Wu4G0PHfwyQb8VHLc1uoa5Tr3jlPP/Vrv6li2wPpgGW+E5q+SIvnTVDB2A+g186w==
   dependencies:
     call-func "*"
     reshow-constant "*"
     reshow-runtime "*"
 
 reshow-flux@*:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.10.0.tgz#b015ea6b53645d54479d74a2c334ace107074412"
-  integrity sha512-X/nCPCMXswYsOPnxozLbf0AQjSei/LC/petWaY+f9fUgnMVtoHzact8KxoqzD0jYHEXHY498ChP+57QKRzqLKA==
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/reshow-flux/-/reshow-flux-0.10.1.tgz#141d617d3f93b5a362fd79bea6d3dd527a6019b5"
+  integrity sha512-ahJhT9DX3njFR50lmPS5LFm+NwM/KJwdQhkn9vDJlLpM/2FDS1HwbMXbN/thBoJxrNMmq7AIJfp5GD5JyT0Njw==
   dependencies:
     array.dedup "*"
     get-object-value "*"
