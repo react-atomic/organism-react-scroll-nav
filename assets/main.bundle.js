@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + chunkId + "." + "6e2749dab51d7b3e67a5" + ".bundle.js"
+/******/ 		return __webpack_require__.p + "" + chunkId + "." + "88c2f81c308441208925" + ".bundle.js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -233,7 +233,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var reshow_app_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-app/client */ "./node_modules/reshow-app/client.js");
+/* harmony import */ var reshow_app_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-app/client */ "../hillliu.github.io/node_modules/reshow-app/client.js");
 /* harmony import */ var _ui_pages_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ui/pages/index */ "./build/es/ui/pages/index.js");
 
 
@@ -294,7 +294,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scrollDispatch", function() { return scrollDispatch; });
-/* harmony import */ var reshow_flux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-flux */ "./node_modules/reshow-flux/build/es/index.js");
+/* harmony import */ var reshow_flux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-flux */ "../hillliu.github.io/node_modules/reshow-flux/build/es/index.js");
 
 
 
@@ -313,12 +313,12 @@ var scrollDispatch = instance.dispatch.bind(instance);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ "./node_modules/reshow-runtime/es/helpers/assertThisInitialized.js");
-/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "./node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "./node_modules/reshow-runtime/es/helpers/defineProperty.js");
+/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/assertThisInitialized.js");
+/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
+/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/defineProperty.js");
 /* harmony import */ var _scrollDispatcher__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../scrollDispatcher */ "./build/es/src/scrollDispatcher.js");
 /* harmony import */ var _scrollStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scrollStore */ "./build/es/src/stores/scrollStore.js");
-/* harmony import */ var get_object_value__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! get-object-value */ "./node_modules/get-object-value/build/es/src/index.js");
+/* harmony import */ var get_object_value__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! get-object-value */ "../hillliu.github.io/node_modules/get-object-value/build/es/src/index.js");
 
 
 
@@ -366,17 +366,17 @@ var fastScrollStore = /*#__PURE__*/function (_scrollStore) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "scrollStore", function() { return scrollStore; });
-/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "./node_modules/reshow-runtime/es/helpers/objectSpread2.js");
-/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ "./node_modules/reshow-runtime/es/helpers/assertThisInitialized.js");
-/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "./node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "./node_modules/reshow-runtime/es/helpers/defineProperty.js");
-/* harmony import */ var immutable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! immutable */ "./node_modules/immutable/dist/immutable.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/objectSpread2.js");
+/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/assertThisInitialized.js");
+/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
+/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/defineProperty.js");
+/* harmony import */ var immutable__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! immutable */ "../hillliu.github.io/node_modules/immutable/dist/immutable.js");
 /* harmony import */ var immutable__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(immutable__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var reshow_flux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-flux */ "./node_modules/reshow-flux/build/es/index.js");
-/* harmony import */ var get_scroll_info__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! get-scroll-info */ "./node_modules/get-scroll-info/build/es/src/index.js");
-/* harmony import */ var get_window_offset__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! get-window-offset */ "./node_modules/get-window-offset/build/es/src/index.js");
-/* harmony import */ var getoffset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! getoffset */ "./node_modules/getoffset/build/es/src/index.js");
-/* harmony import */ var get_object_value__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! get-object-value */ "./node_modules/get-object-value/build/es/src/index.js");
+/* harmony import */ var reshow_flux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-flux */ "../hillliu.github.io/node_modules/reshow-flux/build/es/index.js");
+/* harmony import */ var get_scroll_info__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! get-scroll-info */ "../hillliu.github.io/node_modules/get-scroll-info/build/es/src/index.js");
+/* harmony import */ var get_window_offset__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! get-window-offset */ "../hillliu.github.io/node_modules/get-window-offset/build/es/src/index.js");
+/* harmony import */ var getoffset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! getoffset */ "../hillliu.github.io/node_modules/getoffset/build/es/src/index.js");
+/* harmony import */ var get_object_value__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! get-object-value */ "../hillliu.github.io/node_modules/get-object-value/build/es/src/index.js");
 /* harmony import */ var _scrollDispatcher__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../scrollDispatcher */ "./build/es/src/scrollDispatcher.js");
 /* harmony import */ var _testForPassiveScroll__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../testForPassiveScroll */ "./build/es/src/testForPassiveScroll.js");
 
@@ -449,15 +449,13 @@ var scrollStore = /*#__PURE__*/function (_ReduceStore) {
     var _this2 = this;
 
     if ('undefined' !== typeof el) {
-      var self = this;
-
       if (el.addEventListener) {
         var supportsPassive = Object(_testForPassiveScroll__WEBPACK_IMPORTED_MODULE_11__["default"])();
-        el.addEventListener('scroll', self.scrollMonitor, supportsPassive ? {
+        el.addEventListener('scroll', this.scrollMonitor, supportsPassive ? {
           passive: true
         } : false);
       } else {
-        el.attachEvent('onscroll', self.scrollMonitor);
+        el.attachEvent('onscroll', this.scrollMonitor);
       }
 
       setTimeout(function () {
@@ -469,8 +467,8 @@ var scrollStore = /*#__PURE__*/function (_ReduceStore) {
         }, 777);
       });
 
-      if (!self.isInitResizeEvent) {
-        self.initResizeEvent();
+      if (!this.isInitResizeEvent) {
+        this.initResizeEvent();
       }
     }
   };
@@ -483,7 +481,7 @@ var scrollStore = /*#__PURE__*/function (_ReduceStore) {
     var _this3 = this;
 
     keys(this.spys).forEach(function (scrollId) {
-      return _this3.runScrollMonitor({
+      return _this3.scrollMonitor({
         target: {
           id: scrollId
         }
@@ -515,6 +513,10 @@ var scrollStore = /*#__PURE__*/function (_ReduceStore) {
     var margin;
     (this.spys[scrollId] || []).forEach(function (node) {
       var nodeEl = node.getOffsetEl();
+
+      if (!nodeEl) {
+        return;
+      }
 
       var _get = Object(get_object_value__WEBPACK_IMPORTED_MODULE_9__["default"])(node, ['props'], {}),
           monitorScroll = _get.monitorScroll,
@@ -708,8 +710,8 @@ var testForPassiveScroll = function testForPassiveScroll() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "./node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "../hillliu.github.io/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _organisms_ScrollSpy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../organisms/ScrollSpy */ "./build/es/ui/organisms/ScrollSpy.js");
 /* harmony import */ var _organisms_ScrollReceiver__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../organisms/ScrollReceiver */ "./build/es/ui/organisms/ScrollReceiver.js");
@@ -725,7 +727,12 @@ var ScrollInfo = function ScrollInfo(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_organisms_ScrollSpy__WEBPACK_IMPORTED_MODULE_2__["default"], others, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_organisms_ScrollReceiver__WEBPACK_IMPORTED_MODULE_3__["default"], null, children));
 };
 
+_c = ScrollInfo;
 /* harmony default export */ __webpack_exports__["default"] = (ScrollInfo);
+
+var _c;
+
+$RefreshReg$(_c, "ScrollInfo");
 
 /***/ }),
 
@@ -738,14 +745,14 @@ var ScrollInfo = function ScrollInfo(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "./node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "./node_modules/reshow-runtime/es/helpers/objectSpread2.js");
-/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "./node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "./node_modules/reshow-runtime/es/helpers/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/objectSpread2.js");
+/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
+/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "../hillliu.github.io/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var reshow_flux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-flux */ "./node_modules/reshow-flux/build/es/index.js");
-/* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-atomic-molecule */ "./node_modules/react-atomic-molecule/build/es/src/index.js");
+/* harmony import */ var reshow_flux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-flux */ "../hillliu.github.io/node_modules/reshow-flux/build/es/index.js");
+/* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-atomic-molecule */ "../hillliu.github.io/node_modules/react-atomic-molecule/build/es/src/index.js");
 /* harmony import */ var _src_stores_scrollStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/stores/scrollStore */ "./build/es/src/stores/scrollStore.js");
 /* harmony import */ var _src_stores_fastScrollStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../src/stores/fastScrollStore */ "./build/es/src/stores/fastScrollStore.js");
 
@@ -854,15 +861,15 @@ Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__["de
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "./node_modules/reshow-runtime/es/helpers/objectSpread2.js");
-/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "./node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ "./node_modules/reshow-runtime/es/helpers/assertThisInitialized.js");
-/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "./node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "./node_modules/reshow-runtime/es/helpers/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/objectSpread2.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
+/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/assertThisInitialized.js");
+/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
+/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "../hillliu.github.io/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var get_object_value__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! get-object-value */ "./node_modules/get-object-value/build/es/src/index.js");
-/* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-atomic-molecule */ "./node_modules/react-atomic-molecule/build/es/src/index.js");
+/* harmony import */ var get_object_value__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! get-object-value */ "../hillliu.github.io/node_modules/get-object-value/build/es/src/index.js");
+/* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-atomic-molecule */ "../hillliu.github.io/node_modules/react-atomic-molecule/build/es/src/index.js");
 /* harmony import */ var _src_stores_scrollStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../src/stores/scrollStore */ "./build/es/src/stores/scrollStore.js");
 /* harmony import */ var _src_stores_fastScrollStore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../src/stores/fastScrollStore */ "./build/es/src/stores/fastScrollStore.js");
 
@@ -871,12 +878,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var _SemanticUI;
 
 
 
 
 
-var _ref = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_atomic_molecule__WEBPACK_IMPORTED_MODULE_7__["SemanticUI"], null);
+
 
 var ScrollSpy = /*#__PURE__*/function (_PureComponent) {
   Object(reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__["default"])(ScrollSpy, _PureComponent);
@@ -898,10 +906,21 @@ var ScrollSpy = /*#__PURE__*/function (_PureComponent) {
   var _proto = ScrollSpy.prototype;
 
   _proto.getOffsetEl = function getOffsetEl() {
+    var _this2 = this;
+
     if (this.el) {
       return this.el;
     } else {
-      console.warn('Please use SemanticUI. props.container -> import {SemanticUI} from "react-atomic-molecule"');
+      // for lazy render component, that warn delay 3 secs.
+      if (this.warnTimeout) {
+        clearTimeout(this.warnTimeout);
+      }
+
+      this.warnTimeout = setTimeout(function () {
+        if (!_this2.el) {
+          console.warn('Please use SemanticUI. props.container -> import {SemanticUI} from "react-atomic-molecule"', [_this2.classes, _this2, _this2.el]);
+        }
+      }, 3000);
     }
   };
 
@@ -927,7 +946,7 @@ var ScrollSpy = /*#__PURE__*/function (_PureComponent) {
   };
 
   _proto.isScrollReceiver = function isScrollReceiver(el) {
-    if (Object(get_object_value__WEBPACK_IMPORTED_MODULE_6__["default"])(el, ['props', 'isScrollReceiver'])) {
+    if (Object(get_object_value__WEBPACK_IMPORTED_MODULE_6__["default"])(el, ["props", "isScrollReceiver"])) {
       return true;
     }
 
@@ -943,7 +962,7 @@ var ScrollSpy = /*#__PURE__*/function (_PureComponent) {
   };
 
   _proto.render = function render() {
-    var _this2 = this;
+    var _this3 = this;
     /**
      * monitorScroll use in store, in component just for reset props.
      */
@@ -959,7 +978,7 @@ var ScrollSpy = /*#__PURE__*/function (_PureComponent) {
 
     var isScrollReceiver = this.isScrollReceiver(children);
     var targetId = this.state.id;
-    var classes = Object(react_atomic_molecule__WEBPACK_IMPORTED_MODULE_7__["mixClass"])(className, 'spy-tar-' + targetId);
+    this.classes = Object(react_atomic_molecule__WEBPACK_IMPORTED_MODULE_7__["mixClass"])(className, "spy-tar-" + targetId);
     var cookChildren;
     var thisContainer;
     var thisProps;
@@ -967,7 +986,7 @@ var ScrollSpy = /*#__PURE__*/function (_PureComponent) {
     if (isScrollReceiver) {
       thisContainer = children;
       thisProps = Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])({}, others), children.props), {}, {
-        className: classes,
+        className: this.classes,
         targetId: targetId,
         container: container,
         noDelay: noDelay
@@ -975,19 +994,19 @@ var ScrollSpy = /*#__PURE__*/function (_PureComponent) {
     } else {
       thisProps = Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])({
         children: children,
-        className: classes
+        className: this.classes
       }, others);
 
       if (container) {
         thisContainer = container;
       } else {
-        thisContainer = _ref;
+        thisContainer = _SemanticUI || (_SemanticUI = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react_atomic_molecule__WEBPACK_IMPORTED_MODULE_7__["SemanticUI"], null));
       }
     }
 
     thisProps = Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])({}, thisProps), {}, {
       refCb: function refCb(el) {
-        return _this2.el = el;
+        _this3.el = el;
       }
     });
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.cloneElement(thisContainer, thisProps);
@@ -1014,16 +1033,16 @@ Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_4__["de
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var reshow_runtime_es_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/extends */ "./node_modules/reshow-runtime/es/helpers/extends.js");
-/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "./node_modules/reshow-runtime/es/helpers/objectSpread2.js");
-/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "./node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ "./node_modules/reshow-runtime/es/helpers/assertThisInitialized.js");
-/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "./node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "./node_modules/reshow-runtime/es/helpers/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var reshow_runtime_es_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/extends */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/extends.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/objectSpread2.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
+/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/assertThisInitialized.js");
+/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
+/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ "../hillliu.github.io/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var smooth_scroll_to__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! smooth-scroll-to */ "./node_modules/smooth-scroll-to/build/es/src/index.js");
-/* harmony import */ var getoffset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! getoffset */ "./node_modules/getoffset/build/es/src/index.js");
+/* harmony import */ var smooth_scroll_to__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! smooth-scroll-to */ "../hillliu.github.io/node_modules/smooth-scroll-to/build/es/src/index.js");
+/* harmony import */ var getoffset__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! getoffset */ "../hillliu.github.io/node_modules/getoffset/build/es/src/index.js");
 /* harmony import */ var _src_index__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../src/index */ "./build/es/src/index.js");
 /* harmony import */ var _src_stores_scrollStore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../src/stores/scrollStore */ "./build/es/src/stores/scrollStore.js");
 /* harmony import */ var _src_stores_fastScrollStore__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../src/stores/fastScrollStore */ "./build/es/src/stores/fastScrollStore.js");
@@ -1200,17 +1219,20 @@ var Styles = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var reshow_runtime_es_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/extends */ "./node_modules/reshow-runtime/es/helpers/extends.js");
-/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "./node_modules/reshow-runtime/es/helpers/objectSpread2.js");
-/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "./node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "./node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var reshow_runtime_es_helpers_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/extends */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/extends.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/objectSpread2.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
+/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "../hillliu.github.io/node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "../hillliu.github.io/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _src_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../src/index */ "./build/es/src/index.js");
-/* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-atomic-molecule */ "./node_modules/react-atomic-molecule/build/es/src/index.js");
+/* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-atomic-molecule */ "../hillliu.github.io/node_modules/react-atomic-molecule/build/es/src/index.js");
 
 
 
+
+
+var _MenuItem, _MenuItem2, _MenuItem3;
 
 
 /**
@@ -1255,12 +1277,6 @@ var MenuItem = /*#__PURE__*/function (_Component) {
   return MenuItem;
 }(react__WEBPACK_IMPORTED_MODULE_4__["Component"]);
 
-var _ref = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(MenuItem, null);
-
-var _ref2 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(MenuItem, null);
-
-var _ref3 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(MenuItem, null);
-
 var Index = /*#__PURE__*/function (_Component2) {
   Object(reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_3__["default"])(Index, _Component2);
 
@@ -1276,21 +1292,21 @@ var Index = /*#__PURE__*/function (_Component2) {
       style: Styles.nav
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_src_index__WEBPACK_IMPORTED_MODULE_5__["SmoothScrollLink"], {
       scrollRefId: "nav-parent",
-      container: _ref,
+      container: _MenuItem || (_MenuItem = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(MenuItem, null)),
       targetId: "t1",
       style: {
         background: '#3498DB'
       }
     }, "test1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_src_index__WEBPACK_IMPORTED_MODULE_5__["SmoothScrollLink"], {
       scrollRefId: "nav-parent",
-      container: _ref2,
+      container: _MenuItem2 || (_MenuItem2 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(MenuItem, null)),
       targetId: "t2",
       style: {
         background: '#F1C40F'
       }
     }, "test2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(_src_index__WEBPACK_IMPORTED_MODULE_5__["SmoothScrollLink"], {
       scrollRefId: "nav-parent",
-      container: _ref3,
+      container: _MenuItem3 || (_MenuItem3 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(MenuItem, null)),
       targetId: "t3",
       style: {
         background: '#2ECC71'

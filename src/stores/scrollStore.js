@@ -44,24 +44,23 @@ class scrollStore extends ReduceStore {
 
   initEvent(el) {
     if ('undefined' !== typeof el) {
-      const self = this;
       if (el.addEventListener) {
         const supportsPassive = testForPassiveScroll();
         el.addEventListener(
           'scroll',
-          self.scrollMonitor,
+          this.scrollMonitor,
           supportsPassive ? {passive: true} : false,
         );
       } else {
-        el.attachEvent('onscroll', self.scrollMonitor);
+        el.attachEvent('onscroll', this.scrollMonitor);
       }
       setTimeout(() => {
         this.trigger(el);
         //for lazy content
         setTimeout(() => this.trigger(el), 777);
       });
-      if (!self.isInitResizeEvent) {
-        self.initResizeEvent();
+      if (!this.isInitResizeEvent) {
+        this.initResizeEvent();
       }
     }
   }
@@ -72,7 +71,7 @@ class scrollStore extends ReduceStore {
 
   handleResize() {
     keys(this.spys).forEach(scrollId =>
-      this.runScrollMonitor({target: {id: scrollId}}),
+      this.scrollMonitor({target: {id: scrollId}}),
     );
   }
 
@@ -94,6 +93,9 @@ class scrollStore extends ReduceStore {
     let margin;
     (this.spys[scrollId] || []).forEach(node => {
       const nodeEl = node.getOffsetEl();
+      if (!nodeEl) {
+          return;
+      }
       const {monitorScroll, scrollMargin} = get(node, ['props'], {});
       let pos = getOffset(nodeEl);
       if (monitorScroll) {

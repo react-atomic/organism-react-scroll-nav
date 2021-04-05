@@ -25,7 +25,7 @@
   "devDependencies": {
     "react": "^16.x",
     "react-dom": "^16.x",
-    "reshow-app": "^0.13.0-beta"
+    "reshow-app": "*"
   },
   "scripts": {
     "start": "ws",
@@ -39,7 +39,8 @@
     "build:es:src": "BABEL_ENV=es babel src -d build/es/src",
     "build:es:ui": "BABEL_ENV=es babel ui -d build/es/ui",
     "build": "npm run clean && npm run build:cjs && npm run build:es",
-    "mocha": "mocha -r jsdom-global/register 'build/cjs/**/__tests__/*.js'",
+    "mochaFor": "mocha -r jsdom-global/register",
+    "mocha": "npm run mochaFor -- 'build/cjs/**/__tests__/*.js'",
     "test": "npm run build && npm run mocha",
     "prepublishOnly": "npm run test"
   },
