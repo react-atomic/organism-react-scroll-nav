@@ -1,1 +1,0 @@
-{"version":3,"file":"16.88c2f81c308441208925.bundle.js","sources":["webpack:///../hillliu.github.io/node_modules/organism-react-ajax/build/es/src/worker.js?0cd6"],"sourcesContent":["export default function Worker_fn() {\n  return new Worker(__webpack_public_path__ + \"worker.bundle.worker.js\");\n}\n"],"mappings":";;;;;;;;;;AAAA;AAAA;AAAA;AACA;AACA;;;;;A","sourceRoot":""}
