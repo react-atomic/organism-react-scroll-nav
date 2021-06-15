@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + chunkId + "." + "c63d8999ba30810fe535" + ".bundle.js"
+/******/ 		return __webpack_require__.p + "" + chunkId + "." + "64662c372dede8422a30" + ".bundle.js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -716,13 +716,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _organisms_ScrollSpy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../organisms/ScrollSpy */ "./build/es/ui/organisms/ScrollSpy.js");
 /* harmony import */ var _organisms_ScrollReceiver__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../organisms/ScrollReceiver */ "./build/es/ui/organisms/ScrollReceiver.js");
 
+var _excluded = ["children"];
 
 
 
 
 var ScrollInfo = function ScrollInfo(_ref) {
   var children = _ref.children,
-      others = Object(reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, ["children"]);
+      others = Object(reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(_ref, _excluded);
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_organisms_ScrollSpy__WEBPACK_IMPORTED_MODULE_2__["default"], others, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_organisms_ScrollReceiver__WEBPACK_IMPORTED_MODULE_3__["default"], null, children));
 };
@@ -740,16 +741,20 @@ var ScrollInfo = function ScrollInfo(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "./node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "./node_modules/reshow-runtime/es/helpers/objectSpread2.js");
-/* harmony import */ var reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/inheritsLoose */ "./node_modules/reshow-runtime/es/helpers/inheritsLoose.js");
-/* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ "./node_modules/reshow-runtime/es/helpers/defineProperty.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var reshow_flux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-flux */ "./node_modules/reshow-flux/build/es/index.js");
-/* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-atomic-molecule */ "./node_modules/react-atomic-molecule/build/es/src/index.js");
-/* harmony import */ var _src_stores_scrollStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/stores/scrollStore */ "./build/es/src/stores/scrollStore.js");
-/* harmony import */ var _src_stores_fastScrollStore__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../src/stores/fastScrollStore */ "./build/es/src/stores/fastScrollStore.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ "./node_modules/reshow-runtime/es/helpers/objectSpread2.js");
+/* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ "./node_modules/reshow-runtime/es/helpers/objectWithoutPropertiesLoose.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var reshow_return__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-return */ "./node_modules/reshow-return/build/es/src/index.js");
+/* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-atomic-molecule */ "./node_modules/react-atomic-molecule/build/es/src/index.js");
+/* harmony import */ var reshow_constant__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-constant */ "./node_modules/reshow-constant/build/es/index.js");
+/* harmony import */ var _src_stores_scrollStore__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../src/stores/scrollStore */ "./build/es/src/stores/scrollStore.js");
+/* harmony import */ var _src_stores_fastScrollStore__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/stores/fastScrollStore */ "./build/es/src/stores/fastScrollStore.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+var _excluded = ["isScrollReceiver", "children", "noDelay", "targetId", "scrollMargin", "container"];
 
 
 
@@ -757,93 +762,69 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var ScrollReceiver = function ScrollReceiver(props) {
+  var isScrollReceiver = props.isScrollReceiver,
+      children = props.children,
+      noDelay = props.noDelay,
+      targetId = props.targetId,
+      scrollMargin = props.scrollMargin,
+      container = props.container,
+      resetProps = Object(reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(props, _excluded);
 
-
-
-var ScrollReceiver = /*#__PURE__*/function (_Component) {
-  Object(reshow_runtime_es_helpers_inheritsLoose__WEBPACK_IMPORTED_MODULE_2__["default"])(ScrollReceiver, _Component);
-
-  function ScrollReceiver() {
-    return _Component.apply(this, arguments) || this;
-  }
-
-  ScrollReceiver.getStores = function getStores(props) {
-    return props.noDelay ? [_src_stores_fastScrollStore__WEBPACK_IMPORTED_MODULE_8__["default"]] : [_src_stores_scrollStore__WEBPACK_IMPORTED_MODULE_7__["default"]];
-  };
-
-  ScrollReceiver.calculateState = function calculateState(prevState, props) {
-    var noDelay = props.noDelay,
-        targetId = props.targetId,
-        scrollMargin = props.scrollMargin;
-    var store = noDelay ? _src_stores_fastScrollStore__WEBPACK_IMPORTED_MODULE_8__["default"] : _src_stores_scrollStore__WEBPACK_IMPORTED_MODULE_7__["default"];
-    var state = store.getState();
-    var isShown = prevState && prevState.isShown || false;
-    var pos = store.getOffset(targetId, store.storeName) || {};
-    var scrollInfo = store.getMap('scroll');
+  var lastIsShown = Object(react__WEBPACK_IMPORTED_MODULE_2__["useRef"])();
+  var store = noDelay ? _src_stores_fastScrollStore__WEBPACK_IMPORTED_MODULE_7__["default"] : _src_stores_scrollStore__WEBPACK_IMPORTED_MODULE_6__["default"];
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(reshow_return__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    stores: [store],
+    initStates: ["scroll"]
+  }, function (_ref) {
+    var _ref$scroll = _ref.scroll,
+        scrollInfo = _ref$scroll === void 0 ? {} : _ref$scroll;
+    var activeId = store.getState().get("m" + scrollMargin);
     var scrollTop = scrollInfo.top;
+    var pos = store.getOffset(targetId, store.storeName) || {};
+    var isShown = lastIsShown.current || false;
 
     if (pos.isOnScreen) {
       isShown = true;
+      lastIsShown.current = true;
     }
 
-    var active = 'undefined' !== typeof targetId && targetId === state.get('m' + scrollMargin);
+    var active = reshow_constant__WEBPACK_IMPORTED_MODULE_5__["UNDEFINED"] !== _typeof(targetId) && targetId === activeId;
+
+    var targetInfo = Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])({}, pos), {}, {
+      active: active,
+      scrollTop: scrollTop,
+      scrollInfo: scrollInfo,
+      isShown: isShown,
+      targetId: targetId
+    });
 
     if (!isNaN(scrollMargin)) {
       store.addMargin(scrollMargin);
     }
 
-    return Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__["default"])({}, pos), {}, {
-      active: active,
-      scrollTop: scrollTop,
-      scrollInfo: scrollInfo,
-      isShown: isShown
-    });
-  };
-
-  var _proto = ScrollReceiver.prototype;
-
-  _proto.render = function render() {
-    var _this$props = this.props,
-        atom = _this$props.atom,
-        container = _this$props.container,
-        scrollMargin = _this$props.scrollMargin,
-        targetId = _this$props.targetId,
-        isScrollReceiver = _this$props.isScrollReceiver,
-        noDelay = _this$props.noDelay,
-        children = _this$props.children,
-        resetProps = Object(reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_0__["default"])(_this$props, ["atom", "container", "scrollMargin", "targetId", "isScrollReceiver", "noDelay", "children"]);
-
     if (!container) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_4___default.a.createElement(react_atomic_molecule__WEBPACK_IMPORTED_MODULE_6__["SemanticUI"], resetProps, children);
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement(react_atomic_molecule__WEBPACK_IMPORTED_MODULE_4__["SemanticUI"], resetProps, children);
     }
-
-    var targetInfo = Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__["default"])({}, this.state), {}, {
-      targetId: targetId
-    });
 
     var thisChildren = children;
 
-    if (!thisChildren && /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_4__["isValidElement"])(container)) {
+    if (!thisChildren && /*#__PURE__*/Object(react__WEBPACK_IMPORTED_MODULE_2__["isValidElement"])(container)) {
       thisChildren = container.props.children;
     }
 
-    return Object(react_atomic_molecule__WEBPACK_IMPORTED_MODULE_6__["build"])(container)(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_1__["default"])({}, resetProps), {}, {
+    return Object(react_atomic_molecule__WEBPACK_IMPORTED_MODULE_4__["build"])(container)(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])(Object(reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])({}, resetProps), {}, {
       targetInfo: targetInfo
     }), thisChildren);
-  };
+  });
+};
 
-  return ScrollReceiver;
-}(react__WEBPACK_IMPORTED_MODULE_4__["Component"]);
-
-Object(reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__["default"])(ScrollReceiver, "defaultProps", {
-  scrollMargin: 'default',
+ScrollReceiver.defaultProps = {
+  scrollMargin: "default",
   isScrollReceiver: true,
   noDelay: false
-});
-
-/* harmony default export */ __webpack_exports__["default"] = (Object(reshow_flux__WEBPACK_IMPORTED_MODULE_5__["connect"])(ScrollReceiver, {
-  withProps: true
-}));
+};
+/* harmony default export */ __webpack_exports__["default"] = (ScrollReceiver);
 
 /***/ }),
 
@@ -875,6 +856,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _SemanticUI;
 
+var _excluded = ["className", "monitorScroll", "children", "container", "noDelay"];
 
 
 
@@ -969,7 +951,7 @@ var ScrollSpy = /*#__PURE__*/function (_PureComponent) {
         children = _this$props.children,
         container = _this$props.container,
         noDelay = _this$props.noDelay,
-        others = Object(reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(_this$props, ["className", "monitorScroll", "children", "container", "noDelay"]);
+        others = Object(reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__["default"])(_this$props, _excluded);
 
     var isScrollReceiver = this.isScrollReceiver(children);
     var targetId = this.state.id;
@@ -1047,6 +1029,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+var _excluded = ["targetId", "scrollRefLoc", "scrollMargin", "scrollRefId", "style", "preventDefault"];
 
 
 
@@ -1172,7 +1155,7 @@ var SmoothScrollLink = /*#__PURE__*/function (_PureComponent) {
         scrollRefId = props.scrollRefId,
         style = props.style,
         preventDefault = props.preventDefault,
-        others = Object(reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__["default"])(props, ["targetId", "scrollRefLoc", "scrollMargin", "scrollRefId", "style", "preventDefault"]);
+        others = Object(reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__["default"])(props, _excluded);
 
     var scrollRefElement = this.state.scrollRefElement;
     var margin = this.getMargin(props, scrollRefElement);
@@ -1229,6 +1212,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var _MenuItem, _MenuItem2, _MenuItem3;
 
+var _excluded = ["targetInfo", "style"];
 
 /**
  * Production please use
@@ -1256,7 +1240,7 @@ var MenuItem = /*#__PURE__*/function (_Component) {
     var _this$props = this.props,
         targetInfo = _this$props.targetInfo,
         style = _this$props.style,
-        reset = Object(reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__["default"])(_this$props, ["targetInfo", "style"]);
+        reset = Object(reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_2__["default"])(_this$props, _excluded);
 
     var activeStyle = null;
 
