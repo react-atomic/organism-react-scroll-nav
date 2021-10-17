@@ -1,10 +1,11 @@
-import React, {PureComponent} from 'react';
-import smoothScrollTo from 'smooth-scroll-to';
-import getOffset from 'getoffset';
+import React, { useEffect, useState, useCallback, useRef } from "react";
+import smoothScrollTo from "smooth-scroll-to";
+import getOffset from "getoffset";
+import { doc } from "win-doc";
 
-import {ScrollReceiver} from '../../src/index';
-import scrollStore from '../../src/stores/scrollStore';
-import fastScrollStore from '../../src/stores/fastScrollStore';
+import { ScrollReceiver } from "../../src/index";
+import scrollStore from "../../src/stores/scrollStore";
+import fastScrollStore from "../../src/stores/fastScrollStore";
 
 let scollTimer = null;
 const resetTimer = () => {
@@ -14,34 +15,44 @@ const resetTimer = () => {
   }
 };
 
-class SmoothScrollLink extends PureComponent {
-  static defaultProps = {
-    scrollRefId: '',
-    scrollRefLoc: 'bottom',
-    preventDefault: true,
-    noDelay: false,
-  };
+const useSmoothScrollLink = (props) => {
+  const {
+    targetId,
+    scrollRefLoc = "bottom",
+    scrollRefId = "",
+    scrollMargin,
+    style,
+    preventDefault = true,
+    noDelay = false,
+    ...others
+  } = props;
 
-  state = {
-    scrollRefElement: null,
-  };
+  const [scrollRefElement, setScrollRefElement] = useState();
 
-  useStore() {
-    const {noDelay} = this.props;
-    return noDelay ? fastScrollStore : scrollStore;
-  }
+  useEffect(() => {
+    const oDoc = doc();
+    if (!oDoc.__null) {
+      const dom = oDoc.getElementById(scrollRefId);
+      if (dom) {
+        setScrollRefElement(dom);
+      }
+    }
+    return () => {
+      resetTimer();
+    };
+  });
 
-  getMargin(props, ref) {
-    const {scrollRefLoc, scrollMargin} = props;
+  const getMargin = useCallback(() => {
+    const ref = scrollRefElement;
     let margin = 0;
     if (ref) {
       const refOffset = getOffset(ref, false);
       switch (scrollRefLoc) {
-        case 'bottom':
+        case "bottom":
           margin += refOffset.bottom - refOffset.top;
           break;
         default:
-        case 'top':
+        case "top":
           break;
       }
     }
@@ -50,77 +61,65 @@ class SmoothScrollLink extends PureComponent {
     }
     margin--;
     return margin;
-  }
+  }, [scrollRefLoc, scrollMargin, scrollRefElement]);
 
-  handleClick = e => {
-    const props = this.props;
-    const store = this.useStore();
-    const {preventDefault, targetId} = props;
-    const {scrollRefElement} = this.state;
-    if (preventDefault) {
-      e.preventDefault();
-    }
-    resetTimer();
-    let offset = store.getOffset(targetId);
-    if (offset) {
-      let margin = this.getMargin(props, scrollRefElement);
-      scollTimer = true;
-      smoothScrollTo(offset.top - margin, null, null, () => {
-        if (true !== scollTimer) {
-          return;
-        }
-        scollTimer = setTimeout(() => {
-          margin = this.getMargin(props, scrollRefElement);
-          offset = store.getOffset(targetId);
-          smoothScrollTo(offset.top - margin, 100);
-        }, 500);
-      });
-    }
+  const getStore = () => (noDelay ? fastScrollStore : scrollStore);
+
+  const handler = {
+    click: (e) => {
+      const store = getStore();
+      if (preventDefault) {
+        e.preventDefault();
+      }
+      resetTimer();
+      let offset = store.getOffset(targetId);
+      if (offset) {
+        let margin = getMargin();
+        scollTimer = true;
+        smoothScrollTo(offset.top - margin, null, null, () => {
+          if (true !== scollTimer) {
+            return;
+          }
+          scollTimer = setTimeout(() => {
+            margin = getMargin();
+            offset = store.getOffset(targetId);
+            smoothScrollTo(offset.top - margin, 100);
+          }, 500);
+        });
+      }
+    },
   };
 
-  componentDidMount() {
-    const dom = document.getElementById(this.props.scrollRefId);
-    if (dom) {
-      this.setState({
-        scrollRefElement: dom,
-      });
-    }
-  }
+  const margin = getMargin();
 
-  componentWillUnmount() {
-    resetTimer();
-  }
+  return {
+    others,
+    handler,
+    targetId,
+    margin,
+    style,
+  };
+};
 
-  render() {
-    const props = this.props;
-    const {
-      targetId,
-      scrollRefLoc,
-      scrollMargin,
-      scrollRefId,
-      style,
-      preventDefault,
-      ...others
-    } = props;
-    const {scrollRefElement} = this.state;
-    const margin = this.getMargin(props, scrollRefElement);
-    return (
-      <ScrollReceiver
-        atom="a"
-        {...others}
-        targetId={targetId}
-        scrollMargin={margin}
-        style={{...Styles.link, ...style}}
-        onClick={this.handleClick}
-      />
-    );
-  }
-}
+const SmoothScrollLink = (props) => {
+  const { others, handler, margin, style, targetId } =
+    useSmoothScrollLink(props);
+  return (
+    <ScrollReceiver
+      atom="a"
+      {...others}
+      targetId={targetId}
+      scrollMargin={margin}
+      style={{ ...Styles.link, ...style }}
+      onClick={handler.click}
+    />
+  );
+};
 
 export default SmoothScrollLink;
 
 const Styles = {
   link: {
-    cursor: 'pointer',
+    cursor: "pointer",
   },
 };

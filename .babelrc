@@ -11,7 +11,12 @@
             "targets": ["last 2 versions", "ie >= 8"]
           }
         ],
-        "@babel/preset-react"
+        [
+          "@babel/preset-react",
+          {
+            "runtime": "automatic"
+          }
+        ]
       ],
       "plugins": [
         "add-module-exports",
@@ -34,6 +39,10 @@
         "@babel/plugin-transform-spread",
         "@babel/plugin-proposal-class-properties",
         ["@babel/plugin-proposal-private-methods", { "loose": false }],
+        [
+          "@babel/plugin-proposal-private-property-in-object",
+          { "loose": false }
+        ],
         "@babel/plugin-proposal-object-rest-spread"
       ]
     },
@@ -47,7 +56,12 @@
             "targets": ["last 2 versions", "ie >= 8"]
           }
         ],
-        "@babel/preset-react"
+        [
+          "@babel/preset-react",
+          {
+            "runtime": "automatic"
+          }
+        ]
       ],
       "plugins": [
         "transform-react-pure-class-to-function",
@@ -70,6 +84,10 @@
         "@babel/plugin-transform-spread",
         "@babel/plugin-proposal-class-properties",
         ["@babel/plugin-proposal-private-methods", { "loose": false }],
+        [
+          "@babel/plugin-proposal-private-property-in-object",
+          { "loose": false }
+        ],
         "@babel/plugin-proposal-object-rest-spread"
       ]
     }

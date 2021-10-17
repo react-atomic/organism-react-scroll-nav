@@ -6,16 +6,15 @@ import { UNDEFINED } from "reshow-constant";
 import scrollStore from "../../src/stores/scrollStore";
 import fastScrollStore from "../../src/stores/fastScrollStore";
 
-const ScrollReceiver = (props) => {
-  const {
-    isScrollReceiver,
-    children,
-    noDelay,
-    targetId,
-    scrollMargin,
-    container,
-    ...resetProps
-  } = props;
+const ScrollReceiver = ({
+  scrollMargin = "default",
+  isScrollReceiver = true,
+  noDelay = false,
+  children,
+  targetId,
+  container,
+  ...resetProps
+}) => {
   const lastIsShown = useRef();
   const store = noDelay ? fastScrollStore : scrollStore;
 
@@ -36,6 +35,7 @@ const ScrollReceiver = (props) => {
           active,
           scrollTop,
           scrollInfo,
+          scrollMargin,
           isShown,
           targetId,
         };
@@ -59,12 +59,6 @@ const ScrollReceiver = (props) => {
       }}
     </Return>
   );
-};
-
-ScrollReceiver.defaultProps = {
-  scrollMargin: "default",
-  isScrollReceiver: true,
-  noDelay: false,
 };
 
 export default ScrollReceiver;

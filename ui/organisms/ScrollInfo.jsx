@@ -1,10 +1,11 @@
-import React from 'react';
-import ScrollSpy from '../organisms/ScrollSpy';
-import ScrollReceiver from '../organisms/ScrollReceiver';
+import React from "react";
+import ScrollSpy from "../organisms/ScrollSpy";
+import ScrollReceiver from "../organisms/ScrollReceiver";
 
-const ScrollInfo = ({children, ...others}) =>
-<ScrollSpy {...others}>
+const ScrollInfo = ({ children, ...others }) => (
+  <ScrollSpy {...others}>
     <ScrollReceiver>{children}</ScrollReceiver>
-</ScrollSpy>
+  </ScrollSpy>
+);
 
 export default ScrollInfo;
