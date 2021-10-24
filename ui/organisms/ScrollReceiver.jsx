@@ -8,7 +8,6 @@ import fastScrollStore from "../../src/stores/fastScrollStore";
 
 const ScrollReceiver = ({
   scrollMargin = "default",
-  isScrollReceiver = true,
   noDelay = false,
   children,
   targetId,
@@ -60,5 +59,7 @@ const ScrollReceiver = ({
     </Return>
   );
 };
+
+ScrollReceiver.displayName = "ScrollReceiver";
 
 export default ScrollReceiver;

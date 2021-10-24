@@ -6,7 +6,12 @@ import React, {
   useCallback,
 } from "react";
 import get from "get-object-value";
-import { mixClass, build, SemanticUI } from "react-atomic-molecule";
+import {
+  mixClass,
+  build,
+  getDisplayName,
+  SemanticUI,
+} from "react-atomic-molecule";
 import { useDebounce } from "reshow-hooks";
 
 import scrollStore from "../../src/stores/scrollStore";
@@ -55,13 +60,38 @@ const useScrollSpy = (props) => {
     };
   }, []);
 
-  const hasScrollReceiver = useMemo(() => {
-    if (get(children, ["props", "isScrollReceiver"])) {
-      return true;
-    } else {
-      return false;
+  const warnDebounce = useDebounce((args) => {
+    // for lazy render component, that warn delay 1 secs.
+    if (!lastEl.current) {
+      console.warn(
+        'Please use SemanticUI. props.container -> import {SemanticUI} from "react-atomic-molecule"',
+        args
+      );
     }
-  }, [children]);
+  }, 1000);
+
+  const getOffsetEl = useCallback(() => {
+    if (lastEl.current) {
+      return lastEl.current;
+    } else {
+      warnDebounce({ thisClassName, nextContainer });
+    }
+  }, [thisClassName, nextContainer]);
+
+  const expose = {
+    getOffsetEl,
+    getId: () => lastConfig.current.id,
+    setId: setTargetId,
+    getAttachTo: () => lastConfig.current.attachTo,
+    setAttachTo: (attachTo) => (lastConfig.current.attachTo = attachTo),
+    getMonitorScroll: () => lastConfig.current.monitorScroll,
+    getScrollMargin: () => lastConfig.current.scrollMargin,
+  };
+
+  const hasScrollReceiver = useMemo(
+    () => ("ScrollReceiver" === getDisplayName(children) ? true : false),
+    [children]
+  );
 
   let nextContainer;
   let nextProps;
@@ -87,37 +117,6 @@ const useScrollSpy = (props) => {
       children,
     };
   }
-
-  const warnDebounce = useDebounce(
-    (args) => {
-      // for lazy render component, that warn delay 1 secs.
-      if (!lastEl.current) {
-        console.warn(
-          'Please use SemanticUI. props.container -> import {SemanticUI} from "react-atomic-molecule"',
-          args
-        );
-      }
-    },
-    1000
-  );
-
-  const getOffsetEl = useCallback(()=>{
-      if (lastEl.current) {
-        return lastEl.current;
-      } else {
-       warnDebounce({thisClassName, nextContainer});
-      }
-  }, [thisClassName, nextContainer]);
-
-  const expose = {
-    getOffsetEl,
-    getId: () => lastConfig.current.id,
-    setId: setTargetId,
-    getAttachTo: () => lastConfig.current.attachTo,
-    setAttachTo: (attachTo) => (lastConfig.current.attachTo = attachTo),
-    getMonitorScroll: () => lastConfig.current.monitorScroll,
-    getScrollMargin: () => lastConfig.current.scrollMargin,
-  };
 
   return { nextContainer, nextProps };
 };

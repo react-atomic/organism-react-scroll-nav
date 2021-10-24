@@ -46,8 +46,6 @@ watch(){
     stop 
     npm run build:es:ui -- --watch &
     npm run build:es:src -- --watch &
-    sleep 10 
-    CONFIG=$conf $webpack --watch &
 }
 
 
