@@ -1,0 +1,18 @@
+{
+  "chunks": {
+    "main": [
+      {
+        "name": "main.bundle.js",
+        "publicPath": "./assets/main.bundle.js?c9b221cae9e9b932f6ae"
+      }
+    ],
+    "vendor": [
+      {
+        "name": "vendor.bundle.js",
+        "publicPath": "./assets/vendor.bundle.js?c9b221cae9e9b932f6ae"
+      }
+    ]
+  },
+  "publicPath": "./assets/",
+  "status": "done"
+}
