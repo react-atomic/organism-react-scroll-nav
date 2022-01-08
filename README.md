@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/react-atomic/organism-react-scroll-nav/tree/main.svg?style=svg)](https://circleci.com/gh/react-atomic/organism-react-scroll-nav/tree/main)
+
 React Scroll Spy Library (organism-react-scroll-nav) 
 ===============
    * GIT
