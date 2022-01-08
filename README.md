@@ -8,7 +8,7 @@ React Scroll Spy Library (organism-react-scroll-nav)
       * https://www.npmjs.com/package/organism-react-scroll-nav
 
 ## Example Usage
-* Code: https://github.com/react-atomic/organism-react-scroll-nav/blob/master/ui/pages/index.jsx
+* Code: https://github.com/react-atomic/organism-react-scroll-nav/blob/main/ui/pages/index.jsx
 
 ### Live Demo Url
 * https://react-atomic.github.io/organism-react-scroll-nav
