@@ -4,39 +4,26 @@ import React, { Component } from "react";
  * Production please use
  * import {xxx} from 'organism-react-scroll-nav';
  */
-import {
-  ScrollSpy,
-  ScrollReceiver,
-  SmoothScrollLink,
-  scrollDispatch,
-} from "../../src/index";
-
-/*Test only*/
-scrollDispatch({
-  scrollMargin: 100,
-});
+import { ScrollSpy, ScrollReceiver, SmoothScrollLink } from "../../src/index";
 
 import { reactStyle, injectStyle } from "react-atomic-molecule";
 
-class MenuItem extends Component {
-  render() {
-    const { targetInfo, style, ...reset } = this.props;
-    let activeStyle = null;
-    if (targetInfo.active) {
-      activeStyle = Styles.active;
-    }
-    return (
-      <div
-        style={{
-          ...Styles.link,
-          ...style,
-          ...activeStyle,
-        }}
-        {...reset}
-      />
-    );
+const MenuItem = ({ targetInfo, style, ...reset }) => {
+  let activeStyle = null;
+  if (targetInfo.active) {
+    activeStyle = Styles.active;
   }
-}
+  return (
+    <div
+      style={{
+        ...Styles.link,
+        ...style,
+        ...activeStyle,
+      }}
+      {...reset}
+    />
+  );
+};
 
 class Index extends Component {
   render() {

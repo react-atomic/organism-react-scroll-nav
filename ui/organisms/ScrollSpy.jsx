@@ -53,10 +53,10 @@ const useScrollSpy = (props) => {
 
   useEffect(() => {
     const store = noDelay ? fastScrollStore : scrollStore;
-    const id = store.attach(expose);
+    const id = store.scroller.attach(expose);
     setTargetId(id);
     return () => {
-      store.detach(expose);
+      store.scroller.detach(expose);
     };
   }, []);
 
@@ -97,7 +97,7 @@ const useScrollSpy = (props) => {
   let nextProps;
   const allProps = {
     ...others,
-    refCb: (el) => (lastEl.current = el),
+    refCb: (el) => el && (lastEl.current = el),
     className: thisClassName,
     id: targetId,
   };

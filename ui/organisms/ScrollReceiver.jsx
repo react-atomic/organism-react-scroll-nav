@@ -18,11 +18,11 @@ const ScrollReceiver = ({
   const store = noDelay ? fastScrollStore : scrollStore;
 
   return (
-    <Return stores={[store]} initStates={["scroll"]}>
+    <Return store={store} initStates={["scroll"]}>
       {({ scroll: scrollInfo = {} }) => {
         const activeId = store.getState().get("m" + scrollMargin);
         const scrollTop = scrollInfo.top;
-        const pos = store.getOffset(targetId, store.storeName) || {};
+        const pos = store.scroller.getOffset(targetId, store.storeName) || {};
         let isShown = lastIsShown.current || false;
         if (pos.isOnScreen) {
           isShown = true;
@@ -39,7 +39,7 @@ const ScrollReceiver = ({
           targetId,
         };
         if (!isNaN(scrollMargin)) {
-          store.addMargin(scrollMargin);
+          store.scroller.addMargin(scrollMargin);
         }
         if (!container) {
           return <SemanticUI {...resetProps}>{children}</SemanticUI>;

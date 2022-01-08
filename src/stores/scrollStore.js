@@ -1,4 +1,4 @@
-import { ReduceStore, Set, Map } from "reshow-flux";
+import { mergeMap, Set, Map, ImmutableStore } from "reshow-flux";
 import getScrollInfo from "get-scroll-info";
 import { isOnScreen } from "get-window-offset";
 import getOffset from "getoffset";
@@ -7,30 +7,16 @@ import { KEYS } from "reshow-constant";
 import callfunc, { debounce } from "call-func";
 import { win } from "win-doc";
 
-import dispatcher, { scrollDispatch } from "../scrollDispatcher";
 import testForPassiveScroll from "../testForPassiveScroll";
 
 let incNum = 0;
 const DEFAULT_SCROLL_ID = -1;
 
-class scrollStore extends ReduceStore {
+class Scroller {
   storeName = "delayScroll";
   isInitEvent = {};
   isInitResizeEvent = false;
   spys = {};
-
-  getInitialState() {
-    this.trigger = this.triggerScroll.bind(this);
-    this.arrNode = Map();
-    this.margins = Set();
-    this.scrollMonitor = this.runScrollMonitor.bind(this);
-    this.scrollDebounce = debounce(this.trigger);
-    this.bindHandleResize = this.handleResize.bind(this);
-    return Map({
-      scrollDelay: 50,
-      scrollMargin: 0,
-    });
-  }
 
   initResizeEvent() {
     const oWin = win();
@@ -82,17 +68,17 @@ class scrollStore extends ReduceStore {
   }
 
   runScrollMonitor(e) {
-    const delay = this.getState().get("scrollDelay");
+    const delay = this.store.getState().get("scrollDelay");
     this.scrollDebounce({ delay, args: [e?.target] });
   }
 
   triggerScroll(scrollNode) {
     const scrollId = get(scrollNode, ["id"]) || DEFAULT_SCROLL_ID;
-    const defaultMargin = this.getState().get("scrollMargin");
+    const defaultMargin = this.store.getState().get("scrollMargin");
     const actives = { mdefault: null };
     const offsetCache = {};
     const arrMonitorScroll = [];
-    let scroll = getScrollInfo();
+    const scroll = getScrollInfo();
     let scrollTop = scroll.top + defaultMargin;
     let margin;
     (this.spys[scrollId] || []).forEach((node) => {
@@ -114,21 +100,23 @@ class scrollStore extends ReduceStore {
       pos = isOnScreen(pos, scroll, margin);
       offsetCache[nodeId] = pos;
     });
+    const allMonitorNodeLen = arrMonitorScroll.length;
     this.margins.forEach((margin) => {
       scrollTop = scroll.top + margin;
       actives["m" + margin] = null;
-      arrMonitorScroll.every((node) => {
+      let i = allMonitorNodeLen;
+      while(i--) {
+        const node = arrMonitorScroll[i];
         const nodeId = this.getNodeId(node);
         const pos = offsetCache[nodeId];
-        if (scrollTop >= pos.top && scrollTop < pos.bottom - 1) {
+        if (scrollTop >= pos.top && scrollTop <= pos.bottom - 1) {
           actives["m" + margin] = nodeId;
-          return false;
+          break;
         }
-        return true;
-      });
+      }
     });
     this.margins = this.margins.clear();
-    scrollDispatch({
+    this.dispatch({
       ...actives,
       nodes: offsetCache,
       scroll,
@@ -143,7 +131,7 @@ class scrollStore extends ReduceStore {
   }
 
   getOffset(id, callName) {
-    const nodes = this.getMap("nodes");
+    const nodes = this.store.getMap("nodes");
     return nodes[id];
   }
 
@@ -228,15 +216,34 @@ class scrollStore extends ReduceStore {
     this.margins = this.margins.remove(num);
   }
 
+  getInitialState() {
+    this.trigger = this.triggerScroll.bind(this);
+    this.arrNode = Map();
+    this.margins = Set();
+    this.scrollMonitor = this.runScrollMonitor.bind(this);
+    this.scrollDebounce = debounce(this.trigger);
+    this.bindHandleResize = this.handleResize.bind(this);
+    return Map({
+      scrollDelay: 50,
+      scrollMargin: 0,
+    });
+  }
+
   reduce(state, action) {
-    const storeName = get(action, ["storeName"], "delayScroll");
-    if (storeName === this.storeName) {
-      return this.mergeMap(state, action);
-    } else {
-      return state;
-    }
+    return mergeMap(state, action);
   }
 }
 
-export default new scrollStore(dispatcher);
-export { scrollStore };
+const oDelayScroller = new Scroller();
+
+const [store, delayScrollDispatch] = ImmutableStore(
+  oDelayScroller.reduce.bind(oDelayScroller),
+  oDelayScroller.getInitialState.bind(oDelayScroller)
+);
+
+store.scroller = oDelayScroller;
+oDelayScroller.dispatch = delayScrollDispatch;
+oDelayScroller.store = store;
+
+export default store;
+export { Scroller };

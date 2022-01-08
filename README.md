@@ -18,11 +18,6 @@ React Scroll Spy Library (organism-react-scroll-nav)
 
 Go to http://localhost:3000
 
-## Change global delay
-```
-import { scrollDispatch  } from 'organism-react-scroll-nav';
-scrollDispatch({scrollDelay: 0});
-```
 
 
 

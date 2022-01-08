@@ -1,8 +1,7 @@
-import dispatcher from "../scrollDispatcher";
-import { scrollStore } from "./scrollStore";
-import get from "get-object-value";
+import { ImmutableStore } from "reshow-flux";
+import { Scroller } from "./scrollStore";
 
-class fastScrollStore extends scrollStore {
+class FastScroller extends Scroller {
   storeName = "fastScroll";
 
   runScrollMonitor(e) {
@@ -10,4 +9,15 @@ class fastScrollStore extends scrollStore {
   }
 }
 
-export default new fastScrollStore(dispatcher);
+const oFastScroller = new FastScroller();
+
+const [store, fastScrollDispatch] = ImmutableStore(
+  oFastScroller.reduce.bind(oFastScroller),
+  oFastScroller.getInitialState.bind(oFastScroller)
+);
+
+store.scroller = oFastScroller;
+oFastScroller.dispatch = fastScrollDispatch;
+oFastScroller.store = store;
+
+export default store;

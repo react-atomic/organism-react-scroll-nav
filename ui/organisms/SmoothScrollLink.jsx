@@ -72,7 +72,7 @@ const useSmoothScrollLink = (props) => {
         e.preventDefault();
       }
       resetTimer();
-      let offset = store.getOffset(targetId);
+      let offset = store.scroller.getOffset(targetId);
       if (offset) {
         let margin = getMargin();
         scollTimer = true;
@@ -82,7 +82,7 @@ const useSmoothScrollLink = (props) => {
           }
           scollTimer = setTimeout(() => {
             margin = getMargin();
-            offset = store.getOffset(targetId);
+            offset = store.scroller.getOffset(targetId);
             smoothScrollTo(offset.top - margin, 100);
           }, 500);
         });
