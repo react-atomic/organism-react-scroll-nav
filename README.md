@@ -20,6 +20,19 @@ React Scroll Spy Library (organism-react-scroll-nav)
 
 Go to http://localhost:3000
 
+## dispatch
+
+### fast store
+```js
+import {fastScrollStore} from "organism-react-scroll-nav";
+fastScrollStore.scroller.dispatch(/* xxx */);
+```
+
+### slow store
+```js
+import {scrollStore} from "organism-react-scroll-nav";
+scrollStore.scroller.dispatch(/* xxx */);
+```
 
 
 
