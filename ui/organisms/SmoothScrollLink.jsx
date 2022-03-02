@@ -84,7 +84,7 @@ const useSmoothScrollLink = (props) => {
             margin = getMargin();
             offset = store.scroller.getOffset(targetId);
             smoothScrollTo(offset.top - margin, 100);
-          }, 500);
+          }, 1200);
         });
       }
     },

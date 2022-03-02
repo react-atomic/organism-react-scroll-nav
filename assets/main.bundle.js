@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + chunkId + "." + "c9b221cae9e9b932f6ae" + ".bundle.js"
+/******/ 		return __webpack_require__.p + "" + chunkId + "." + "5f36fd1fcaf1eb6bd5cc" + ".bundle.js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -1107,7 +1107,7 @@ var useSmoothScrollLink = function useSmoothScrollLink(props) {
             _margin = getMargin();
             offset = store.scroller.getOffset(targetId);
             Object(smooth_scroll_to__WEBPACK_IMPORTED_MODULE_3__["default"])(offset.top - _margin, 100);
-          }, 500);
+          }, 1200);
         });
       }
     }
