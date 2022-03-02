@@ -64,7 +64,7 @@
 /******/
 /******/ 	// script path function
 /******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + chunkId + "." + "5f36fd1fcaf1eb6bd5cc" + ".bundle.js"
+/******/ 		return __webpack_require__.p + "" + chunkId + "." + "d7ae2f91dba554252cea" + ".bundle.js"
 /******/ 	}
 /******/
 /******/ 	// The require function
@@ -1052,7 +1052,7 @@ var useSmoothScrollLink = function useSmoothScrollLink(props) {
     return function () {
       resetTimer();
     };
-  });
+  }, []);
   var getMargin = Object(react__WEBPACK_IMPORTED_MODULE_2__["useCallback"])(function () {
     var ref = scrollRefElement;
     var margin = 0;
@@ -1097,17 +1097,12 @@ var useSmoothScrollLink = function useSmoothScrollLink(props) {
       if (offset) {
         var _margin = getMargin();
 
-        scollTimer = true;
         Object(smooth_scroll_to__WEBPACK_IMPORTED_MODULE_3__["default"])(offset.top - _margin, null, null, function () {
-          if (true !== scollTimer) {
-            return;
-          }
-
           scollTimer = setTimeout(function () {
             _margin = getMargin();
             offset = store.scroller.getOffset(targetId);
             Object(smooth_scroll_to__WEBPACK_IMPORTED_MODULE_3__["default"])(offset.top - _margin, 100);
-          }, 1200);
+          }, 500);
         });
       }
     }

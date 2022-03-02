@@ -40,7 +40,7 @@ const useSmoothScrollLink = (props) => {
     return () => {
       resetTimer();
     };
-  });
+  }, []);
 
   const getMargin = useCallback(() => {
     const ref = scrollRefElement;
@@ -75,16 +75,12 @@ const useSmoothScrollLink = (props) => {
       let offset = store.scroller.getOffset(targetId);
       if (offset) {
         let margin = getMargin();
-        scollTimer = true;
         smoothScrollTo(offset.top - margin, null, null, () => {
-          if (true !== scollTimer) {
-            return;
-          }
           scollTimer = setTimeout(() => {
             margin = getMargin();
             offset = store.scroller.getOffset(targetId);
             smoothScrollTo(offset.top - margin, 100);
-          }, 1200);
+          }, 500);
         });
       }
     },
