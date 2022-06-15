@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import smoothScrollTo from "smooth-scroll-to";
 import getOffset from "getoffset";
-import { doc } from "win-doc";
+import callfunc from "call-func";
+import { doc, win } from "win-doc";
 
 import { ScrollReceiver } from "../../src/index";
 import scrollStore from "../../src/stores/scrollStore";
@@ -24,10 +25,27 @@ const useSmoothScrollLink = (props) => {
     style,
     preventDefault = true,
     noDelay = false,
+    onClick,
     ...others
   } = props;
 
   const [scrollRefElement, setScrollRefElement] = useState();
+
+  const scrollTo = (lazyScrollTime = 500) => {
+      resetTimer();
+      const store = getStore();
+      let offset = store.scroller.getOffset(targetId);
+      if (offset) {
+        let margin = getMargin();
+        smoothScrollTo(offset.top - margin, null, null, () => {
+          scollTimer = setTimeout(() => {
+            margin = getMargin();
+            offset = store.scroller.getOffset(targetId);
+            smoothScrollTo(offset.top - margin, 100);
+          }, lazyScrollTime);
+        });
+      }
+  };
 
   useEffect(() => {
     const oDoc = doc();
@@ -35,6 +53,9 @@ const useSmoothScrollLink = (props) => {
       const dom = oDoc.getElementById(scrollRefId);
       if (dom) {
         setScrollRefElement(dom);
+      }
+      if (win().location.hash?.substring(1) === targetId) {
+        setTimeout(()=>scrollTo(1000), 1000);
       }
     }
     return () => {
@@ -65,24 +86,14 @@ const useSmoothScrollLink = (props) => {
 
   const getStore = () => (noDelay ? fastScrollStore : scrollStore);
 
+
   const handler = {
     click: (e) => {
-      const store = getStore();
       if (preventDefault) {
         e.preventDefault();
       }
-      resetTimer();
-      let offset = store.scroller.getOffset(targetId);
-      if (offset) {
-        let margin = getMargin();
-        smoothScrollTo(offset.top - margin, null, null, () => {
-          scollTimer = setTimeout(() => {
-            margin = getMargin();
-            offset = store.scroller.getOffset(targetId);
-            smoothScrollTo(offset.top - margin, 100);
-          }, 500);
-        });
-      }
+      callfunc(onClick);
+      scrollTo();
     },
   };
 
@@ -111,7 +122,6 @@ const SmoothScrollLink = (props) => {
     />
   );
 };
-
 export default SmoothScrollLink;
 
 const Styles = {
