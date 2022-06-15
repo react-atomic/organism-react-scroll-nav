@@ -831,7 +831,7 @@ var useSmoothScrollLink = function useSmoothScrollLink(props) {
       scrollRefElement = _useState[0],
       setScrollRefElement = _useState[1];
 
-  var scrollTo = function scrollTo(lazyScrollTime) {
+  var scrollTo = function scrollTo(lazyScrollTime, duringTime) {
     if (lazyScrollTime === void 0) {
       lazyScrollTime = 500;
     }
@@ -843,12 +843,12 @@ var useSmoothScrollLink = function useSmoothScrollLink(props) {
     if (offset) {
       var _margin = getMargin();
 
-      (0,smooth_scroll_to__WEBPACK_IMPORTED_MODULE_3__["default"])(offset.top - _margin, null, null, function () {
-        scollTimer = setTimeout(function () {
-          _margin = getMargin();
-          offset = store.scroller.getOffset(targetId);
-          (0,smooth_scroll_to__WEBPACK_IMPORTED_MODULE_3__["default"])(offset.top - _margin, 100);
-        }, lazyScrollTime);
+      (0,smooth_scroll_to__WEBPACK_IMPORTED_MODULE_3__["default"])(offset.top - _margin, duringTime, null, function () {
+        if (false !== lazyScrollTime) {
+          scollTimer = setTimeout(function () {
+            return scrollTo(false, 100);
+          }, lazyScrollTime);
+        }
       });
     }
   };
@@ -1242,7 +1242,7 @@ var Styles = {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("bd37fbace3543dcd9150")
+/******/ 		__webpack_require__.h = () => ("6e20c0d14bd935b58fbe")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
