@@ -42,11 +42,11 @@ class Scroller {
       } else {
         el.attachEvent("onscroll", this.scrollMonitor);
       }
-      setTimeout(() => {
-        this.trigger(el);
+      this.initTimer = setInterval(
         //for lazy content
-        setTimeout(() => this.trigger(el), 777);
-      });
+        () => this.trigger(el),
+        300
+      );
       if (!this.isInitResizeEvent) {
         this.initResizeEvent();
       }
@@ -68,6 +68,7 @@ class Scroller {
   }
 
   runScrollMonitor(e) {
+    this.clearInitTimer();
     const delay = this.store.getState().get("scrollDelay");
     this.scrollDebounce({ delay, args: [e?.target] });
   }
@@ -105,7 +106,7 @@ class Scroller {
       scrollTop = scroll.top + margin;
       actives["m" + margin] = null;
       let i = allMonitorNodeLen;
-      while(i--) {
+      while (i--) {
         const node = arrMonitorScroll[i];
         const nodeId = this.getNodeId(node);
         const pos = offsetCache[nodeId];
@@ -216,7 +217,15 @@ class Scroller {
     this.margins = this.margins.remove(num);
   }
 
+  clearInitTimer() {
+    if (this.initTimer) {
+      clearInterval(this.initTimer);
+      this.initTimer = null;
+    }
+  }
+
   getInitialState() {
+    this.initTimer = null;
     this.trigger = this.triggerScroll.bind(this);
     this.arrNode = Map();
     this.margins = Set();

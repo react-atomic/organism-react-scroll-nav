@@ -91,7 +91,7 @@ const useSmoothScrollLink = (props) => {
         e.preventDefault();
       }
       callfunc(onClick);
-      scrollTo();
+      setTimeout(scrollTo);
     },
   };
 
