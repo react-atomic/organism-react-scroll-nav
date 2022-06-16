@@ -196,9 +196,16 @@ var Scroller = /*#__PURE__*/function () {
           el.attachEvent("onscroll", this.scrollMonitor);
         }
 
+        var i = 0;
         this.initTimer = setInterval( //for lazy content
         function () {
-          return _this.trigger(el);
+          _this.trigger(el);
+
+          i++;
+
+          if (i > 20) {
+            _this.clearInitTimer();
+          }
         }, 300);
 
         if (!this.isInitResizeEvent) {
@@ -231,7 +238,6 @@ var Scroller = /*#__PURE__*/function () {
   }, {
     key: "runScrollMonitor",
     value: function runScrollMonitor(e) {
-      this.clearInitTimer();
       var delay = this.store.getState().get("scrollDelay");
       this.scrollDebounce({
         delay: delay,
@@ -1248,7 +1254,7 @@ var Styles = {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("937c63a4e8bd50d6bffa")
+/******/ 		__webpack_require__.h = () => ("bf741e3bcaea53491ffa")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */

@@ -42,9 +42,16 @@ class Scroller {
       } else {
         el.attachEvent("onscroll", this.scrollMonitor);
       }
+      let i = 0;
       this.initTimer = setInterval(
         //for lazy content
-        () => this.trigger(el),
+        () => {
+          this.trigger(el);
+          i++;
+          if (i > 20) {
+            this.clearInitTimer();
+          }
+        },
         300
       );
       if (!this.isInitResizeEvent) {
@@ -68,7 +75,6 @@ class Scroller {
   }
 
   runScrollMonitor(e) {
-    this.clearInitTimer();
     const delay = this.store.getState().get("scrollDelay");
     this.scrollDebounce({ delay, args: [e?.target] });
   }
