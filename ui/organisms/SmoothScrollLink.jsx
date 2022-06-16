@@ -2,7 +2,8 @@ import { useEffect, useState, useCallback, useRef } from "react";
 import smoothScrollTo from "smooth-scroll-to";
 import getOffset from "getoffset";
 import callfunc from "call-func";
-import { doc, win } from "win-doc";
+import { doc } from "win-doc";
+import { getAnchorPath } from "reshow-url";
 
 import { ScrollReceiver } from "../../src/index";
 import scrollStore from "../../src/stores/scrollStore";
@@ -32,17 +33,17 @@ const useSmoothScrollLink = (props) => {
   const [scrollRefElement, setScrollRefElement] = useState();
 
   const scrollTo = (lazyScrollTime = 500, duringTime) => {
-      resetTimer();
-      const store = getStore();
-      const offset = store.scroller.getOffset(targetId);
-      if (offset) {
-        const margin = getMargin();
-        smoothScrollTo(offset.top - margin, duringTime, null, () => {
-          if (false !== lazyScrollTime) {
-            scollTimer = setTimeout(() =>scrollTo(false, 100), lazyScrollTime);
-          }
-        });
-      }
+    resetTimer();
+    const store = getStore();
+    const offset = store.scroller.getOffset(targetId);
+    if (offset) {
+      const margin = getMargin();
+      smoothScrollTo(offset.top - margin, duringTime, null, () => {
+        if (false !== lazyScrollTime) {
+          scollTimer = setTimeout(() => scrollTo(false, 100), lazyScrollTime);
+        }
+      });
+    }
   };
 
   useEffect(() => {
@@ -52,8 +53,8 @@ const useSmoothScrollLink = (props) => {
       if (dom) {
         setScrollRefElement(dom);
       }
-      if (win().location.hash?.substring(1) === targetId) {
-        setTimeout(()=>scrollTo(1000), 1000);
+      if (getAnchorPath().anchor.substring(1) === targetId) {
+        setTimeout(() => scrollTo(1000), 1000);
       }
     }
     return () => {
@@ -83,7 +84,6 @@ const useSmoothScrollLink = (props) => {
   }, [scrollRefLoc, scrollMargin, scrollRefElement]);
 
   const getStore = () => (noDelay ? fastScrollStore : scrollStore);
-
 
   const handler = {
     click: (e) => {

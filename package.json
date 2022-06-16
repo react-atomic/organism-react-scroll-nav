@@ -1,5 +1,5 @@
 {
-  "version": "0.16.6",
+  "version": "0.16.8",
   "name": "organism-react-scroll-nav",
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "react-atomic-molecule": "*",
     "reshow-hooks": "*",
     "reshow-return": "*",
+    "reshow-url": "*",
     "smooth-scroll-to": "*"
   },
   "devDependencies": {

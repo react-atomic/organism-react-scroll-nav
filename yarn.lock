@@ -6499,6 +6499,18 @@ reshow-unit@^0.17.x:
     reshow-unit-dom "*"
     win-doc "*"
 
+reshow-url@*:
+  version "0.17.14"
+  resolved "https://registry.yarnpkg.com/reshow-url/-/reshow-url-0.17.14.tgz#87cbf1da232e4e30748d4f2305c30954a601add6"
+  integrity sha512-RhR4gnPw+9OdStkDyHx2zZTGku2MuRK8KKxlWhxcjUID+r1oj25T34rx6EEe8WK+whgBFZQgbVwrWOH9fNOFjw==
+  dependencies:
+    array.dedup "*"
+    organism-react-ajax "*"
+    reshow "^0.17.x"
+    reshow-flux "^0.17.x"
+    reshow-runtime "*"
+    win-doc "*"
+
 reshow-url@^0.17.x:
   version "0.17.11"
   resolved "https://registry.yarnpkg.com/reshow-url/-/reshow-url-0.17.11.tgz#d621d8636acf7014d5412788b20c781addbe274c"

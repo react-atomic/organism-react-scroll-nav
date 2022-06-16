@@ -2,21 +2,21 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 222:
+/***/ 226:
 /*!*********************************!*\
   !*** ./build/es/src/client.mjs ***!
   \*********************************/
 /***/ ((__unused_webpack___webpack_module__, __unused_webpack___webpack_exports__, __webpack_require__) => {
 
-/* harmony import */ var reshow_app_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-app/client */ 223);
-/* harmony import */ var _ui_pages_index_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ui/pages/index.mjs */ 325);
+/* harmony import */ var reshow_app_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-app/client */ 227);
+/* harmony import */ var _ui_pages_index_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ui/pages/index.mjs */ 327);
 
 
 /* unused harmony default export */ var __WEBPACK_DEFAULT_EXPORT__ = ((0,reshow_app_client__WEBPACK_IMPORTED_MODULE_0__["default"])(_ui_pages_index_mjs__WEBPACK_IMPORTED_MODULE_1__["default"]));
 
 /***/ }),
 
-/***/ 145:
+/***/ 149:
 /*!********************************!*\
   !*** ./build/es/src/index.mjs ***!
   \********************************/
@@ -28,11 +28,11 @@
 /* harmony export */   "SmoothScrollLink": () => (/* reexport safe */ _ui_organisms_SmoothScrollLink_mjs__WEBPACK_IMPORTED_MODULE_5__["default"])
 /* harmony export */ });
 /* harmony import */ var _stores_scrollStore_mjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./stores/scrollStore.mjs */ 40);
-/* harmony import */ var _stores_fastScrollStore_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stores/fastScrollStore.mjs */ 47);
-/* harmony import */ var _ui_organisms_ScrollSpy_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ui/organisms/ScrollSpy.mjs */ 108);
-/* harmony import */ var _ui_organisms_ScrollReceiver_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ui/organisms/ScrollReceiver.mjs */ 109);
-/* harmony import */ var _ui_organisms_ScrollInfo_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ui/organisms/ScrollInfo.mjs */ 327);
-/* harmony import */ var _ui_organisms_SmoothScrollLink_mjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ui/organisms/SmoothScrollLink.mjs */ 221);
+/* harmony import */ var _stores_fastScrollStore_mjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stores/fastScrollStore.mjs */ 49);
+/* harmony import */ var _ui_organisms_ScrollSpy_mjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../ui/organisms/ScrollSpy.mjs */ 111);
+/* harmony import */ var _ui_organisms_ScrollReceiver_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../ui/organisms/ScrollReceiver.mjs */ 112);
+/* harmony import */ var _ui_organisms_ScrollInfo_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../ui/organisms/ScrollInfo.mjs */ 329);
+/* harmony import */ var _ui_organisms_SmoothScrollLink_mjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../ui/organisms/SmoothScrollLink.mjs */ 225);
 // Stores
 
  // UI
@@ -44,7 +44,7 @@
 
 /***/ }),
 
-/***/ 47:
+/***/ 49:
 /*!*************************************************!*\
   !*** ./build/es/src/stores/fastScrollStore.mjs ***!
   \*************************************************/
@@ -55,7 +55,7 @@
 /* harmony export */ });
 /* harmony import */ var reshow_runtime_es_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/classCallCheck */ 14);
 /* harmony import */ var reshow_runtime_es_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/createClass */ 15);
-/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ 24);
+/* harmony import */ var reshow_runtime_es_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/assertThisInitialized */ 25);
 /* harmony import */ var reshow_runtime_es_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/inherits */ 19);
 /* harmony import */ var reshow_runtime_es_helpers_createSuper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reshow-runtime/es/helpers/createSuper */ 20);
 /* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ 13);
@@ -129,14 +129,14 @@ oFastScroller.store = store;
 /* harmony import */ var reshow_runtime_es_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reshow-runtime/es/helpers/createClass */ 15);
 /* harmony import */ var reshow_runtime_es_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-runtime/es/helpers/defineProperty */ 13);
 /* harmony import */ var reshow_flux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reshow-flux */ 16);
-/* harmony import */ var get_scroll_info__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! get-scroll-info */ 30);
-/* harmony import */ var get_window_offset__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! get-window-offset */ 141);
-/* harmony import */ var getoffset__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! getoffset */ 32);
+/* harmony import */ var get_scroll_info__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! get-scroll-info */ 32);
+/* harmony import */ var get_window_offset__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! get-window-offset */ 145);
+/* harmony import */ var getoffset__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! getoffset */ 28);
 /* harmony import */ var get_object_value__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! get-object-value */ 6);
 /* harmony import */ var reshow_constant__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! reshow-constant */ 1);
 /* harmony import */ var call_func__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! call-func */ 7);
-/* harmony import */ var win_doc__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! win-doc */ 10);
-/* harmony import */ var _testForPassiveScroll_mjs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../testForPassiveScroll.mjs */ 326);
+/* harmony import */ var win_doc__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! win-doc */ 9);
+/* harmony import */ var _testForPassiveScroll_mjs__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../testForPassiveScroll.mjs */ 328);
 
 
 
@@ -467,7 +467,7 @@ oDelayScroller.store = store;
 
 /***/ }),
 
-/***/ 326:
+/***/ 328:
 /*!***********************************************!*\
   !*** ./build/es/src/testForPassiveScroll.mjs ***!
   \***********************************************/
@@ -497,7 +497,7 @@ var testForPassiveScroll = function testForPassiveScroll() {
 
 /***/ }),
 
-/***/ 327:
+/***/ 329:
 /*!**********************************************!*\
   !*** ./build/es/ui/organisms/ScrollInfo.mjs ***!
   \**********************************************/
@@ -506,8 +506,8 @@ var testForPassiveScroll = function testForPassiveScroll() {
 /* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ 0);
 /* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ 5);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ 3);
-/* harmony import */ var _organisms_ScrollSpy_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../organisms/ScrollSpy.mjs */ 108);
-/* harmony import */ var _organisms_ScrollReceiver_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../organisms/ScrollReceiver.mjs */ 109);
+/* harmony import */ var _organisms_ScrollSpy_mjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../organisms/ScrollSpy.mjs */ 111);
+/* harmony import */ var _organisms_ScrollReceiver_mjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../organisms/ScrollReceiver.mjs */ 112);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ 2);
 
 
@@ -532,7 +532,7 @@ var ScrollInfo = function ScrollInfo(_ref) {
 
 /***/ }),
 
-/***/ 109:
+/***/ 112:
 /*!**************************************************!*\
   !*** ./build/es/ui/organisms/ScrollReceiver.mjs ***!
   \**************************************************/
@@ -544,11 +544,11 @@ var ScrollInfo = function ScrollInfo(_ref) {
 /* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ 0);
 /* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ 5);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ 3);
-/* harmony import */ var reshow_return__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-return */ 23);
+/* harmony import */ var reshow_return__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! reshow-return */ 22);
 /* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-atomic-molecule */ 11);
 /* harmony import */ var reshow_constant__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-constant */ 1);
 /* harmony import */ var _src_stores_scrollStore_mjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../src/stores/scrollStore.mjs */ 40);
-/* harmony import */ var _src_stores_fastScrollStore_mjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/stores/fastScrollStore.mjs */ 47);
+/* harmony import */ var _src_stores_fastScrollStore_mjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/stores/fastScrollStore.mjs */ 49);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ 2);
 function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
 
@@ -630,7 +630,7 @@ ScrollReceiver.displayName = "ScrollReceiver";
 
 /***/ }),
 
-/***/ 108:
+/***/ 111:
 /*!*********************************************!*\
   !*** ./build/es/ui/organisms/ScrollSpy.mjs ***!
   \*********************************************/
@@ -646,7 +646,7 @@ ScrollReceiver.displayName = "ScrollReceiver";
 /* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-atomic-molecule */ 11);
 /* harmony import */ var reshow_hooks__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-hooks */ 18);
 /* harmony import */ var _src_stores_scrollStore_mjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../src/stores/scrollStore.mjs */ 40);
-/* harmony import */ var _src_stores_fastScrollStore_mjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/stores/fastScrollStore.mjs */ 47);
+/* harmony import */ var _src_stores_fastScrollStore_mjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/stores/fastScrollStore.mjs */ 49);
 
 
 var _excluded = ["noDelay", "monitorScroll", "id", "scrollMargin", "children", "container", "className", "attachTo"];
@@ -777,7 +777,7 @@ var ScrollSpy = function ScrollSpy(props) {
 
 /***/ }),
 
-/***/ 221:
+/***/ 225:
 /*!****************************************************!*\
   !*** ./build/es/ui/organisms/SmoothScrollLink.mjs ***!
   \****************************************************/
@@ -789,17 +789,19 @@ var ScrollSpy = function ScrollSpy(props) {
 /* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ 0);
 /* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ 5);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ 3);
-/* harmony import */ var smooth_scroll_to__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! smooth-scroll-to */ 62);
-/* harmony import */ var getoffset__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! getoffset */ 32);
+/* harmony import */ var smooth_scroll_to__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! smooth-scroll-to */ 45);
+/* harmony import */ var getoffset__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! getoffset */ 28);
 /* harmony import */ var call_func__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! call-func */ 7);
-/* harmony import */ var win_doc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! win-doc */ 10);
-/* harmony import */ var _src_index_mjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/index.mjs */ 145);
-/* harmony import */ var _src_stores_scrollStore_mjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../src/stores/scrollStore.mjs */ 40);
-/* harmony import */ var _src_stores_fastScrollStore_mjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../src/stores/fastScrollStore.mjs */ 47);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react/jsx-runtime */ 2);
+/* harmony import */ var win_doc__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! win-doc */ 9);
+/* harmony import */ var reshow_url__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! reshow-url */ 330);
+/* harmony import */ var _src_index_mjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../src/index.mjs */ 149);
+/* harmony import */ var _src_stores_scrollStore_mjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../src/stores/scrollStore.mjs */ 40);
+/* harmony import */ var _src_stores_fastScrollStore_mjs__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../src/stores/fastScrollStore.mjs */ 49);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react/jsx-runtime */ 2);
 
 
 var _excluded = ["targetId", "scrollRefLoc", "scrollRefId", "scrollMargin", "style", "preventDefault", "noDelay", "onClick"];
+
 
 
 
@@ -863,15 +865,13 @@ var useSmoothScrollLink = function useSmoothScrollLink(props) {
     var oDoc = (0,win_doc__WEBPACK_IMPORTED_MODULE_6__.doc)();
 
     if (!oDoc.__null) {
-      var _win$location$hash;
-
       var dom = oDoc.getElementById(scrollRefId);
 
       if (dom) {
         setScrollRefElement(dom);
       }
 
-      if (((_win$location$hash = (0,win_doc__WEBPACK_IMPORTED_MODULE_6__.win)().location.hash) === null || _win$location$hash === void 0 ? void 0 : _win$location$hash.substring(1)) === targetId) {
+      if ((0,reshow_url__WEBPACK_IMPORTED_MODULE_7__.getAnchorPath)().anchor.substring(1) === targetId) {
         setTimeout(function () {
           return scrollTo(1000);
         }, 1000);
@@ -909,7 +909,7 @@ var useSmoothScrollLink = function useSmoothScrollLink(props) {
   }, [scrollRefLoc, scrollMargin, scrollRefElement]);
 
   var getStore = function getStore() {
-    return noDelay ? _src_stores_fastScrollStore_mjs__WEBPACK_IMPORTED_MODULE_9__["default"] : _src_stores_scrollStore_mjs__WEBPACK_IMPORTED_MODULE_8__["default"];
+    return noDelay ? _src_stores_fastScrollStore_mjs__WEBPACK_IMPORTED_MODULE_10__["default"] : _src_stores_scrollStore_mjs__WEBPACK_IMPORTED_MODULE_9__["default"];
   };
 
   var handler = {
@@ -940,7 +940,7 @@ var SmoothScrollLink = function SmoothScrollLink(props) {
       style = _useSmoothScrollLink.style,
       targetId = _useSmoothScrollLink.targetId;
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_10__.jsx)(_src_index_mjs__WEBPACK_IMPORTED_MODULE_7__.ScrollReceiver, (0,reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])((0,reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])({
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_11__.jsx)(_src_index_mjs__WEBPACK_IMPORTED_MODULE_8__.ScrollReceiver, (0,reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])((0,reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_0__["default"])({
     atom: "a"
   }, others), {}, {
     targetId: targetId,
@@ -959,7 +959,7 @@ var Styles = {
 
 /***/ }),
 
-/***/ 325:
+/***/ 327:
 /*!*************************************!*\
   !*** ./build/es/ui/pages/index.mjs ***!
   \*************************************/
@@ -975,7 +975,7 @@ var Styles = {
 /* harmony import */ var reshow_runtime_es_helpers_objectSpread2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectSpread2 */ 0);
 /* harmony import */ var reshow_runtime_es_helpers_objectWithoutPropertiesLoose__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! reshow-runtime/es/helpers/objectWithoutPropertiesLoose */ 5);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react */ 3);
-/* harmony import */ var _src_index_mjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/index.mjs */ 145);
+/* harmony import */ var _src_index_mjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../src/index.mjs */ 149);
 /* harmony import */ var react_atomic_molecule__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-atomic-molecule */ 11);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ 2);
 
@@ -1248,7 +1248,7 @@ var Styles = {
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	(() => {
-/******/ 		__webpack_require__.h = () => ("0a647ad5d1e8663fc101")
+/******/ 		__webpack_require__.h = () => ("937c63a4e8bd50d6bffa")
 /******/ 	})();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -1434,7 +1434,7 @@ var Styles = {
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [0,2], () => (__webpack_require__(222)))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, [0,2], () => (__webpack_require__(226)))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
