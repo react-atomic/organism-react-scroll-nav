@@ -38,7 +38,8 @@ const useSmoothScrollLink = (props) => {
     const offset = store.scroller.getOffset(targetId);
     if (offset) {
       const margin = getMargin();
-      smoothScrollTo(offset.top - margin, duringTime, null, () => {
+      const to = offset.top - margin;
+      smoothScrollTo(to, duringTime, null, () => {
         if (false !== lazyScrollTime) {
           scollTimer = setTimeout(() => scrollTo(false, 100), lazyScrollTime);
         }

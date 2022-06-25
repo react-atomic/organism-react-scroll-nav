@@ -5,7 +5,7 @@ cd $DIR
 SWJS=${DIR}/service-worker.js
 
 conf='{'
-conf+='"assetsRoot":"/assets/",'
+conf+='"assetsRoot":"./assets/",'
 conf+='"externals":{},'
 conf+='"indexTpl":"'${DIR}/index.tpl'",'
 conf+='"indexHtml":"'${DIR}/index.html'",'
