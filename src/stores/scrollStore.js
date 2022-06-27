@@ -31,7 +31,7 @@ class Scroller {
     }
   }
 
-  initEvent(el) {
+  initEvent(el, retry) {
     if ("undefined" !== typeof el) {
       if (el.addEventListener) {
         const supportsPassive = testForPassiveScroll();
@@ -44,12 +44,13 @@ class Scroller {
         el.attachEvent("onscroll", this.scrollMonitor);
       }
       let i = 0;
+      this.clearInitTimer();
       this.initTimer = setInterval(
         //for lazy content
         () => {
           this.trigger(el);
           i++;
-          if (i > 20) {
+          if (i > retry) {
             this.clearInitTimer();
           }
         },
@@ -119,7 +120,6 @@ class Scroller {
         const nodeId = this.getNodeId(node);
         const pos = offsetCache[nodeId];
         const isActive = scrollTop >= pos.top && scrollTop <= pos.bottom - 1;
-        console.log({ nodeId, isActive, scrollTop, pos });
         if (isActive) {
           actives["m" + margin] = nodeId;
           break;
@@ -142,15 +142,14 @@ class Scroller {
     } else {
       const dom = query.one("#" + id);
       const domOffset = dom && getOffset(dom);
-      console.log({ domOffset, offset });
       return domOffset;
     }
   }
 
   hasAttach(node) {
-    const attachToId = this.getAttachToId(node);
-    if (this.spys[attachToId] && this.spys[attachToId].has(node)) {
-      return attachToId;
+    const attachDestId = this.getAttachDestId(node);
+    if (this.spys[attachDestId] && this.spys[attachDestId].has(node)) {
+      return attachDestId;
     } else {
       return false;
     }
@@ -176,19 +175,19 @@ class Scroller {
     return nextId;
   }
 
-  getAttachToId(node) {
-    const attachTo = callfunc(node.getAttachTo);
-    let attachToId;
-    if (attachTo) {
-      attachToId = this.getNodeId(attachTo);
+  getAttachDestId(node) {
+    const attachDest = callfunc(node.getAttachDest);
+    let attachDestId;
+    if (attachDest) {
+      attachDestId = this.getNodeId(attachDest);
     } else {
       const oWin = win();
       if (!oWin.__null) {
-        node.setAttachTo(oWin);
+        node.setAttachDest(oWin);
       }
-      attachToId = DEFAULT_SCROLL_ID;
+      attachDestId = DEFAULT_SCROLL_ID;
     }
-    return attachToId;
+    return attachDestId;
   }
 
   getNode(nodeId) {
@@ -201,30 +200,35 @@ class Scroller {
 
   attach(node) {
     const nodeId = this.getNodeId(node);
-    const attachToId = this.getAttachToId(node);
-    if (!this.spys[attachToId]) {
-      this.spys[attachToId] = Set().add(node);
+    /**
+     * if not set attachDest, the default attachDest is window.
+     */
+    const attachDestId = this.getAttachDestId(node);
+    if (!this.spys[attachDestId]) {
+      this.spys[attachDestId] = Set().add(node);
     } else {
-      this.spys[attachToId] = this.spys[attachToId].add(node);
+      this.spys[attachDestId] = this.spys[attachDestId].add(node);
     }
     this.arrNode = this.arrNode.set(nodeId, node);
-    if (!this.isInitEvent[attachToId]) {
-      this.isInitEvent[attachToId] = true;
-      this.initEvent(callfunc(node.getAttachTo));
+    if (!this.isInitEvent[attachDestId]) {
+      this.isInitEvent[attachDestId] = true;
+      this.initEvent(
+        callfunc(node.getAttachDest),
+        callfunc(node.getAttachDestRetry)
+      );
     }
     return nodeId;
   }
 
   detach(node) {
-    const attachToId = this.hasAttach(node);
-    console.warn({node});
-    if (attachToId) {
-      this.spys[attachToId] = this.spys[attachToId].remove(node);
+    const attachDestId = this.hasAttach(node);
+    if (attachDestId) {
+      this.spys[attachDestId] = this.spys[attachDestId].remove(node);
       this.arrNode = this.arrNode.delete(this.getNodeId(node));
-      if (!this.spys[attachToId].size) {
-        this.removeEvent(node.attachTo);
-        delete this.spys[attachToId];
-        this.isInitEvent[attachToId] = false;
+      if (!this.spys[attachDestId].size) {
+        this.removeEvent(node.attachDestId);
+        delete this.spys[attachDestId];
+        this.isInitEvent[attachDestId] = false;
       }
     }
   }

@@ -1,4 +1,4 @@
-import React, {
+import {
   useRef,
   useMemo,
   useState,
@@ -24,12 +24,13 @@ const useScrollSpy = (props) => {
   const {
     noDelay = false,
     monitorScroll = true,
+    attachDestRetry = 20,
     id,
     scrollMargin,
     children,
     container,
     className,
-    attachTo,
+    attachDest,
     ...others
   } = props;
 
@@ -41,7 +42,7 @@ const useScrollSpy = (props) => {
   lastConfig.current = {
     ...lastConfig.current,
     id: targetId,
-    attachTo,
+    attachDest: lastConfig.current.attachDest || attachDest,
     monitorScroll,
     scrollMargin,
   };
@@ -84,10 +85,11 @@ const useScrollSpy = (props) => {
     detach: () => lastConfig.current.store.scroller.detach(expose),
     getId: () => lastConfig.current.id,
     setId: setTargetId,
-    getAttachTo: () => lastConfig.current.attachTo,
-    setAttachTo: (attachTo) => (lastConfig.current.attachTo = attachTo),
+    getAttachDest: () => lastConfig.current.attachDest,
+    setAttachDest: (attachDest) => (lastConfig.current.attachDest = attachDest),
     getMonitorScroll: () => lastConfig.current.monitorScroll,
     getScrollMargin: () => lastConfig.current.scrollMargin,
+    getAttachDestRetry: () => attachDestRetry,
   };
 
   const hasScrollReceiver = useMemo(
