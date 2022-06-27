@@ -6,6 +6,7 @@ import get, { toJS } from "get-object-value";
 import { KEYS } from "reshow-constant";
 import callfunc, { debounce } from "call-func";
 import { win } from "win-doc";
+import query from "css-query-selector";
 
 import testForPassiveScroll from "../testForPassiveScroll";
 
@@ -96,6 +97,7 @@ class Scroller {
       const nodeId = this.getNodeId(node);
       const monitorScroll = callfunc(node.getMonitorScroll);
       const scrollMargin = callfunc(node.getScrollMargin);
+
       let pos = getOffset(nodeEl);
       if (monitorScroll) {
         if (scrollTop >= pos.top && scrollTop < pos.bottom) {
@@ -116,7 +118,8 @@ class Scroller {
         const node = arrMonitorScroll[i];
         const nodeId = this.getNodeId(node);
         const pos = offsetCache[nodeId];
-        if (scrollTop >= pos.top && scrollTop <= pos.bottom - 1) {
+        const isActive = scrollTop >= pos.top && scrollTop <= pos.bottom - 1;
+        if (isActive) {
           actives["m" + margin] = nodeId;
           break;
         }
@@ -125,21 +128,21 @@ class Scroller {
     this.margins = this.margins.clear();
     this.dispatch({
       ...actives,
-      nodes: offsetCache,
+      offsetCache,
       scroll,
       storeName: this.storeName,
     });
   }
 
-  getNode(id) {
-    if (this.arrMap && this.arrMap.get) {
-      return toJS(this.arrMap.get(id));
+  getOffset(id) {
+    const offset =  this.store.getMap("offsetCache")[id];
+    if (offset && offset.h && offset.w) {
+      return offset;
+    } else {
+      const dom = query.one("#" + id);
+      const domOffset = dom && getOffset(dom);
+      return domOffset;
     }
-  }
-
-  getOffset(id, callName) {
-    const nodes = this.store.getMap("nodes");
-    return nodes[id];
   }
 
   hasAttach(node) {
@@ -184,6 +187,14 @@ class Scroller {
       attachToId = DEFAULT_SCROLL_ID;
     }
     return attachToId;
+  }
+
+  getNode(nodeId) {
+    const node =  this.arrNode.get(nodeId);
+    if (node && !node.props) {
+      node.props = {};
+    }
+    return node;
   }
 
   attach(node) {

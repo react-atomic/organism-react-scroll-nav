@@ -54,6 +54,7 @@ const useScrollSpy = (props) => {
   useEffect(() => {
     const store = noDelay ? fastScrollStore : scrollStore;
     const id = store.scroller.attach(expose);
+    lastConfig.current.store = store;
     setTargetId(id);
     return () => {
       store.scroller.detach(expose);
@@ -80,6 +81,7 @@ const useScrollSpy = (props) => {
 
   const expose = {
     getOffsetEl,
+    detach: () => lastConfig.current.store.scroller.detach(expose),
     getId: () => lastConfig.current.id,
     setId: setTargetId,
     getAttachTo: () => lastConfig.current.attachTo,

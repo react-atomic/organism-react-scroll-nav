@@ -1,4 +1,3 @@
-import React from "react";
 import ScrollSpy from "../organisms/ScrollSpy";
 import ScrollReceiver from "../organisms/ScrollReceiver";
 
