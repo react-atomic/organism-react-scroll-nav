@@ -85,7 +85,7 @@ class Scroller {
     const defaultMargin = this.store.getState().get("scrollMargin");
     const actives = { mdefault: null };
     const offsetCache = {};
-    const arrMonitorScroll = [];
+    const allMonitorNode = [];
     const scroll = getScrollInfo();
     let scrollTop = scroll.top + defaultMargin;
     let margin;
@@ -103,22 +103,23 @@ class Scroller {
         if (scrollTop >= pos.top && scrollTop < pos.bottom) {
           actives.mdefault = nodeId;
         }
-        arrMonitorScroll.push(node);
+        allMonitorNode.push(node);
       }
       margin = scrollMargin ? scrollMargin : defaultMargin;
       pos = isOnScreen(pos, scroll, margin);
       offsetCache[nodeId] = pos;
     });
-    const allMonitorNodeLen = arrMonitorScroll.length;
+    const allMonitorNodeLen = allMonitorNode.length;
     this.margins.forEach((margin) => {
       scrollTop = scroll.top + margin;
       actives["m" + margin] = null;
       let i = allMonitorNodeLen;
       while (i--) {
-        const node = arrMonitorScroll[i];
+        const node = allMonitorNode[i];
         const nodeId = this.getNodeId(node);
         const pos = offsetCache[nodeId];
         const isActive = scrollTop >= pos.top && scrollTop <= pos.bottom - 1;
+        console.log({ nodeId, isActive, scrollTop, pos });
         if (isActive) {
           actives["m" + margin] = nodeId;
           break;
@@ -135,12 +136,13 @@ class Scroller {
   }
 
   getOffset(id) {
-    const offset =  this.store.getMap("offsetCache")[id];
+    const offset = this.store.getMap("offsetCache")[id];
     if (offset && offset.h && offset.w) {
       return offset;
     } else {
       const dom = query.one("#" + id);
       const domOffset = dom && getOffset(dom);
+      console.log({ domOffset, offset });
       return domOffset;
     }
   }
@@ -190,7 +192,7 @@ class Scroller {
   }
 
   getNode(nodeId) {
-    const node =  this.arrNode.get(nodeId);
+    const node = this.arrNode.get(nodeId);
     if (node && !node.props) {
       node.props = {};
     }
@@ -215,6 +217,7 @@ class Scroller {
 
   detach(node) {
     const attachToId = this.hasAttach(node);
+    console.warn({node});
     if (attachToId) {
       this.spys[attachToId] = this.spys[attachToId].remove(node);
       this.arrNode = this.arrNode.delete(this.getNodeId(node));
