@@ -89,7 +89,6 @@ class Scroller {
     const allMonitorNode = [];
     const scroll = getScrollInfo();
     let scrollTop = scroll.top + defaultMargin;
-    let margin;
     (this.spys[scrollId] || []).forEach((node) => {
       const nodeEl = node.getOffsetEl();
       if (!nodeEl) {
@@ -106,7 +105,7 @@ class Scroller {
         }
         allMonitorNode.push(node);
       }
-      margin = scrollMargin ? scrollMargin : defaultMargin;
+      const margin = scrollMargin ? scrollMargin : defaultMargin;
       pos = isOnScreen(pos, scroll, margin);
       offsetCache[nodeId] = pos;
     });
@@ -140,9 +139,18 @@ class Scroller {
     if (offset && offset.h && offset.w) {
       return offset;
     } else {
-      const dom = query.one("#" + id);
-      const domOffset = dom && getOffset(dom);
-      return domOffset;
+      const node = this.getNode(id) || {};
+      const dom = callfunc(node.getOffsetEl) || query.one("#" + id);
+      let domOffset = dom && getOffset(dom);
+      if (domOffset) {
+        const scrollInfo = getScrollInfo();
+        const defaultMargin = this.store.getState().get("scrollMargin");
+        const margin = callfunc(node.getScrollMargin) || defaultMargin;
+        domOffset = isOnScreen(domOffset, scrollInfo, margin);
+        return domOffset;
+      } else {
+        return offset;
+      }
     }
   }
 
@@ -192,9 +200,6 @@ class Scroller {
 
   getNode(nodeId) {
     const node = this.arrNode.get(nodeId);
-    if (node && !node.props) {
-      node.props = {};
-    }
     return node;
   }
 
