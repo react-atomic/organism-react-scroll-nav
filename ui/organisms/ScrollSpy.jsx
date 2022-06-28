@@ -1,10 +1,4 @@
-import {
-  useRef,
-  useMemo,
-  useState,
-  useEffect,
-  useCallback,
-} from "react";
+import { useRef, useMemo, useState, useEffect, useCallback } from "react";
 import get from "get-object-value";
 import {
   mixClass,
@@ -101,7 +95,7 @@ const useScrollSpy = (props) => {
   let nextProps;
   const allProps = {
     ...others,
-    refCb: (el) => el && (lastEl.current = el),
+    refCb: lastEl,
     className: thisClassName,
     id: targetId,
   };

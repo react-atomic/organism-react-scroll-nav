@@ -1,13 +1,13 @@
 import React, { isValidElement, useRef } from "react";
 import Return from "reshow-return";
 import { build, SemanticUI } from "react-atomic-molecule";
-import { UNDEFINED } from "reshow-constant";
+import { UNDEFINED, DEFAULT } from "reshow-constant";
 
 import scrollStore from "../../src/stores/scrollStore";
 import fastScrollStore from "../../src/stores/fastScrollStore";
 
 const ScrollReceiver = ({
-  scrollMargin = "default",
+  scrollMargin = DEFAULT,
   noDelay = false,
   children,
   targetId,
