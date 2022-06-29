@@ -166,10 +166,11 @@ class Scroller {
   getNodeId(node) {
     const id = callfunc(node.getId) || node.id;
     if (!id) {
-      if (node.parent === node && node.document) {
+      if (node === win()) {
         return DEFAULT_SCROLL_ID;
+      } else {
+        return this.setNodeId(node);
       }
-      return this.setNodeId(node);
     } else {
       return id;
     }

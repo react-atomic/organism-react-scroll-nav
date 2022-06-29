@@ -58,7 +58,7 @@ const useSmoothScrollLink = (props) => {
         setScrollRefElement(dom);
       }
       if (getAnchorPath().anchor.substring(1) === targetId) {
-        setTimeout(() => scrollTo([1000, 500], 100));
+        setTimeout(() => scrollTo([500, 500, 500, 500], 100));
       }
     }
     return () => {
