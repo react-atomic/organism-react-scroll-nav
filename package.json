@@ -1,5 +1,5 @@
 {
-  "version": "0.17.7",
+  "version": "0.17.9",
   "name": "organism-react-scroll-nav",
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "react": "^18.x",
+    "react-atomic-organism": "*",
     "react-dom": "^18.x",
     "reshow-app": "*"
   },
@@ -37,7 +38,7 @@
     "import": "./build/es/src/index.mjs"
   },
   "main": "./build/cjs/src/index.js",
-  "module": "./build/es/src/index.js",
+  "module": "./build/es/src/index.mjs",
   "scripts": {
     "update-compile-sh": "yo reshow:compile-sh",
     "webpack": "webpack",

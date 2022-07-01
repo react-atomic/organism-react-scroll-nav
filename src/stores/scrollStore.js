@@ -15,9 +15,7 @@ const DEFAULT_SCROLL_ID = -1;
 
 class Scroller {
   storeName = "delayScroll";
-  isInitEvent = {};
   isInitResizeEvent = false;
-  spys = {};
 
   initResizeEvent() {
     const oWin = win();
@@ -71,9 +69,9 @@ class Scroller {
   }
 
   handleResize() {
-    KEYS(this.spys).forEach((scrollId) =>
-      this.scrollMonitor({ target: { id: scrollId } })
-    );
+    this.spys.forEach((v, scrollId) => {
+      this.scrollMonitor({ target: { id: scrollId } });
+    });
   }
 
   runScrollMonitor(e) {
@@ -88,8 +86,8 @@ class Scroller {
     const offsetCache = {};
     const allMonitorNode = [];
     const scroll = getScrollInfo();
-    let scrollTop = scroll.top + defaultMargin;
-    (this.spys[scrollId] || []).forEach((node) => {
+    const scrollTop = scroll.top + defaultMargin;
+    (this.spys.get(scrollId) || []).forEach((node) => {
       const nodeEl = node.getOffsetEl();
       if (!nodeEl) {
         return;
@@ -103,7 +101,7 @@ class Scroller {
         if (scrollTop >= pos.top && scrollTop < pos.bottom) {
           actives.mdefault = nodeId;
         }
-        allMonitorNode.push(node);
+        allMonitorNode.unshift(node);
       }
       const margin = scrollMargin ? scrollMargin : defaultMargin;
       pos = isOnScreen(pos, scroll, margin);
@@ -111,14 +109,14 @@ class Scroller {
     });
     const allMonitorNodeLen = allMonitorNode.length;
     this.margins.forEach((margin) => {
-      scrollTop = scroll.top + margin;
+      const scrollTop = scroll.top + margin;
       actives["m" + margin] = null;
       let i = allMonitorNodeLen;
       while (i--) {
         const node = allMonitorNode[i];
         const nodeId = this.getNodeId(node);
         const pos = offsetCache[nodeId];
-        const isActive = scrollTop >= pos.top && scrollTop <= pos.bottom - 1;
+        const isActive = scrollTop >= pos.top && scrollTop <= pos.bottom - 2;
         if (isActive) {
           actives["m" + margin] = nodeId;
           break;
@@ -156,7 +154,8 @@ class Scroller {
 
   hasAttach(node) {
     const attachDestId = this.getAttachDestId(node);
-    if (this.spys[attachDestId] && this.spys[attachDestId].has(node)) {
+    const attachDest = this.spys.get(attachDestId);
+    if (attachDest && attachDest.has(node)) {
       return attachDestId;
     } else {
       return false;
@@ -213,14 +212,15 @@ class Scroller {
      * if not set attachDest, the default attachDest is window.
      */
     const attachDestId = this.getAttachDestId(node);
-    if (!this.spys[attachDestId]) {
-      this.spys[attachDestId] = Set().add(node);
+    const attachDest = this.spys.get(attachDestId);
+    if (!attachDest) {
+      this.spys = this.spys.set(attachDestId, Set().add(node));
     } else {
-      this.spys[attachDestId] = this.spys[attachDestId].add(node);
+      this.spys = this.spys.set(attachDestId, attachDest.add(node));
     }
     this.arrNode = this.arrNode.set(nodeId, node);
-    if (!this.isInitEvent[attachDestId]) {
-      this.isInitEvent[attachDestId] = true;
+    if (!this.isInitEvent.get(attachDestId)) {
+      this.isInitEvent = this.isInitEvent.set(attachDestId, true);
       this.initEvent(
         callfunc(node.getAttachDest),
         callfunc(node.getAttachDestRetry)
@@ -232,12 +232,15 @@ class Scroller {
   detach(node) {
     const attachDestId = this.hasAttach(node);
     if (attachDestId) {
-      this.spys[attachDestId] = this.spys[attachDestId].remove(node);
+      this.spys = this.spys.set(
+        attachDestId,
+        this.spys.get(attachDestId).remove(node)
+      );
       this.arrNode = this.arrNode.delete(this.getNodeId(node));
-      if (!this.spys[attachDestId].size) {
+      if (!this.spys.get(attachDestId).size) {
         this.removeEvent(node.attachDestId);
-        delete this.spys[attachDestId];
-        this.isInitEvent[attachDestId] = false;
+        this.spys = this.spys.delete(attachDestId);
+        this.isInitEvent = this.isInitEvent.delete(attachDestId);
       }
     }
   }
@@ -260,6 +263,8 @@ class Scroller {
   getInitialState() {
     this.initTimer = null;
     this.trigger = this.triggerScroll.bind(this);
+    this.isInitEvent = Map();
+    this.spys = Map();
     this.arrNode = Map();
     this.margins = Set();
     this.scrollMonitor = this.runScrollMonitor.bind(this);

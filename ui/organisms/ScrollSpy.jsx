@@ -25,7 +25,7 @@ const useScrollSpy = (props) => {
     container,
     className,
     attachDest,
-    ...others
+    ...restProps
   } = props;
 
   const [targetId, setTargetId] = useState(id);
@@ -41,10 +41,7 @@ const useScrollSpy = (props) => {
     scrollMargin,
   };
 
-  const thisClassName = useMemo(
-    () => mixClass(className, "spy-tar-" + targetId),
-    [targetId, className]
-  );
+  const nextContainer = useRef();
 
   useEffect(() => {
     const store = noDelay ? fastScrollStore : scrollStore;
@@ -57,24 +54,25 @@ const useScrollSpy = (props) => {
   }, []);
 
   const warnDebounce = useDebounce((args) => {
-    // for lazy render component, that warn delay 1 secs.
-    if (!lastEl.current) {
+    // for lazy render component, that warn delay 1.5 secs.
+    if (!lastEl.current) { // maybe could get lastEl late.
       console.warn(
         'Please use SemanticUI. props.container -> import {SemanticUI} from "react-atomic-molecule"',
         args
       );
     }
-  }, 1000);
+  }, 1500);
 
   const getOffsetEl = useCallback(() => {
     if (lastEl.current) {
       return lastEl.current;
     } else {
-      warnDebounce({ thisClassName, nextContainer });
+      warnDebounce({ targetId, container: nextContainer.current });
     }
-  }, [thisClassName, nextContainer]);
+  }, [targetId]);
 
   const expose = {
+    lastConfig,
     getOffsetEl,
     detach: () => lastConfig.current.store.scroller.detach(expose),
     getId: () => lastConfig.current.id,
@@ -85,43 +83,38 @@ const useScrollSpy = (props) => {
     getScrollMargin: () => lastConfig.current.scrollMargin,
     getAttachDestRetry: () => attachDestRetry,
   };
-
-  const hasScrollReceiver = useMemo(
-    () => ("ScrollReceiver" === getDisplayName(children) ? true : false),
-    [children]
-  );
-
-  let nextContainer;
-  let nextProps;
-  const allProps = {
-    ...others,
-    refCb: lastEl,
-    className: thisClassName,
-    id: targetId,
-  };
-  if (hasScrollReceiver) {
-    nextContainer = children;
-    nextProps = {
-      ...children.props,
-      ...allProps,
-      targetId,
-      container,
-      noDelay,
-    };
-  } else {
-    nextContainer = container || SemanticUI;
-    nextProps = {
-      ...allProps,
-      children,
-    };
-  }
-
-  return { nextContainer, nextProps };
+  restProps.id = targetId;
+  restProps.refCb = lastEl;
+  restProps.className = mixClass(className, "spy-tar-" + targetId);
+  return { targetId, className, children, container, noDelay, nextContainer, restProps };
 };
 
 const ScrollSpy = (props) => {
-  const { nextContainer, nextProps } = useScrollSpy(props);
-  return build(nextContainer)(nextProps);
+  const { targetId, className, children, container, noDelay, nextContainer, restProps } =
+    useScrollSpy(props);
+
+  return useMemo(() => {
+    const hasScrollReceiver =
+      "ScrollReceiver" === getDisplayName(children) ? true : false;
+    let nextProps;
+    if (hasScrollReceiver) {
+      nextContainer.current = children;
+      nextProps = {
+        ...children.props,
+        ...restProps,
+        targetId,
+        container,
+        noDelay,
+      };
+    } else {
+      nextContainer.current = container || SemanticUI;
+      nextProps = {
+        ...restProps,
+        children,
+      };
+    }
+    return build(nextContainer.current)(nextProps);
+  }, [children, targetId]);
 };
 
 export default ScrollSpy;

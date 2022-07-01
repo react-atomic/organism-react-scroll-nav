@@ -13,7 +13,7 @@ let scollTimer = null;
 const resetTimer = () => {
   if (scollTimer) {
     clearTimeout(scollTimer);
-    scollTimer = false;
+    scollTimer = null;
   }
 };
 
@@ -27,12 +27,12 @@ const useSmoothScrollLink = (props) => {
     preventDefault = true,
     noDelay = false,
     onClick,
-    ...others
+    ...restProps
   } = props;
 
   const [scrollRefElement, setScrollRefElement] = useState();
 
-  const scrollTo = (lazyScrollTime = [500], duringTime) => {
+  const scrollTo = (lazyScrollTime = [500, 500], duringTime) => {
     resetTimer();
     const offset = getStore().scroller.getOffset(targetId);
     if (offset) {
@@ -97,12 +97,15 @@ const useSmoothScrollLink = (props) => {
       callfunc(onClick);
       setTimeout(scrollTo);
     },
+    screen: () => {
+      resetTimer();
+    },
   };
 
   const margin = getMargin();
 
   return {
-    others,
+    restProps,
     handler,
     targetId,
     margin,
@@ -111,16 +114,17 @@ const useSmoothScrollLink = (props) => {
 };
 
 const SmoothScrollLink = (props) => {
-  const { others, handler, margin, style, targetId } =
+  const { restProps, handler, margin, style, targetId } =
     useSmoothScrollLink(props);
   return (
     <ScrollReceiver
       atom="a"
-      {...others}
+      {...restProps}
       targetId={targetId}
       scrollMargin={margin}
       style={{ ...Styles.link, ...style }}
       onClick={handler.click}
+      onScreen={handler.screen}
     />
   );
 };
