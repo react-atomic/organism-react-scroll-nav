@@ -39,6 +39,7 @@ const useSmoothScrollLink = (props) => {
       const margin = getMargin();
       const to = offset.top - margin;
       smoothScrollTo(to, duringTime, null, () => {
+        resetTimer();
         const nextScrollTime = lazyScrollTime.shift();
         if (null != nextScrollTime) {
           scollTimer = setTimeout(
