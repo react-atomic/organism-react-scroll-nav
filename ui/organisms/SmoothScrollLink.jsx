@@ -33,8 +33,7 @@ const useSmoothScrollLink = (props) => {
   const [scrollRefElement, setScrollRefElement] = useState();
   const lastScroll = useRef();
 
-  const scrollTo = (lazyScrollTime = [500, 500], duringTime) => {
-    resetTimer();
+  const scrollTo = (lazyScrollTime = [500, 800], duringTime) => {
     const offset = getStore().scroller.getOffset(targetId);
     if (offset) {
       const margin = getMargin();
@@ -70,6 +69,12 @@ const useSmoothScrollLink = (props) => {
     };
   }, []);
 
+
+  /**
+   * When modify getMargin number, should also take care store isActive logic.
+   *
+   * https://github.com/react-atomic/organism-react-scroll-nav/blob/main/src/stores/scrollStore.js#L119
+   */
   const getMargin = useCallback(() => {
     let margin = 0;
     if (scrollRefElement) {
@@ -99,7 +104,7 @@ const useSmoothScrollLink = (props) => {
         e.preventDefault();
       }
       callfunc(onClick);
-      setTimeout(scrollTo);
+      scrollTo();
     },
   };
 
