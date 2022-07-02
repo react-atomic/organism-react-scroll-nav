@@ -116,7 +116,7 @@ class Scroller {
         const node = allMonitorNode[i];
         const nodeId = this.getNodeId(node);
         const pos = offsetCache[nodeId];
-        const isActive = scrollTop >= pos.top && scrollTop <= pos.bottom - 2;
+        const isActive = scrollTop >= pos.top - 1 && scrollTop <= pos.bottom - 2;
         if (isActive) {
           actives["m" + margin] = nodeId;
           break;

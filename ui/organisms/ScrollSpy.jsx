@@ -55,7 +55,8 @@ const useScrollSpy = (props) => {
 
   const warnDebounce = useDebounce((args) => {
     // for lazy render component, that warn delay 1.5 secs.
-    if (!lastEl.current) { // maybe could get lastEl late.
+    if (!lastEl.current) {
+      // maybe could get lastEl late.
       console.warn(
         'Please use SemanticUI. props.container -> import {SemanticUI} from "react-atomic-molecule"',
         args
@@ -86,12 +87,27 @@ const useScrollSpy = (props) => {
   restProps.id = targetId;
   restProps.refCb = lastEl;
   restProps.className = mixClass(className, "spy-tar-" + targetId);
-  return { targetId, className, children, container, noDelay, nextContainer, restProps };
+  return {
+    targetId,
+    className,
+    children,
+    container,
+    noDelay,
+    nextContainer,
+    restProps,
+  };
 };
 
 const ScrollSpy = (props) => {
-  const { targetId, className, children, container, noDelay, nextContainer, restProps } =
-    useScrollSpy(props);
+  const {
+    targetId,
+    className,
+    children,
+    container,
+    noDelay,
+    nextContainer,
+    restProps,
+  } = useScrollSpy(props);
 
   return useMemo(() => {
     const hasScrollReceiver =

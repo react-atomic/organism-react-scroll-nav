@@ -14,7 +14,6 @@ const useScrollReceiver = (props) => {
     targetId,
     container,
     children,
-    onScreen,
     ...restProps
   } = props;
   const lastIsShown = useRef();
@@ -23,12 +22,7 @@ const useScrollReceiver = (props) => {
   const activeId = store.getState().get("m" + scrollMargin);
   const scrollTop = scrollInfo.top;
   const pos = store.scroller.getOffset(targetId) || {};
-  let isShown = lastIsShown.current || false;
-  if (pos.isOnScreen) {
-    isShown = true;
-    lastIsShown.current = true;
-    callfunc(onScreen);
-  }
+  const isShown = lastIsShown.current || false;
   const active = UNDEFINED !== typeof targetId && targetId === activeId;
   const targetInfo = {
     ...pos,
@@ -39,6 +33,10 @@ const useScrollReceiver = (props) => {
     isShown,
     targetId,
   };
+  if (pos.isOnScreen) {
+    targetInfo.isShown = true;
+    lastIsShown.current = true;
+  }
   if (!isNaN(scrollMargin)) {
     store.scroller.addMargin(scrollMargin);
   }

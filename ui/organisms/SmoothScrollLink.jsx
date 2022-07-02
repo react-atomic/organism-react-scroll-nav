@@ -31,6 +31,7 @@ const useSmoothScrollLink = (props) => {
   } = props;
 
   const [scrollRefElement, setScrollRefElement] = useState();
+  const lastScroll = useRef();
 
   const scrollTo = (lazyScrollTime = [500, 500], duringTime) => {
     resetTimer();
@@ -38,10 +39,15 @@ const useSmoothScrollLink = (props) => {
     if (offset) {
       const margin = getMargin();
       const to = offset.top - margin;
+      if (lastScroll.current === to) {
+        lastScroll.current = to;
+        return;
+      }
+      lastScroll.current = to;
       smoothScrollTo(to, duringTime, null, () => {
-        resetTimer();
         const nextScrollTime = lazyScrollTime.shift();
         if (null != nextScrollTime) {
+          resetTimer();
           scollTimer = setTimeout(
             () => scrollTo(lazyScrollTime, 100),
             nextScrollTime
@@ -52,15 +58,12 @@ const useSmoothScrollLink = (props) => {
   };
 
   useEffect(() => {
-    const oDoc = doc();
-    if (!oDoc.__null) {
-      const dom = oDoc.getElementById(scrollRefId);
-      if (dom) {
-        setScrollRefElement(dom);
-      }
-      if (getAnchorPath().anchor.substring(1) === targetId) {
-        setTimeout(() => scrollTo([500, 500, 500, 500], 100));
-      }
+    const dom = doc().getElementById(scrollRefId);
+    if (dom) {
+      setScrollRefElement(dom);
+    }
+    if (getAnchorPath().anchor.substring(1) === targetId) {
+      setTimeout(() => scrollTo([500, 500, 500, 500], 100));
     }
     return () => {
       resetTimer();
@@ -68,10 +71,9 @@ const useSmoothScrollLink = (props) => {
   }, []);
 
   const getMargin = useCallback(() => {
-    const ref = scrollRefElement;
     let margin = 0;
-    if (ref) {
-      const refOffset = getOffset(ref, false);
+    if (scrollRefElement) {
+      const refOffset = getOffset(scrollRefElement, false);
       switch (scrollRefLoc) {
         case "bottom":
           margin += refOffset.bottom - refOffset.top;
@@ -84,7 +86,7 @@ const useSmoothScrollLink = (props) => {
     if (!isNaN(scrollMargin)) {
       margin += scrollMargin;
     }
-    margin--;
+    margin-=2;
     return margin;
   }, [scrollRefLoc, scrollMargin, scrollRefElement]);
 
@@ -92,14 +94,12 @@ const useSmoothScrollLink = (props) => {
 
   const handler = {
     click: (e) => {
+      lastScroll.current = null;
       if (preventDefault) {
         e.preventDefault();
       }
       callfunc(onClick);
       setTimeout(scrollTo);
-    },
-    screen: () => {
-      resetTimer();
     },
   };
 
@@ -125,7 +125,6 @@ const SmoothScrollLink = (props) => {
       scrollMargin={margin}
       style={{ ...Styles.link, ...style }}
       onClick={handler.click}
-      onScreen={handler.screen}
     />
   );
 };
