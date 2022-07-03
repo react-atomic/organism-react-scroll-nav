@@ -6,7 +6,7 @@ import {
   getDisplayName,
   SemanticUI,
 } from "react-atomic-molecule";
-import { useDebounce } from "reshow-hooks";
+import { useDebounce, useMounted } from "reshow-hooks";
 
 import scrollStore from "../../src/stores/scrollStore";
 import fastScrollStore from "../../src/stores/fastScrollStore";
@@ -30,6 +30,7 @@ const useScrollSpy = (props) => {
 
   const [targetId, setTargetId] = useState(id);
 
+  const _mount = useMounted();
   const lastEl = useRef();
 
   const lastConfig = useRef({});
@@ -55,7 +56,7 @@ const useScrollSpy = (props) => {
 
   const warnDebounce = useDebounce((args) => {
     // for lazy render component, that warn delay 1.5 secs.
-    if (!lastEl.current) {
+    if (!lastEl.current && _mount()) {
       // maybe could get lastEl late.
       console.warn(
         'Please use SemanticUI. props.container -> import {SemanticUI} from "react-atomic-molecule"',
