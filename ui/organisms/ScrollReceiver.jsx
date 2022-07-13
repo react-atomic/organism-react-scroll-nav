@@ -65,7 +65,10 @@ const ScrollReceiver = (props) => {
       ...restProps,
       targetInfo,
     },
-    build(nextChildren)()
+    /**
+     * sould not use build here, let nextContainer handle children by itself.
+     */
+    nextChildren
   );
 };
 
