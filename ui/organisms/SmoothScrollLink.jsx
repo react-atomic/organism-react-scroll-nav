@@ -33,7 +33,7 @@ const useSmoothScrollLink = (props) => {
   const [scrollRefElement, setScrollRefElement] = useState();
   const lastScroll = useRef();
 
-  const scrollTo = (lazyScrollTime = [500, 800], duringTime) => {
+  const scrollTo = (lazyScrollTime = [500, 800, 500], duringTime) => {
     const offset = getStore().scroller.getOffset(targetId);
     if (offset) {
       const margin = getMargin();
@@ -69,7 +69,6 @@ const useSmoothScrollLink = (props) => {
     };
   }, []);
 
-
   /**
    * When modify getMargin number, should also take care store isActive logic.
    *
@@ -91,7 +90,7 @@ const useSmoothScrollLink = (props) => {
     if (!isNaN(scrollMargin)) {
       margin += scrollMargin;
     }
-    margin-=2;
+    margin -= 2;
     return margin;
   }, [scrollRefLoc, scrollMargin, scrollRefElement]);
 
