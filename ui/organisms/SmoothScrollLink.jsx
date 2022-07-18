@@ -31,12 +31,20 @@ const useSmoothScrollLink = (props) => {
   } = props;
 
   const [scrollRefElement, setScrollRefElement] = useState();
+  const lastScroll = useRef();
 
   const scrollTo = (duringTime) => {
     const offset = getStore().scroller.getOffset(targetId);
     if (offset) {
       const margin = getMargin();
       const to = offset.top - margin;
+      /**
+       * Let user could cancel scroll with different direction.
+       */
+      if (lastScroll.current === to) {
+        return;
+      }
+      lastScroll.current = to;
       smoothScrollTo(to, duringTime, null, () => {
         resetTimer();
         scollTimer = setTimeout(() => scrollTo(duringTime), 800);
@@ -86,6 +94,7 @@ const useSmoothScrollLink = (props) => {
 
   const handler = {
     click: (e) => {
+      lastScroll.current = null;
       if (preventDefault) {
         e.preventDefault();
       }
