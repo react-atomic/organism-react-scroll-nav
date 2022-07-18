@@ -79,6 +79,10 @@ class Scroller {
     this.scrollDebounce({ delay, args: [e?.target] });
   }
 
+  checkIsActive = (scrollTop, pos) => {
+    return scrollTop >= pos.top - 1 && scrollTop <= pos.bottom - 2;
+  }
+
   triggerScroll(scrollNode) {
     const scrollId = get(scrollNode, ["id"]) || DEFAULT_SCROLL_ID;
     const defaultMargin = this.store.getState().get("scrollMargin");
@@ -98,7 +102,8 @@ class Scroller {
 
       let pos = getOffset(nodeEl);
       if (monitorScroll) {
-        if (scrollTop >= pos.top && scrollTop < pos.bottom) {
+        const isActive = this.checkIsActive(scrollTop, pos);
+        if (isActive) {
           actives.mdefault = nodeId;
         }
         allMonitorNode.unshift(node);
@@ -116,7 +121,7 @@ class Scroller {
         const node = allMonitorNode[i];
         const nodeId = this.getNodeId(node);
         const pos = offsetCache[nodeId];
-        const isActive = scrollTop >= pos.top - 1 && scrollTop <= pos.bottom - 2;
+        const isActive = this.checkIsActive(scrollTop, pos);
         if (isActive) {
           actives["m" + margin] = nodeId;
           break;
