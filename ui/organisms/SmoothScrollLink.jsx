@@ -31,18 +31,12 @@ const useSmoothScrollLink = (props) => {
   } = props;
 
   const [scrollRefElement, setScrollRefElement] = useState();
-  const lastScroll = useRef();
 
   const scrollTo = (lazyScrollTime = [500, 800, 500], duringTime) => {
     const offset = getStore().scroller.getOffset(targetId);
     if (offset) {
       const margin = getMargin();
       const to = offset.top - margin;
-      if (lastScroll.current === to) {
-        lastScroll.current = to;
-        return;
-      }
-      lastScroll.current = to;
       smoothScrollTo(to, duringTime, null, () => {
         const nextScrollTime = lazyScrollTime.shift();
         if (null != nextScrollTime) {
@@ -98,7 +92,6 @@ const useSmoothScrollLink = (props) => {
 
   const handler = {
     click: (e) => {
-      lastScroll.current = null;
       if (preventDefault) {
         e.preventDefault();
       }
