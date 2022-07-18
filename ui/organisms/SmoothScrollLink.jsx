@@ -32,20 +32,14 @@ const useSmoothScrollLink = (props) => {
 
   const [scrollRefElement, setScrollRefElement] = useState();
 
-  const scrollTo = (lazyScrollTime = [500, 800, 500], duringTime) => {
+  const scrollTo = (duringTime) => {
     const offset = getStore().scroller.getOffset(targetId);
     if (offset) {
       const margin = getMargin();
       const to = offset.top - margin;
       smoothScrollTo(to, duringTime, null, () => {
-        const nextScrollTime = lazyScrollTime.shift();
-        if (null != nextScrollTime) {
-          resetTimer();
-          scollTimer = setTimeout(
-            () => scrollTo(lazyScrollTime, 100),
-            nextScrollTime
-          );
-        }
+        resetTimer();
+        scollTimer = setTimeout(() => scrollTo(duringTime), 800);
       });
     }
   };
@@ -56,7 +50,7 @@ const useSmoothScrollLink = (props) => {
       setScrollRefElement(dom);
     }
     if (getAnchorPath().anchor.substring(1) === targetId) {
-      setTimeout(() => scrollTo([500, 500, 500, 500], 100));
+      setTimeout(() => scrollTo(1));
     }
     return () => {
       resetTimer();
