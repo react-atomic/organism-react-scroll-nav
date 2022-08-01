@@ -34,6 +34,7 @@ const useSmoothScrollLink = (props) => {
   const lastScroll = useRef();
 
   const scrollTo = (duringTime) => {
+    const getStore = () => (noDelay ? fastScrollStore : scrollStore);
     const offset = getStore().scroller.getOffset(targetId);
     if (offset) {
       const margin = getMargin();
@@ -44,7 +45,7 @@ const useSmoothScrollLink = (props) => {
       if (lastScroll.current === to) {
         return;
       }
-      lastScroll.current = to;
+      setTimeout(()=>lastScroll.current = to);
       smoothScrollTo(to, duringTime, null, () => {
         resetTimer();
         scollTimer = setTimeout(() => scrollTo(duringTime), 800);
@@ -90,8 +91,6 @@ const useSmoothScrollLink = (props) => {
     return margin;
   }, [scrollRefLoc, scrollMargin, scrollRefElement]);
 
-  const getStore = () => (noDelay ? fastScrollStore : scrollStore);
-
   const handler = {
     click: (e) => {
       lastScroll.current = null;
@@ -103,13 +102,11 @@ const useSmoothScrollLink = (props) => {
     },
   };
 
-  const margin = getMargin();
-
   return {
     restProps,
     handler,
     targetId,
-    margin,
+    margin: getMargin(),
     style,
   };
 };
