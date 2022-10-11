@@ -2,8 +2,7 @@ import { mergeMap, Set, Map, ImmutableStore } from "reshow-flux";
 import getScrollInfo from "get-scroll-info";
 import { isOnScreen } from "get-window-offset";
 import getOffset from "getoffset";
-import get, { toJS } from "get-object-value";
-import { KEYS } from "reshow-constant";
+import get from "get-object-value";
 import callfunc, { debounce } from "call-func";
 import { win } from "win-doc";
 import query from "css-query-selector";
@@ -69,7 +68,7 @@ class Scroller {
   }
 
   handleResize() {
-    this.spys.forEach((v, scrollId) => {
+    this.spys.keySeq().forEach((scrollId) => {
       this.scrollMonitor({ target: { id: scrollId } });
     });
   }
@@ -293,9 +292,13 @@ const [store, delayScrollDispatch] = ImmutableStore(
   oDelayScroller.getInitialState.bind(oDelayScroller)
 );
 
-store.scroller = oDelayScroller;
+const scrollStore = {
+  ...store,
+  scroller: oDelayScroller,
+}; 
+
 oDelayScroller.dispatch = delayScrollDispatch;
 oDelayScroller.store = store;
 
-export default store;
+export default scrollStore;
 export { Scroller };

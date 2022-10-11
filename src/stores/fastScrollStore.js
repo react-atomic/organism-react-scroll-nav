@@ -16,8 +16,12 @@ const [store, fastScrollDispatch] = ImmutableStore(
   oFastScroller.getInitialState.bind(oFastScroller)
 );
 
-store.scroller = oFastScroller;
+const scrollStore = {
+  ...store,
+  scroller: oFastScroller,
+}; 
+
 oFastScroller.dispatch = fastScrollDispatch;
 oFastScroller.store = store;
 
-export default store;
+export default scrollStore;

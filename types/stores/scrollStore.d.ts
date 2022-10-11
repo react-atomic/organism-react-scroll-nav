@@ -1,0 +1,43 @@
+export default scrollStore;
+declare const scrollStore: {
+    scroller: Scroller;
+    reset: Function;
+    getState: Function;
+    addListener: Function;
+    removeListener: Function;
+    getMap: Function;
+};
+export class Scroller {
+    storeName: string;
+    isInitResizeEvent: boolean;
+    initResizeEvent(): void;
+    initEvent(el: any, retry: any): void;
+    initTimer: NodeJS.Timer;
+    removeEvent(el: any): void;
+    handleResize(): void;
+    runScrollMonitor(e: any): void;
+    checkIsActive: (scrollTop: any, pos: any) => boolean;
+    triggerScroll(scrollNode: any): void;
+    margins: any;
+    getOffset(id: any): any;
+    hasAttach(node: any): any;
+    getNodeId(node: any): any;
+    setNodeId(node: any): string;
+    getAttachDestId(node: any): any;
+    getNode(nodeId: any): any;
+    attach(node: any): any;
+    spys: any;
+    arrNode: any;
+    isInitEvent: any;
+    detach(node: any): void;
+    addMargin(num: any): void;
+    deleteMargin(num: any): void;
+    clearInitTimer(): void;
+    getInitialState(): Map<string, number>;
+    trigger: any;
+    scrollMonitor: any;
+    scrollDebounce: (option: any) => void;
+    bindHandleResize: any;
+    reduce(state: any, action: any): import("reshow-flux/types/ImmutableStore").StateType;
+}
+import { Map } from "reshow-flux";
