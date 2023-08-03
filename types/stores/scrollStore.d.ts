@@ -1,11 +1,11 @@
 export default scrollStore;
 declare const scrollStore: {
     scroller: Scroller;
-    reset: Function;
-    getState: Function;
-    addListener: Function;
-    removeListener: Function;
-    getMap: Function;
+    getMap: (arg0: import("reshow-flux/types/ImmutableStore").MapKeyType) => any;
+    reset: () => import("reshow-flux/types/ImmutableStore").StateMap;
+    getState: () => import("reshow-flux/types/ImmutableStore").StateMap;
+    addListener: import("reshow-flux-base/types/type").EmitterAddCall<import("reshow-flux/types/ImmutableStore").StateMap, import("reshow-flux/types/ImmutableStore").ImmutableAction>;
+    removeListener: import("reshow-flux-base/types/type").EmitterRemoveCall<import("reshow-flux/types/ImmutableStore").StateMap, import("reshow-flux/types/ImmutableStore").ImmutableAction>;
 };
 export class Scroller {
     storeName: string;
@@ -38,6 +38,6 @@ export class Scroller {
     scrollMonitor: any;
     scrollDebounce: (option: any) => void;
     bindHandleResize: any;
-    reduce(state: any, action: any): import("reshow-flux/types/ImmutableStore").StateType;
+    reduce(state: any, action: any): import("reshow-flux/types/ImmutableStore").StateMap;
 }
 import { Map } from "reshow-flux";

@@ -1,30 +1,30 @@
 {
   "chunks": {
     "main": [
-      "main.1ae7a20.bundle.js"
+      "main.1319ab7.bundle.js"
     ],
     "lib": [
-      "lib.1ae7a20.bundle.js"
+      "lib.1319ab7.bundle.js"
     ],
     "vendor": [
-      "vendor.1ae7a20.bundle.js"
+      "vendor.1319ab7.bundle.js"
     ]
   },
   "assets": {
-    "main.1ae7a20.bundle.js": {
-      "name": "main.1ae7a20.bundle.js",
-      "publicPath": "./assets/main.1ae7a20.bundle.js?1ae7a20",
-      "path": "/Users/hill/git/organism-react-scroll-nav/assets/main.1ae7a20.bundle.js"
+    "main.1319ab7.bundle.js": {
+      "name": "main.1319ab7.bundle.js",
+      "publicPath": "./assets/main.1319ab7.bundle.js?1319ab7",
+      "path": "/Users/hill/git/organism-react-scroll-nav/assets/main.1319ab7.bundle.js"
     },
-    "lib.1ae7a20.bundle.js": {
-      "name": "lib.1ae7a20.bundle.js",
-      "publicPath": "./assets/lib.1ae7a20.bundle.js?1ae7a20",
-      "path": "/Users/hill/git/organism-react-scroll-nav/assets/lib.1ae7a20.bundle.js"
+    "lib.1319ab7.bundle.js": {
+      "name": "lib.1319ab7.bundle.js",
+      "publicPath": "./assets/lib.1319ab7.bundle.js?1319ab7",
+      "path": "/Users/hill/git/organism-react-scroll-nav/assets/lib.1319ab7.bundle.js"
     },
-    "vendor.1ae7a20.bundle.js": {
-      "name": "vendor.1ae7a20.bundle.js",
-      "publicPath": "./assets/vendor.1ae7a20.bundle.js?1ae7a20",
-      "path": "/Users/hill/git/organism-react-scroll-nav/assets/vendor.1ae7a20.bundle.js"
+    "vendor.1319ab7.bundle.js": {
+      "name": "vendor.1319ab7.bundle.js",
+      "publicPath": "./assets/vendor.1319ab7.bundle.js?1319ab7",
+      "path": "/Users/hill/git/organism-react-scroll-nav/assets/vendor.1319ab7.bundle.js"
     }
   },
   "publicPath": "./assets/",

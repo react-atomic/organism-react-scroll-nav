@@ -1,2 +1,2 @@
 export default Index;
-declare function Index(): JSX.Element;
+declare function Index(): import("react/jsx-runtime").JSX.Element;
