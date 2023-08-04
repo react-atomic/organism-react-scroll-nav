@@ -1,8 +1,9 @@
 // @ts-check
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import * as React from "react";
+const { useEffect, useState, useCallback, useRef } = React;
 import smoothScrollTo from "smooth-scroll-to";
-import getOffset from "getoffset";
+import getOffset, { OffsetType } from "getoffset";
 import callfunc from "call-func";
 import { doc } from "win-doc";
 import { getAnchorPath } from "reshow-url";
@@ -44,13 +45,13 @@ const useSmoothScrollLink = (props) => {
    */
   const [scrollRefElement, setScrollRefElement] = useState();
 
-  /** @type {React.MutableRefObject<number>} */
+  /** @type {any} */
   const lastScroll = useRef();
 
   /**
-   * @param {number} duringTime
+   * @param {number=} duringTime
    */
-  const scrollTo = (duringTime = undefined) => {
+  const scrollTo = (duringTime) => {
     const getStore = () => (noDelay ? fastScrollStore : scrollStore);
     const offset = getStore().scroller.getOffset(targetId);
     if (offset) {
@@ -63,7 +64,7 @@ const useSmoothScrollLink = (props) => {
         return;
       }
       setTimeout(() => (lastScroll.current = to));
-      smoothScrollTo(to, duringTime, null, () => {
+      smoothScrollTo(to, duringTime, undefined, () => {
         resetTimer();
         scollTimer = setTimeout(() => scrollTo(duringTime), 800);
       });
@@ -91,7 +92,7 @@ const useSmoothScrollLink = (props) => {
   const getMargin = useCallback(() => {
     let margin = 0;
     if (scrollRefElement) {
-      const refOffset = getOffset(scrollRefElement);
+      const refOffset = /**@type OffsetType*/ (getOffset(scrollRefElement));
       switch (scrollRefLoc) {
         case "bottom":
           margin += refOffset.bottom - refOffset.top;

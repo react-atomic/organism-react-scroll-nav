@@ -1,7 +1,8 @@
 // @ts-check
 import { Checkbox } from "react-atomic-organism";
 import { useLazyInject } from "react-atomic-molecule";
-import { useState } from "react";
+import * as React from "react";
+const { useState } = React;
 
 /**
  * Production please use
