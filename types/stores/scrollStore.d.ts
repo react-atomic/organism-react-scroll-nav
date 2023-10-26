@@ -12,7 +12,7 @@ export class Scroller {
     isInitResizeEvent: boolean;
     initResizeEvent(): void;
     initEvent(el: any, retry: any): void;
-    initTimer: NodeJS.Timer;
+    initTimer: NodeJS.Timeout;
     removeEvent(el: any): void;
     handleResize(): void;
     runScrollMonitor(e: any): void;
@@ -38,6 +38,6 @@ export class Scroller {
     scrollMonitor: any;
     scrollDebounce: (option: any) => void;
     bindHandleResize: any;
-    reduce(state: any, action: any): import("reshow-flux/types/ImmutableStore").StateMap;
+    reduce(state: any, action: any): any;
 }
 import { Map } from "reshow-flux";
