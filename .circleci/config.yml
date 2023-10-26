@@ -13,7 +13,7 @@ jobs:
     steps:
       - checkout
       - node/install:
-          node-version: "14"
+          node-version: "18"
           install-yarn: true
       - run:
           name: "Display information"
@@ -32,11 +32,12 @@ jobs:
       - run:
           name: Run YARN tests
           command: |
-            npm config set scripts-prepend-node-path auto \
-            && yarn --ignore-engines \
+            yarn --ignore-engines \
             && cd << parameters.test-dir >> \
             && yarn --ignore-engines \
-            && yarn test
+            && grep -q '"test:report":' ./package.json \
+            && yarn run test:report \
+            || yarn test
 
 workflows:
   run-node-tests:
