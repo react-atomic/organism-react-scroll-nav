@@ -2424,9 +2424,9 @@ camelcase@^8.0.0:
   integrity sha512-8WB3Jcas3swSvjIeA2yvCJ+Miyz5l1ZmB6HFb9R1317dt9LCQoswg/BGrmAmkWVEszSrrg4RwmO46qIm2OEnSA==
 
 caniuse-lite@^1.0.30001669:
-  version "1.0.30001682"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001682.tgz#e44dab724829893a4e4fe679ed077eb4cdc34039"
-  integrity sha512-rJFwz3yRO6NU6Y8aEJKPzS4fngOE8j05pd33FW5Uk9v9b5StWNhGFeVpogwS2FFl78wNDGW5NsVvlwySPEDU5w==
+  version "1.0.30001683"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001683.tgz#7f026a2d5d319a9cf8915a1451173052caaadc81"
+  integrity sha512-iqmNnThZ0n70mNwvxpEC2nBJ037ZHZUoBI5Gorh1Mw6IlEAZujEoU1tXA628iZfzm7R9FvFzxbfdgml82a3k8Q==
 
 chai@4.4.1:
   version "4.4.1"
@@ -2820,7 +2820,16 @@ crypto-random-string@^2.0.0:
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-2.0.0.tgz#ef2a7a966ec11083388369baa02ebead229b30d5"
   integrity sha512-v1plID3y9r/lPhviJ1wrXpLeyUIGAZ2SHNYTEapm7/8A9nLPoyvVp3RK/EPFqn5kEznyWgYZNsRtYYIWbuG8KA==
 
-css-query-selector@*, css-query-selector@^0.4.0:
+css-query-selector@*:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/css-query-selector/-/css-query-selector-0.5.2.tgz#e54a8b7dca4a70cc4d589352d18bcb774759c9bc"
+  integrity sha512-RHpxtoQbE8nxBtD5LyEsmDbBzqw9LKqaXBlvBFpennByIJI3qIEn82QSxYz0odZ2B3afHdtnUawVpovs6AX5Bw==
+  dependencies:
+    reshow-constant "*"
+    reshow-runtime "*"
+    win-doc "*"
+
+css-query-selector@^0.4.0:
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/css-query-selector/-/css-query-selector-0.4.2.tgz#4380ee18a07015c4ba054836af32cf1d63e05513"
   integrity sha512-EtRa+fPl5P5ApSIKYdNHfXVhNq66jkkULdyZfFBsZWaHNBP548JxoDRvuf1zU9NyACAoXFjWjNOss9kvM8xdUg==
@@ -6353,9 +6362,9 @@ proxy-addr@~2.0.7:
     ipaddr.js "1.9.1"
 
 psl@^1.1.33:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/psl/-/psl-1.10.0.tgz#1450f7e16f922c3beeb7bd9db3f312635018fa15"
-  integrity sha512-KSKHEbjAnpUuAUserOq0FxGXCUrzC3WniuSJhvdbs102rL55266ZcHBqLWOsG30spQMlPdpy7icATiAQehg/iA==
+  version "1.12.0"
+  resolved "https://registry.yarnpkg.com/psl/-/psl-1.12.0.tgz#8b09cba186ebee68c0d824c1b22944cf5b2ad42c"
+  integrity sha512-OVcqwt4qWJF9G0fnSEMNz7aSa1PiGX/IvSXDO+PpbDK3r/IJ3QX2iu8ywanYG07e9IaYDigMu+EapE8TdMZOJQ==
   dependencies:
     punycode "^2.3.1"
 

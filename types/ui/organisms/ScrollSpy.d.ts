@@ -1,5 +1,5 @@
 export default ScrollSpy;
-export type ScrollSpyProps = object;
+export type ScrollSpyProps = any;
 /**
  * @param {ScrollSpyProps} props
  */

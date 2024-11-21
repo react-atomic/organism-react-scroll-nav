@@ -12,7 +12,7 @@ import scrollStore from "../../stores/scrollStore";
 import fastScrollStore from "../../stores/fastScrollStore";
 
 /**
- * @typedef {object} ScrollSpyProps
+ * @typedef {any} ScrollSpyProps
  */
 
 /**

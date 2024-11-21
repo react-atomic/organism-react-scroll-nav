@@ -9,7 +9,7 @@ import scrollStore from "../../stores/scrollStore";
 import fastScrollStore from "../../stores/fastScrollStore";
 
 /**
- * @typedef {object} ScrollReceiverProps
+ * @typedef {any} ScrollReceiverProps
  */
 
 /**

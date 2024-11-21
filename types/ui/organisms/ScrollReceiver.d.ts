@@ -1,5 +1,5 @@
 export default ScrollReceiver;
-export type ScrollReceiverProps = object;
+export type ScrollReceiverProps = any;
 /**
  * @param {ScrollReceiverProps} props
  */
