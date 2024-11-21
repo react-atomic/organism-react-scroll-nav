@@ -26,7 +26,7 @@ const useScrollReceiver = (props) => {
   } = props;
 
   /** @type {React.MutableRefObject<boolean>} */
-  const lastIsShown = useRef();
+  const lastIsShown = useRef(false);
   const store = noDelay ? fastScrollStore : scrollStore;
   const { scroll: scrollInfo = {} } = useReturn(["scroll"], store);
   const activeId = store.getState().get("m" + scrollMargin);

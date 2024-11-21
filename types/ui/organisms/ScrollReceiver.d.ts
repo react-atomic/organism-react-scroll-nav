@@ -5,5 +5,5 @@ export type ScrollReceiverProps = object;
  */
 declare function ScrollReceiver(props: ScrollReceiverProps): import("react").ReactElement<any, string | import("react").JSXElementConstructor<any>>;
 declare namespace ScrollReceiver {
-    const displayName: string;
+    let displayName: string;
 }

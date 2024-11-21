@@ -80,7 +80,7 @@ class Scroller {
 
   checkIsActive = (scrollTop, pos) => {
     return scrollTop >= pos.top - 1 && scrollTop <= pos.bottom - 2;
-  }
+  };
 
   triggerScroll(scrollNode) {
     const scrollId = get(scrollNode, ["id"]) || DEFAULT_SCROLL_ID;
@@ -137,7 +137,7 @@ class Scroller {
   }
 
   getOffset(id) {
-    const offset = this.store.getMap("offsetCache")[id];
+    const offset = get(this.store.getMap("offsetCache"), [id]);
     if (offset && offset.h && offset.w) {
       return offset;
     } else {
@@ -295,7 +295,7 @@ const [store, delayScrollDispatch] = ImmutableStore(
 const scrollStore = {
   ...store,
   scroller: oDelayScroller,
-}; 
+};
 
 oDelayScroller.dispatch = delayScrollDispatch;
 oDelayScroller.store = store;

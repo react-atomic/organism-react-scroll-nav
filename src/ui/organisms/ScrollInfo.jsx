@@ -1,5 +1,8 @@
+// @ts-check
+
 import ScrollSpy from "../organisms/ScrollSpy";
 import ScrollReceiver from "../organisms/ScrollReceiver";
+import * as React from "react";
 
 const ScrollInfo = ({ children, ...others }) => (
   <ScrollSpy {...others}>
