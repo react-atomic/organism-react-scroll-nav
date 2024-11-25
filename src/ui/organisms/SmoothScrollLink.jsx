@@ -6,7 +6,7 @@ import smoothScrollTo from "smooth-scroll-to";
 import getOffset, { OffsetType } from "getoffset";
 import callfunc from "call-func";
 import { doc } from "win-doc";
-import { getAnchorPath } from "reshow-url";
+import { getAnchorPath } from "anchor-lib";
 
 import { ScrollReceiver } from "../../index";
 import scrollStore from "../../stores/scrollStore";
