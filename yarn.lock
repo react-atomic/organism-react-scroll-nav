@@ -27,7 +27,7 @@
     jsonpointer "^5.0.0"
     leven "^3.1.0"
 
-"@babel/cli@^7.23.0", "@babel/cli@^7.x":
+"@babel/cli@^7.25.0", "@babel/cli@^7.x":
   version "7.25.9"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.25.9.tgz#51036166fd0e9cfb26eee1b9ddc264a0d6d5f843"
   integrity sha512-I+02IfrTiSanpxJBlZQYb18qCxB6c2Ih371cVpfgIrPQrjAYkf45XxomTJOG8JBWX5GY35/+TmhCMdJ4ZPkL8Q==
@@ -57,7 +57,7 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.26.2.tgz#278b6b13664557de95b8f35b90d96785850bb56e"
   integrity sha512-Z0WgzSEa+aUcdiJuCIqgujCshpMWgUpgOxXotrYPSA53hA3qopNaqcJpyr0hVb1FeWdnqFA35/fUtXgBK8srQg==
 
-"@babel/core@*", "@babel/core@^7.20.12", "@babel/core@^7.23.0", "@babel/core@^7.24.4", "@babel/core@^7.7.5", "@babel/core@^7.7.7":
+"@babel/core@*", "@babel/core@^7.20.12", "@babel/core@^7.24.4", "@babel/core@^7.25.0", "@babel/core@^7.7.5", "@babel/core@^7.7.7":
   version "7.26.0"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.26.0.tgz#d78b6023cc8f3114ccf049eb219613f74a747b40"
   integrity sha512-i1SLeK+DzNnQ3LL/CswPCa/E5u4lh1k6IAEphON8F+cXt0t9euTshDru0q7/IqMa1PMPz5RnHuHscF8/ZJsStg==
@@ -2797,7 +2797,7 @@ core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
   integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
 
-create-el@^0.2.0:
+create-el@*, create-el@^0.2.0:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/create-el/-/create-el-0.2.6.tgz#52c6ac611abfa21e41efd598f451701d29e128d8"
   integrity sha512-qVh/oIhbNa3qvR6rCk4uHZ76kmkcGY+lu+8/G4C/Vrq9ahS6HtBKnz0twjbtLipSzuuCFNrV3OqdcPYZ6bc0mw==
@@ -5740,14 +5740,14 @@ natural-compare@^1.4.0:
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
 need-css@*:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/need-css/-/need-css-0.2.0.tgz#4d01b18a0c87ccefaac4e90c2091712a37426b61"
-  integrity sha512-ohdjH9aLoue4oa8YaRZaLdRKyuGaeELTklBEwPZE3okHucQbH1rHdnlgyXyfSnuXLUxVbXb/1N9kzd/CNZjY5w==
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/need-css/-/need-css-0.2.1.tgz#68f87ce409e31e7753d3b6ef514811fd55edc66b"
+  integrity sha512-CPA8RcDqUET7tPmNdWUuzkfrZ/chK94a27sNq/QycCXr7GD+UpkYwQkjIvD3Ri42F2O92i+xPh2Dqf2VHTZsUA==
   dependencies:
-    create-el "^0.2.0"
-    css-query-selector "^0.4.0"
-    get-object-value "^0.6.5"
-    win-doc "^0.3.2"
+    create-el "*"
+    css-query-selector "*"
+    get-object-value "*"
+    win-doc "*"
 
 negotiator@0.6.3:
   version "0.6.3"
@@ -6455,12 +6455,12 @@ raw-body@2.5.2, raw-body@^2.3.3:
     unpipe "1.0.0"
 
 react-atomic-atom@*:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/react-atomic-atom/-/react-atomic-atom-4.0.1.tgz#31f0a0ac07a814e4419290c3fdd5939c2c7e3419"
-  integrity sha512-BxsERZwVmpzZfgsR+upsx4vnZQ7uOxCTIGVYs8K5Z9z9eOL8x6lP5LfMY6/+elATsEi8cehhmdQ+5+89WrJQuQ==
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/react-atomic-atom/-/react-atomic-atom-4.0.2.tgz#c921dde4e08d3ccf9a78b6ebe56db784f39b8501"
+  integrity sha512-qNUMjdvjC6P8+Vtf2dju1ZjkZI9ZAUsa4hvsw+E4B5waqualf+tGXZlKzukKFtIEXrdJoWxqHTlds73Fob50fg==
   dependencies:
-    "@babel/cli" "^7.23.0"
-    "@babel/core" "^7.23.0"
+    "@babel/cli" "^7.25.0"
+    "@babel/core" "^7.25.0"
     "@babel/plugin-proposal-export-default-from" "*"
     "@babel/plugin-syntax-dynamic-import" "*"
     "@babel/plugin-transform-arrow-functions" "*"
