@@ -38,6 +38,8 @@ jobs:
             && grep -q '"test:report":' ./package.json \
             && yarn run test:report \
             || yarn test
+      - store_test_results:
+          path: << parameters.test-dir >>/test_output
 
 workflows:
   run-node-tests:
