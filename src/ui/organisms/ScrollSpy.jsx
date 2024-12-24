@@ -1,5 +1,7 @@
 //@ts-check
-import { useRef, useMemo, useState, useEffect, useCallback } from "react";
+
+import React from "react";
+const { useRef, useMemo, useState, useEffect, useCallback } = React;
 import {
   mixClass,
   build,
@@ -104,7 +106,11 @@ const useScrollSpy = (props) => {
   };
   restProps.id = targetId;
   restProps.refCb = lastEl;
-  restProps.className = mixClass(className, "spy-tar-" + targetId);
+  restProps.className = mixClass(
+    className,
+    "spy-tar-" + targetId,
+    "scroll-spy"
+  );
   return {
     targetId,
     className,

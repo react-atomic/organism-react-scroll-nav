@@ -1,6 +1,7 @@
 //@ts-check
 
-import { isValidElement, useRef } from "react";
+import React from "react";
+const {isValidElement, useRef} = React;
 import { useReturn } from "reshow-return";
 import { build } from "react-atomic-molecule";
 import { UNDEFINED, DEFAULT } from "reshow-constant";
