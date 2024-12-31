@@ -40,9 +40,9 @@ const useScrollSpy = (props) => {
   const [targetId, setTargetId] = useState(id);
 
   const _mount = useMounted();
-  const lastEl = useRef();
+  const lastEl = useRef(null);
 
-  /** @type {React.MutableRefObject<object>} */
+  /** @type {React.RefObject<object>} */
   const lastConfig = useRef({});
   lastConfig.current = {
     ...lastConfig.current,
@@ -52,7 +52,7 @@ const useScrollSpy = (props) => {
     scrollMargin,
   };
 
-  const nextContainer = useRef();
+  const nextContainer = useRef(null);
 
   useEffect(() => {
     const store = noDelay ? fastScrollStore : scrollStore;
