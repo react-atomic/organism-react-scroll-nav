@@ -46,7 +46,7 @@ const useSmoothScrollLink = (props) => {
   const [scrollRefElement, setScrollRefElement] = useState();
 
   /** @type {any} */
-  const lastScroll = useRef();
+  const lastScroll = useRef(null);
 
   /**
    * @param {number=} duringTime

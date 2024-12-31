@@ -138,6 +138,7 @@ const ScrollSpy = (props) => {
       nextProps = {
         ...children.props,
         ...restProps,
+        scrollMargin: props.scrollMargin,
         targetId,
         container,
         noDelay,
