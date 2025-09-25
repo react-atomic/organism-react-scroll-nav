@@ -1,5 +1,5 @@
 export default ScrollInfo;
 declare function ScrollInfo({ children, ...others }: {
     [x: string]: any;
-    children: any;
+    children?: any;
 }): any;
