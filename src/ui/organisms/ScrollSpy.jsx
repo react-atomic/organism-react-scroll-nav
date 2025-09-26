@@ -9,6 +9,7 @@ import {
   SemanticUI,
 } from "react-atomic-molecule";
 import { useDebounce, useMounted } from "reshow-hooks";
+import { getSN } from "get-random-id";
 
 import scrollStore from "../../stores/scrollStore";
 import fastScrollStore from "../../stores/fastScrollStore";
@@ -37,7 +38,7 @@ const useScrollSpy = (props) => {
     ...restProps
   } = props;
 
-  const [targetId, setTargetId] = useState(id);
+  const [targetId, setTargetId] = useState(id || getSN("auto-spy-id"));
 
   const _mount = useMounted();
   const lastEl = useRef(null);
