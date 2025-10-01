@@ -149,6 +149,7 @@ class Scroller {
         const defaultMargin = this.store.getState().get("scrollMargin");
         const margin = callfunc(node.getScrollMargin) || defaultMargin;
         domOffset = isOnScreen(domOffset, scrollInfo, margin);
+        domOffset.isOnScreen = false; // before scroll render
         return domOffset;
       } else {
         return offset;

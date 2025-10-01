@@ -1,5 +1,5 @@
 {
-  "version": "1.5.1",
+  "version": "1.6.0",
   "name": "organism-react-scroll-nav",
   "repository": {
     "type": "git",
@@ -15,11 +15,11 @@
   "author": "Hill <hill@kimo.com>",
   "license": "MIT",
   "dependencies": {
-    "get-random-id": "*",
     "anchor-lib": "*",
     "call-func": "*",
     "css-query-selector": "*",
     "get-object-value": "*",
+    "get-random-id": "*",
     "get-scroll-info": "*",
     "get-window-offset": "*",
     "getoffset": "*",

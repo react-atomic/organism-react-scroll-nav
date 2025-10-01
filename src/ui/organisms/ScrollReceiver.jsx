@@ -1,10 +1,11 @@
 //@ts-check
 
 import React from "react";
-const {isValidElement, useRef} = React;
+const { isValidElement, useRef } = React;
 import { useReturn } from "reshow-return";
 import { build } from "react-atomic-molecule";
 import { UNDEFINED, DEFAULT } from "reshow-constant";
+import { useLoaded } from "reshow-hooks";
 
 import scrollStore from "../../stores/scrollStore";
 import fastScrollStore from "../../stores/fastScrollStore";
@@ -21,15 +22,21 @@ const useScrollReceiver = (props) => {
     scrollMargin = DEFAULT,
     noDelay = false,
     targetId,
-    container,
-    children,
     ...restProps
   } = props;
+
 
   /** @type {React.RefObject<boolean>} */
   const lastIsShown = useRef(false);
   const store = noDelay ? fastScrollStore : scrollStore;
   const { scroll: scrollInfo = {} } = useReturn(["scroll"], store);
+  const loaded = useLoaded();
+  if (!loaded) {
+    return {
+      targetInfo: {},
+      restProps,
+    };
+  }
   const activeId = store.getState().get("m" + scrollMargin);
   const scrollTop = scrollInfo.top;
   const pos = store.scroller.getOffset(targetId) || {};
@@ -53,8 +60,6 @@ const useScrollReceiver = (props) => {
   }
   return {
     targetInfo,
-    container,
-    children,
     restProps,
   };
 };
@@ -62,9 +67,8 @@ const useScrollReceiver = (props) => {
 /**
  * @param {ScrollReceiverProps} props
  */
-const ScrollReceiver = (props) => {
-  const { targetInfo, container, children, restProps } =
-    useScrollReceiver(props);
+const ScrollReceiver = ({ children = null, container = null, ...props }) => {
+  const { targetInfo, restProps } = useScrollReceiver(props);
   let nextContainer = container;
   let nextChildren = children;
   if (!nextContainer) {
