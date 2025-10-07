@@ -138,7 +138,7 @@ class Scroller {
 
   getOffset(id) {
     const offset = get(this.store.getMap("offsetCache"), [id]);
-    if (offset && offset.h && offset.w) {
+    if (offset && (offset.h || offset.w)) {
       return offset;
     } else {
       const node = this.getNode(id) || {};
