@@ -6,6 +6,7 @@ import { useReturn } from "reshow-return";
 import { build } from "react-atomic-molecule";
 import { UNDEFINED, DEFAULT } from "reshow-constant";
 import { useLoaded } from "reshow-hooks";
+import get from "get-object-value";
 
 import scrollStore from "../../stores/scrollStore";
 import fastScrollStore from "../../stores/fastScrollStore";
@@ -25,7 +26,6 @@ const useScrollReceiver = (props) => {
     ...restProps
   } = props;
 
-
   /** @type {React.RefObject<boolean>} */
   const lastIsShown = useRef(false);
   const store = noDelay ? fastScrollStore : scrollStore;
@@ -37,11 +37,14 @@ const useScrollReceiver = (props) => {
       restProps,
     };
   }
-  const activeId = store.getState().get("m" + scrollMargin);
+  const actives = store.getState().get("actives");
   const scrollTop = scrollInfo.top;
   const pos = store.scroller.getOffset(targetId) || {};
   const isShown = lastIsShown.current || false;
-  const active = UNDEFINED !== typeof targetId && targetId === activeId;
+  const active =
+    UNDEFINED !== typeof targetId &&
+    actives &&
+    get(actives, [`${targetId}_${scrollMargin}`]);
   const targetInfo = {
     ...pos,
     active,

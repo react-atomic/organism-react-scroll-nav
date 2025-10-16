@@ -8,5 +8,6 @@ declare const scrollStore: {
     getMap: (arg0: import("reshow-flux/types/ImmutableStore").MapKeyType) => any;
 };
 declare class FastScroller extends Scroller {
+    runScrollMonitor(e: any): void;
 }
 import { Scroller } from "./scrollStore";
